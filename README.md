@@ -3,6 +3,10 @@ Unofficial Capmonster.cloud library for Python3. \
 Currently supporting ***ImageToText, NoCaptcha (Recaptcha v2) proxyless and proxy-on, Recaptchav3Proxyless***.
 >At least 2x cheaper, up to 30x faster than manual recognition services.
 
+```
+pip install capmonster-python
+```
+
 ### Examples
 ##### *ImageToTextTask*
 ```python
