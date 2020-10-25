@@ -4,7 +4,7 @@ Currently supporting ***ImageToText, NoCaptcha (Recaptcha v2) proxyless and prox
 >At least 2x cheaper, up to 30x faster than manual recognition services.
 
 ### Examples
-#####*ImageToTextTask*
+##### *ImageToTextTask*
 ```python
 from python_capmonster import ImageToTextTask
 
@@ -13,7 +13,7 @@ taskId = capmonster.createTask(file_path="captcha.png")
 response = capmonster.joinTaskResult(taskId=taskId)
 print(response)
 ```
-#####*NoCaptchaTaskProxyless*
+##### *NoCaptchaTaskProxyless*
 ```python
 from python_capmonster import NoCaptchaTaskProxyless
 
@@ -22,7 +22,7 @@ taskId = capmonster.createTask(website_key="WEBSITE_KEY", website_url="URL")
 response = capmonster.joinTaskResult(taskId=taskId)
 print(response)
 ```
-#####*NoCaptchaTask*
+##### *NoCaptchaTask*
 ```python
 from python_capmonster import NoCaptchaTask
 
@@ -31,7 +31,7 @@ taskId = capmonster.createTask(website_key="WEBSITE_KEY", website_url="URL", pro
 response = capmonster.joinTaskResult(taskId=taskId)
 print(response)
 ```
-#####*RecaptchaV3TaskProxyless*
+##### *RecaptchaV3TaskProxyless*
 > default minimum score: 0.3 and default page_action: verify
 ```python
 from python_capmonster import RecaptchaV3TaskProxyless
@@ -44,6 +44,6 @@ print(response)
 
 > For detailed documentation (not this library's) is here: [capmonster.cloud documentation](https://zennolab.atlassian.net/wiki/spaces/APIS/pages/491575/English+Documentation)
 
-######Things to add:
+###### Things to add:
 - FunCaptchaTask & FunCaptchaTaskProxyless.
 - Directly send base64 encoded image to ImageToTextTask.
