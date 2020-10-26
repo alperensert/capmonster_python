@@ -6,6 +6,8 @@ Currently supporting ***ImageToText, NoCaptcha (Recaptcha v2) proxyless and prox
 ```
 pip install capmonster-python
 ```
+### Documentation
+You can find documentation in [here](https://github.com/alperensert/python_capmonster/blob/master/docs/documentation.md).
 
 ### Examples
 ##### *ImageToTextTask*
