@@ -1,4 +1,3 @@
-from .CapmonsterClient import CapmonsterClient
 from .exceptions import CapmonsterException
 from .ImageToTextTask import ImageToTextTask
 from .NoCaptchaTaskProxyless import NoCaptchaTaskProxyless

@@ -51,3 +51,4 @@ print(response)
 ###### Things to add:
 - FunCaptchaTask & FunCaptchaTaskProxyless.
 - Directly send base64 encoded image to ImageToTextTask.
+- Cookie support for NoCaptchaTask proxy-on and proxyless.
