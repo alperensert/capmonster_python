@@ -8,6 +8,7 @@ class CapmonsterClient(object):
     BALANCE_URL = "/getBalance"
     TASK_RESULT_URL = "/getTaskResult"
     CREATE_TASK_URL = "/createTask"
+    SOFT_ID = 30
 
     def __init__(self, client_key, host="https://api.capmonster.cloud"):
         self.client_key = client_key
@@ -35,6 +36,7 @@ class CapmonsterClient(object):
             method = self.TASK_RESULT_URL
         elif method == "createTask":
             method = self.CREATE_TASK_URL
+            data["softId"] = self.SOFT_ID
         else:
             raise CapmonsterException("-1", "-1", "-1")
         try:
@@ -64,5 +66,10 @@ class CapmonsterClient(object):
             return 0
         return response.json()
 
-    # def getBalance(self):
-    #     response = self.session.post(url=f"{self.host}{self.BALANCE_URL}", json={"clientKey": self.client_key}).json()
+    def getBalance(self):
+        data = {
+            "clientKey": self.client_key
+        }
+        response = self.make_request(method="getBalance", data=data)
+        self.checkResponse(response=response)
+        return response.get("balance")
