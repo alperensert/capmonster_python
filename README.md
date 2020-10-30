@@ -1,4 +1,4 @@
-## Capmonster.cloud for Python ![GitHub release (latest by date)](https://img.shields.io/github/v/release/alperensert/python_capmonster) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/capmonster_python) ![GitHub watchers](https://img.shields.io/github/watchers/alperensert/python_capmonster?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/alperensert/python_capmonster?style=social)
+## Capmonster.cloud for Python ![GitHub release (latest by date)](https://img.shields.io/github/v/release/alperensert/python_capmonster) ![PyPI - Downloads](https://img.shields.io/pypi/dw/capmonster_python) ![PyPI - Status](https://img.shields.io/pypi/status/capmonster_python) ![GitHub watchers](https://img.shields.io/github/watchers/alperensert/python_capmonster?style=social) 
 <p align="center">
     <img width="320" src="https://capmonster.cloud/img/dude.svg" alt="Pillow logo">
 </p>
