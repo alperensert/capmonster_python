@@ -7,7 +7,7 @@ Currently supporting ***ImageToText, NoCaptcha (Recaptcha v2) proxyless and prox
 <blockquote>At least 2x cheaper, up to 30x faster than manual recognition services.</blockquote>
 
 ```
-pip install capmonster-python
+pip install capmonster_python
 ```
 ### Documentation
 You can find documentation in [here](https://github.com/alperensert/python_capmonster/blob/master/docs/documentation.md).
