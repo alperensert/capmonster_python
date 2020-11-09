@@ -3,7 +3,7 @@ from .exceptions import CapmonsterException
 import time
 
 
-class FunCaptchaTaskProxyless(CapmonsterClient):
+class FunCaptchaTask(CapmonsterClient):
     def __init__(self, client_key, user_agent=None):
         super().__init__(client_key=client_key)
         if user_agent is not None: self.user_agent = user_agent
