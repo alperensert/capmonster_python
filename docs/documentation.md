@@ -21,7 +21,7 @@
 > taskId: the task's id returning from createTask function. \
 > return value: if result is ready: resultText. if is not ready: False
 
-#### function: **joinTaskResult**(taskId, maximum_time)
+##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
 > maximum_time: time to wait for captcha result. default: 150 (seconds) \
 > return value: if result is ready: resultText. if result waiting more than maximum_time: raise CapmonsterException
@@ -46,7 +46,7 @@
 > taskId: the task's id returning from createTask function. \
 > return value: if result is ready: gRecaptchaResponse. if is not ready: False
 
-#### function: **joinTaskResult**(taskId, maximum_time)
+##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
 > maximum_time: time to wait for captcha result. default: 150 (seconds) \
 > return value: if result is ready: gRecaptchaResponse. if result waiting more than maximum_time: raise CapmonsterException
@@ -63,7 +63,7 @@
 > taskId: the task's id returning from createTask function. \
 > return value: if result is ready: gRecaptchaResponse. if is not ready: False
 
-#### function: **joinTaskResult**(taskId, maximum_time)
+##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
 > maximum_time: time to wait for captcha result. default: 150 (seconds) \
 > return value: if result is ready: gRecaptchaResponse. if result waiting more than maximum_time: raise CapmonsterException
@@ -81,11 +81,59 @@
 > taskId: the task's id returning from createTask function. \
 > return value: if result is ready: gRecaptchaResponse. if is not ready: False
 
-#### function: **joinTaskResult**(taskId, maximum_time)
+##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
 > maximum_time: time to wait for captcha result. default: 150 (seconds) \
 > return value: if result is ready: gRecaptchaResponse. if result waiting more than maximum_time: raise CapmonsterException
 
+## FunCaptchaTaskProxyless
+- client_key: Your unique key for solving captchas.
+
+##### function: **createTask**(website_url, website_key, js_subdomain, data_blob)
+> website_url: the website url where the funcaptcha is located. \
+> website_key: the website's funcaptcha public key. etc. `<div id="funcaptcha" data-pkey="THAT_ONE"></div>` \
+> js_subdomain: A special subdomain of funcaptcha.com, from which the JS captcha widget should be loaded. Most FunCaptcha installations work from shared domains, so this option is only needed in certain rare cases. \
+> data_blob: Additional parameter that may be required by FunCaptcha implementation. See capmonster.cloud documentation for more information.
+
+##### function: **getTaskResult**(taskId)
+> taskId: the task's id returning from createTask function. \
+> return value: if result is ready: token. if is not ready: False
+
+##### function: **joinTaskResult**(taskId, maximum_time)
+> taskId: the task's id returning from createTask function. \
+> maximum_time: time to wait for captcha result. default: 150 (seconds) \
+> return value: if result is ready: token. if result waiting more than maximum_time: raise CapmonsterException
+
+## FunCaptchaTask
+- client_key: Your unique key for solving captchas.
+
+##### function: **createTask**(website_url, website_key, js_subdomain, data_blob)
+> website_url: the website url where the funcaptcha is located. \
+> website_key: the website's funcaptcha public key. etc. `<div id="funcaptcha" data-pkey="THAT_ONE"></div>` \
+> js_subdomain: A special subdomain of funcaptcha.com, from which the JS captcha widget should be loaded. Most FunCaptcha installations work from shared domains, so this option is only needed in certain rare cases. \
+> data_blob: Additional parameter that may be required by FunCaptcha implementation. See capmonster.cloud documentation for more information. \
+> proxyPort: example: 8080 (integer) \
+> proxyLogin: Login for proxy which requires authorizaiton (basic) \
+> proxyPassword: Proxy password \
+> proxyType: http, https, socks4 or socks5 \
+> proxyAddress: Proxy IP address IPv4/IPv6. Not allowed to use:
+> - host names instead of IPs
+> - transparent proxies (where client IP is visible)
+> - proxies from local networks
+
+##### function: **getTaskResult**(taskId)
+> taskId: the task's id returning from createTask function. \
+> return value: if result is ready: token. if is not ready: False
+
+##### function: **joinTaskResult**(taskId, maximum_time)
+> taskId: the task's id returning from createTask function. \
+> maximum_time: time to wait for captcha result. default: 150 (seconds) \
+> return value: if result is ready: token. if result waiting more than maximum_time: raise CapmonsterException
+
+#### Globals
+##### function: **getBalance**()
+> return value:  
+>
 ## Examples
 Examples are located in [here](https://github.com/alperensert/python_capmonster/blob/master/README.md). If you have issue with anything, feel free to create an issue or [e-mail me](mailto:alperenssrt@gmail.com)
 
