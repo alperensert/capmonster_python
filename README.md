@@ -3,7 +3,7 @@
     <img width="320" src="https://capmonster.cloud/img/dude.svg" alt="Pillow logo">
 </p>
 Unofficial Capmonster.cloud library for Python3. <br/>
-Currently supporting ***ImageToText, NoCaptcha (Recaptcha v2) proxyless and proxy-on, Recaptchav3Proxyless***. <br/>
+Currently supporting ImageToText, NoCaptcha (Recaptcha v2) proxyless and proxy-on, Recaptchav3Proxyless, FunCaptcha proxyless and proxy-on. <br/>
 <blockquote>At least 2x cheaper, up to 30x faster than manual recognition services.</blockquote>
 
 ```
@@ -50,10 +50,29 @@ taskId = capmonster.createTask(website_key="WEBSITE_KEY", website_url="URL", min
 response = capmonster.joinTaskResult(taskId=taskId)
 print(response)
 ```
+##### *FunCaptchaTaskProxyless*
+> default js_subdomain: None and default data_blob: None
+```python
+from python_capmonster import FunCaptchaTaskProxyless
+
+capmonster = FunCaptchaTaskProxyless(client_key="CLIENT KEY")
+taskId = capmonster.createTask(website_url="URL", website_public_key="PUBLIC")
+response = capmonster.joinTaskResult(taskId=taskId)
+print(response)
+```
+##### *FunCaptchaTask*
+> default js_subdomain: None and default data_blob: None
+```python
+from python_capmonster import FunCaptchaTask
+
+capmonster = FunCaptchaTask(client_key="CLIENT KEY")
+taskId = capmonster.createTask(website_url="URL", website_public_key="PUBLIC", proxyAddress="8.8.8.8", proxyPort=8080, proxyLogin="login", proxyPassword="password", proxyType="http")
+response = capmonster.joinTaskResult(taskId=taskId)
+print(response)
+```
 
 > For detailed documentation (not this library's) is here: [capmonster.cloud documentation](https://zennolab.atlassian.net/wiki/spaces/APIS/pages/491575/English+Documentation)
 
 ###### Things to add:
-- FunCaptchaTask & FunCaptchaTaskProxyless.
 - Directly send base64 encoded image to ImageToTextTask.
 - Cookie support for NoCaptchaTask proxy-on and proxyless.
