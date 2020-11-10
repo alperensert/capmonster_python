@@ -3,6 +3,7 @@
 
 ##### function: **createTask**(file_path, module)
 > file_path: your text-captcha image's path. \
+> base64_image: your text captcha image's base64 encoded data \
 > module: default is None, you can select from below \
 > return value: taskId (as string)
 - botdetect
