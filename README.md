@@ -14,11 +14,21 @@ You can find documentation in [here](https://github.com/alperensert/python_capmo
 
 ### Examples
 ##### *ImageToTextTask*
+- Send image without encode.
 ```python
 from python_capmonster import ImageToTextTask
 
 capmonster = ImageToTextTask(client_key="YOUR CLIENT KEY")
 taskId = capmonster.createTask(file_path="captcha.png")
+response = capmonster.joinTaskResult(taskId=taskId)
+print(response)
+```
+- Send directly image encoded data.
+```python
+from python_capmonster import ImageToTextTask
+
+capmonster = ImageToTextTask(client_key="YOUR CLIENT KEY")
+taskId = capmonster.createTask(base64_image="DATA")
 response = capmonster.joinTaskResult(taskId=taskId)
 print(response)
 ```
@@ -74,5 +84,4 @@ print(response)
 > For detailed documentation (not this library's) is here: [capmonster.cloud documentation](https://zennolab.atlassian.net/wiki/spaces/APIS/pages/491575/English+Documentation)
 
 ###### Things to add:
-- Directly send base64 encoded image to ImageToTextTask.
 - Cookie support for NoCaptchaTask proxy-on and proxyless.
