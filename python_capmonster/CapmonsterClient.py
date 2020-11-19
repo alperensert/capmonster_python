@@ -1,5 +1,6 @@
 import requests
 import urllib3
+import json
 from .exceptions import CapmonsterException
 
 
@@ -13,8 +14,10 @@ class CapmonsterClient(object):
     def __init__(self, client_key, host="https://api.capmonster.cloud"):
         self.client_key = client_key
         self.host = host
-
-        response = requests.post(url=f"{self.host}{self.BALANCE_URL}", json={"clientKey": self.client_key}).json()
+        try:
+            response = requests.post(url=f"{self.host}{self.BALANCE_URL}", json={"clientKey": self.client_key}).json()
+        except json.decoder.JSONDecodeError:
+            raise CapmonsterException("JSONDecodeError", -1, "Capmonster is returned empty content.")
         if response["errorId"] != 0: raise CapmonsterException(response["errorId"], response["errorCode"], response["errorDescription"])
         else: self.session = requests.Session()
 
@@ -64,7 +67,11 @@ class CapmonsterClient(object):
         except requests.exceptions.ConnectionError:
             self.err_string = "Connection refused"
             return 0
-        return response.json()
+        try:
+            return response.json()
+        except json.decoder.JSONDecodeError:
+            self.err_string = "JSON Decode error"
+            return 0
 
     def getBalance(self):
         data = {
