@@ -41,7 +41,19 @@
 > proxyAddress: Proxy IP address IPv4/IPv6. Not allowed to use:
 > - host names instead of IPs
 > - transparent proxies (where client IP is visible)
-> - proxies from local networks
+> - proxies from local networks \
+
+> cookies: default is None, expected types are dict or list. example: 
+```python
+cookies = {
+    "cookiename1": "cookievalue1",
+    "cookiename2": "cookievalue2"
+}
+```
+OR
+```python
+cookies = ["cookiename1", "cookivalue1", "cookiename2", "cookievalue2"]
+```
 
 ##### function: **getTaskResult**(taskId)
 > taskId: the task's id returning from createTask function. \
@@ -59,6 +71,17 @@
 ##### function: **createTask**(website_url, website_key)
 > website_url: the website url where the recaptcha is located. \
 > website_key: the website's recaptcha public key. etc. `<div class="g-recaptcha" data-sitekey="THAT_ONE"></div>` \
+> cookies: default is None, expected types are dict or list. example: 
+```python
+cookies = {
+    "cookiename1": "cookievalue1",
+    "cookiename2": "cookievalue2"
+}
+```
+OR
+```python
+cookies = ["cookiename1", "cookivalue1", "cookiename2", "cookievalue2"]
+```
 
 ##### function: **getTaskResult**(taskId)
 > taskId: the task's id returning from createTask function. \
@@ -151,3 +174,5 @@ Examples are located in [here](https://github.com/alperensert/python_capmonster/
 |CAPTCHA_NOT_READY|The captcha has not yet been solved|
 |ERROR_IP_BANNED|You have exceeded the limit of requests with the wrong api key, check the correctness of your api key in the control panel and after some time, try again|
 |ERROR_NO_SUCH_METHOD|This method is not supported or empty|
+|JSONDECODEERROR|Capmonster returned empty content|
+|AttributeError|List cookies length must be even numbers|

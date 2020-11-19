@@ -82,6 +82,3 @@ print(response)
 ```
 
 > For detailed documentation (not this library's) is here: [capmonster.cloud documentation](https://zennolab.atlassian.net/wiki/spaces/APIS/pages/491575/English+Documentation)
-
-###### Things to add:
-- Cookie support for NoCaptchaTask proxy-on and proxyless.
