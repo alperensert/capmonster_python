@@ -22,7 +22,7 @@ class CapmonsterClient(object):
         else: self.session = requests.Session()
 
     def checkResponse(self, response):
-        if response.get("errorId") != 0:
+        if response["errorId"] != 0:
             raise CapmonsterException(response["errorId"], response["errorCode"], response["errorDescription"])
         else:
             return True
@@ -44,34 +44,9 @@ class CapmonsterClient(object):
             raise CapmonsterException("-1", "-1", "-1")
         try:
             response = self.session.post(url=f"{self.host}{method}", json=data)
-        except requests.exceptions.HTTPError as err:
-            self.err_string = "http_error"
-            for errArg in err.args:
-                if "Network is unreachable" in str(errArg):
-                    self.err_string = "Network is unreachable"
-                if "Connection refused" in str(errArg):
-                    self.err_string = "Connection refused"
-            return 0
-        except requests.exceptions.ConnectTimeout:
-            self.err_string = "Connection timeout"
-            return 0
-        except urllib3.exceptions.ConnectTimeoutError:
-            self.err_string = "Connection timeout"
-            return 0
-        except requests.exceptions.ReadTimeout:
-            self.err_string = "Read timeout"
-            return 0
-        except urllib3.exceptions.MaxRetryError as err:
-            self.err_string = "Connection retry error: " + err.reason
-            return 0
-        except requests.exceptions.ConnectionError:
-            self.err_string = "Connection refused"
-            return 0
-        try:
             return response.json()
-        except json.decoder.JSONDecodeError:
-            self.err_string = "JSON Decode error"
-            return 0
+        except Exception as err:
+            raise CapmonsterException("-1", type(err), "Capmonster.cloud returned 0 bytes.")
 
     def getBalance(self):
         data = {
