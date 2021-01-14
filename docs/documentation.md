@@ -1,3 +1,7 @@
+IMPORTANT
+-
+If you get an CapmonsterException error, please recreate your task and keep going like that.
+
 ## ImageToTextTask
 - client_key: Your unique key for solving captchas.
 
@@ -24,7 +28,7 @@
 
 ##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
-> maximum_time: time to wait for captcha result. default: 150 (seconds) \
+> maximum_time: time to wait for captcha result. default: 120 (seconds) \
 > return value: if result is ready: resultText. if result waiting more than maximum_time: raise CapmonsterException
 
 ## NoCaptchaTask
@@ -61,7 +65,7 @@ cookies = ["cookiename1", "cookivalue1", "cookiename2", "cookievalue2"]
 
 ##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
-> maximum_time: time to wait for captcha result. default: 150 (seconds) \
+> maximum_time: time to wait for captcha result. default: 120 (seconds) \
 > return value: if result is ready: gRecaptchaResponse. if result waiting more than maximum_time: raise CapmonsterException
 
 ## NoCaptchaTaskProxyless
@@ -89,7 +93,7 @@ cookies = ["cookiename1", "cookivalue1", "cookiename2", "cookievalue2"]
 
 ##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
-> maximum_time: time to wait for captcha result. default: 150 (seconds) \
+> maximum_time: time to wait for captcha result. default: 120 (seconds) \
 > return value: if result is ready: gRecaptchaResponse. if result waiting more than maximum_time: raise CapmonsterException
 
 ## RecaptchaV3TaskProxyless
@@ -107,7 +111,7 @@ cookies = ["cookiename1", "cookivalue1", "cookiename2", "cookievalue2"]
 
 ##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
-> maximum_time: time to wait for captcha result. default: 150 (seconds) \
+> maximum_time: time to wait for captcha result. default: 120 (seconds) \
 > return value: if result is ready: gRecaptchaResponse. if result waiting more than maximum_time: raise CapmonsterException
 
 ## FunCaptchaTaskProxyless
@@ -125,7 +129,7 @@ cookies = ["cookiename1", "cookivalue1", "cookiename2", "cookievalue2"]
 
 ##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
-> maximum_time: time to wait for captcha result. default: 150 (seconds) \
+> maximum_time: time to wait for captcha result. default: 120 (seconds) \
 > return value: if result is ready: token. if result waiting more than maximum_time: raise CapmonsterException
 
 ## FunCaptchaTask
@@ -151,12 +155,77 @@ cookies = ["cookiename1", "cookivalue1", "cookiename2", "cookievalue2"]
 
 ##### function: **joinTaskResult**(taskId, maximum_time)
 > taskId: the task's id returning from createTask function. \
-> maximum_time: time to wait for captcha result. default: 150 (seconds) \
+> maximum_time: time to wait for captcha result. default: 120 (seconds) \
 > return value: if result is ready: token. if result waiting more than maximum_time: raise CapmonsterException
+
+## HCaptchaTask
+- client_key: Your unique key for solving captchas.
+- user_agent: Browser user agent, default is Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.132 Safari/537.36
+
+##### function: **createTask**(website_url, website_key, proxyAddress, proxyPort, proxyLogin, proxyPassword, proxyType)
+> website_url: the website url where the HCaptcha is located. \
+> website_key: the website's hcaptcha key. etc. `<iframe src="https://assets.hcaptcha...&sitekey=THATONE">` \
+> proxyPort: example: 8080 (integer) \
+> proxyLogin: Login for proxy which requires authorizaiton (basic) \
+> proxyPassword: Proxy password \
+> proxyType: http or https \
+> proxyAddress: Proxy IP address IPv4/IPv6. Not allowed to use:
+> - host names instead of IPs
+> - transparent proxies (where client IP is visible)
+> - proxies from local networks \
+
+> cookies: default is None, expected types are dict or list. example: 
+```python
+cookies = {
+    "cookiename1": "cookievalue1",
+    "cookiename2": "cookievalue2"
+}
+```
+OR
+```python
+cookies = ["cookiename1", "cookivalue1", "cookiename2", "cookievalue2"]
+```
+
+##### function: **getTaskResult**(taskId)
+> taskId: the task's id returning from createTask function. \
+> return value: if result is ready: gRecaptchaResponse. if is not ready: False
+
+##### function: **joinTaskResult**(taskId, maximum_time)
+> taskId: the task's id returning from createTask function. \
+> maximum_time: time to wait for captcha result. default: 120 (seconds) \
+> return value: if result is ready: gRecaptchaResponse. if result waiting more than maximum_time: raise CapmonsterException
+
+## HCaptchaTaskProxyless
+- client_key: Your unique key for solving captchas.
+- user_agent: Browser user agent, default is Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.132 Safari/537.36
+
+##### function: **createTask**(website_url, website_key)
+> website_url: the website url where the HCaptcha is located. \
+> website_key: the website's hcaptcha key. etc. `<iframe src="https://assets.hcaptcha...&sitekey=THATONE">` \
+> cookies: default is None, expected types are dict or list. example: 
+```python
+cookies = {
+    "cookiename1": "cookievalue1",
+    "cookiename2": "cookievalue2"
+}
+```
+OR
+```python
+cookies = ["cookiename1", "cookivalue1", "cookiename2", "cookievalue2"]
+```
+
+##### function: **getTaskResult**(taskId)
+> taskId: the task's id returning from createTask function. \
+> return value: if result is ready: gRecaptchaResponse. if is not ready: False
+
+##### function: **joinTaskResult**(taskId, maximum_time)
+> taskId: the task's id returning from createTask function. \
+> maximum_time: time to wait for captcha result. default: 120 (seconds) \
+> return value: if result is ready: gRecaptchaResponse. if result waiting more than maximum_time: raise CapmonsterException
 
 #### Globals
 ##### function: **getBalance**()
-> return value:  
+> return value: int
 >
 ## Examples
 Examples are located in [here](https://github.com/alperensert/python_capmonster/blob/master/README.md). If you have issue with anything, feel free to create an issue or [e-mail me](mailto:alperenssrt@gmail.com)
@@ -174,5 +243,4 @@ Examples are located in [here](https://github.com/alperensert/python_capmonster/
 |CAPTCHA_NOT_READY|The captcha has not yet been solved|
 |ERROR_IP_BANNED|You have exceeded the limit of requests with the wrong api key, check the correctness of your api key in the control panel and after some time, try again|
 |ERROR_NO_SUCH_METHOD|This method is not supported or empty|
-|JSONDECODEERROR|Capmonster returned empty content|
 |AttributeError|List cookies length must be even numbers|

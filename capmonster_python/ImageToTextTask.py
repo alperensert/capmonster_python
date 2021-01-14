@@ -1,28 +1,35 @@
 from .CapmonsterClient import CapmonsterClient
 from .exceptions import CapmonsterException
+from base64 import b64encode
 import time
 
 
-class RecaptchaV3TaskProxyless(CapmonsterClient):
+class ImageToTextTask(CapmonsterClient):
     def __init__(self, client_key):
         super().__init__(client_key=client_key)
 
-    def createTask(self, website_url, website_key, minimum_score=0.3, page_action="verify"):
-        if not (0.9 >= minimum_score >= 0.1): raise CapmonsterException(None, 99, "Minimum score must be between 0.1 and 0.9")
+    def createTask(self, file_path=None, base64_image: bytes = None, module=None):
+        if file_path is None and base64_image is None:
+            return False
+        elif file_path is not None:
+            image = open(file_path, "rb")
+            img_base64 = b64encode(image.read()).decode("ascii")
+        elif base64_image is not None:
+            img_base64 = base64_image
+        else:
+            return False
         data = {
             "clientKey": self.client_key,
             "task":
-                {
-                    "type": "RecaptchaV3TaskProxyless",
-                    "websiteURL": website_url,
-                    "websiteKey": website_key,
-                    "minScore": minimum_score,
-                    "pageAction": page_action
-                }
+            {
+                "type": "ImageToTextTask",
+                "body": img_base64
+            }
         }
+        if module is not None: data["task"]["СapMonsterModule"] = module
         task = self.make_request(method="createTask", data=data)
         self.checkResponse(response=task)
-        return task.get("taskId")
+        return task.json().get("taskId")
 
     def getTaskResult(self, taskId):
         data = {
@@ -32,12 +39,13 @@ class RecaptchaV3TaskProxyless(CapmonsterClient):
         task_result = self.make_request(method="getTaskResult", data=data)
         self.checkResponse(response=task_result)
         is_ready = self.checkReady(response=task_result)
+        task_result = task_result.json()
         if is_ready:
-            return task_result.get("solution").get("gRecaptchaResponse")
+            return task_result.get("solution").get("text")
         else:
             return False
 
-    def joinTaskResult(self, taskId, maximum_time=150):
+    def joinTaskResult(self, taskId, maximum_time=120):
         data = {
             "clientKey": self.client_key,
             "taskId": taskId
@@ -47,11 +55,12 @@ class RecaptchaV3TaskProxyless(CapmonsterClient):
             task_result = self.make_request(method="getTaskResult", data=data)
             self.checkResponse(response=task_result)
             is_ready = self.checkReady(response=task_result)
+            task_result = task_result.json()
             if is_ready and task_result.get("solution") is not None:
-                return task_result.get("solution").get("gRecaptchaResponse")
-            elif task_result.get("solution") is not None:
-                i += 1
-                time.sleep(1)
-                continue
+                return task_result.get("solution").get("text")
             elif i >= maximum_time:
                 raise CapmonsterException(None, 61, "Maximum time is exceed.")
+            elif task_result.get("solution") is not None:
+                i += 1
+                time.sleep(2)
+                continue

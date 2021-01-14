@@ -3,22 +3,26 @@ from .exceptions import CapmonsterException
 import time
 
 
-class NoCaptchaTaskProxyless(CapmonsterClient):
-    def __init__(self, client_key, user_agent=False):
-        super().__init__(client_key=client_key)
-        if user_agent: self.user_agent = user_agent
-        else: self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.132 Safari/537.36"
+class HCaptchaTask(CapmonsterClient):
+    def __init__(self, client_key, **kwargs):
+        super().__init__(client_key=client_key, **kwargs)
+        self.userAgent = kwargs.get("userAgent")
 
-    def createTask(self, website_url, website_key, cookies=None):
+    def createTask(self, website_url, website_key, proxyAddress, proxyPort, proxyLogin, proxyPassword, proxyType="https", cookies=None):
         data = {
             "clientKey": self.client_key,
             "task":
-                {
-                    "type": "NoCaptchaTaskProxyless",
-                    "websiteURL": website_url,
-                    "websiteKey": website_key,
-                    "userAgent": self.user_agent
-                }
+            {
+                "type": "HCaptchaTask",
+                "websiteURL": website_url,
+                "websiteKey": website_key,
+                "proxyType": proxyType,
+                "proxyAddress": proxyAddress,
+                "proxyPort": proxyPort,
+                "proxyLogin": proxyLogin,
+                "proxyPassword": proxyPassword,
+                "userAgent": self.userAgent
+            }
         }
         if cookies is not None and type(cookies) == dict or type(cookies) == list:
             add_cookies = ""
@@ -42,7 +46,7 @@ class NoCaptchaTaskProxyless(CapmonsterClient):
             del add_cookies
         task = self.make_request(method="createTask", data=data)
         self.checkResponse(response=task)
-        return task["taskId"]
+        return task.json()["taskId"]
 
     def getTaskResult(self, taskId):
         data = {
@@ -52,12 +56,13 @@ class NoCaptchaTaskProxyless(CapmonsterClient):
         task_result = self.make_request(method="getTaskResult", data=data)
         self.checkResponse(response=task_result)
         is_ready = self.checkReady(response=task_result)
+        task_result = task_result.json()
         if is_ready:
             return task_result.get("solution").get("gRecaptchaResponse")
         else:
             return False
 
-    def joinTaskResult(self, taskId, maximum_time=150):
+    def joinTaskResult(self, taskId, maximum_time=120):
         data = {
             "clientKey": self.client_key,
             "taskId": taskId
@@ -67,11 +72,12 @@ class NoCaptchaTaskProxyless(CapmonsterClient):
             task_result = self.make_request(method="getTaskResult", data=data)
             self.checkResponse(response=task_result)
             is_ready = self.checkReady(response=task_result)
+            task_result = task_result.json()
             if is_ready and task_result.get("solution") is not None:
                 return task_result.get("solution").get("gRecaptchaResponse")
-            elif task_result.get("solution") is not None:
-                i += 1
-                time.sleep(1)
-                continue
             elif i >= maximum_time:
                 raise CapmonsterException(None, 61, "Maximum time is exceed.")
+            elif task_result.get("solution") is not None:
+                i += 1
+                time.sleep(2)
+                continue
