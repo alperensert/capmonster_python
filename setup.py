@@ -6,7 +6,7 @@ with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="capmonster_python",
-    version="1.3.0",
+    version="1.3.1",
     packages=["capmonster_python"],
     url="https://github.com/alperensert/capmonster_python",
     download_url="https://github.com/alperensert/capmonster_python/archive/v1.3.0.tar.gz",
