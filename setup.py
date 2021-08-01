@@ -6,16 +6,16 @@ with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="capmonster_python",
-    version="1.3.1",
+    version="1.3.2",
     packages=["capmonster_python"],
     url="https://github.com/alperensert/capmonster_python",
-    download_url="https://github.com/alperensert/capmonster_python/archive/v1.3.0.tar.gz",
+    download_url="https://github.com/alperensert/capmonster_python/archive/v1.3.2.tar.gz",
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
     author="Alperen Sert",
     author_email="alperenssrt@gmail.com",
-    description="Unofficial capmonster.cloud library for Python",
+    description="capmonster.cloud library for Python",
     requires=["requests"],
     classifiers=["Programming Language :: Python :: 3.4"]
 )

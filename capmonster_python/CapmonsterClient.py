@@ -1,3 +1,4 @@
+import time
 import requests
 from .exceptions import *
 
@@ -14,6 +15,8 @@ class CapmonsterClient(object):
         self.host = "{protocol}://api.capmonster.cloud".format(protocol=self.protocol)
         self.checkResponse(requests.post(url=f"{self.host}{self.BALANCE_URL}", json={"clientKey": self.client_key}))
         self.session = requests.Session()
+        self.solution = ""
+        self.result_getter = ""
 
     def checkResponse(self, response):
         response_json = response.json()
@@ -22,7 +25,8 @@ class CapmonsterClient(object):
         elif not response.status_code == 200:
             raise CapmonsterException(error_id=-1,
                                       error_code="HTTP_ERROR",
-                                      error_description="Sometimes can be happen if capmonster servers there is too much intensity")
+                                      error_description="Sometimes can be happen if capmonster servers there is "
+                                                        "too much intensity")
         elif not response_json.get("errorId") == 0:
             raise CapmonsterException(error_id=response_json.get("errorId"),
                                       error_code=response_json.get("errorCode"),
@@ -30,7 +34,8 @@ class CapmonsterClient(object):
         else:
             raise CapmonsterException(error_id=-1,
                                       error_code="HTTP_ERROR",
-                                      error_description="Sometimes can be happen if capmonster servers there is too much intensity")
+                                      error_description="Sometimes can be happen if capmonster "
+                                                        "servers there is too much intensity")
 
     def checkReady(self, response):
         status = response.json().get("status")
@@ -41,7 +46,9 @@ class CapmonsterClient(object):
         else:
             raise CapmonsterException(error_id=7,
                                       error_code="ERROR_NO_SUCH_CAPCHA_ID",
-                                      error_description="The captcha that you are requesting was not found. Make sure you are requesting a status update only within 5 minutes of uploading.")
+                                      error_description="The captcha that you are requesting was not found. "
+                                                        "Make sure you are requesting a status update only within "
+                                                        "5 minutes of uploading.")
 
     def make_request(self, method, data):
         if method == "getBalance":
@@ -66,3 +73,31 @@ class CapmonsterClient(object):
         response = self.make_request(method="getBalance", data=data)
         self.checkResponse(response=response)
         return response.json().get("balance")
+
+    def getTaskResult(self, taskId):
+        data = {
+            "clientKey": self.client_key,
+            "taskId": taskId
+        }
+        task_result = self.make_request(method="getTaskResult", data=data)
+        self.checkResponse(response=task_result)
+        is_ready = self.checkReady(response=task_result)
+        task_result = task_result.json()
+        if is_ready:
+            solution = task_result.get(self.solution)
+            return solution.get(self.result_getter) if self.result_getter != "get_all" else solution
+        else:
+            return False
+
+    def joinTaskResult(self, taskId, maximum_time=120):
+        i = 0
+        while True:
+            task_result = self.getTaskResult(taskId)
+            if task_result is not False and task_result is not None:
+                return task_result
+            elif i >= maximum_time:
+                raise CapmonsterException(None, 61, "Maximum time is exceed.")
+            elif task_result is False:
+                i += 1
+                time.sleep(2)
+                continue

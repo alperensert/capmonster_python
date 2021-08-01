@@ -1,12 +1,12 @@
 from .CapmonsterClient import CapmonsterClient
-from .exceptions import CapmonsterException
-import time
 
 
 class HCaptchaTask(CapmonsterClient):
     def __init__(self, client_key, **kwargs):
         super().__init__(client_key=client_key, **kwargs)
         self.userAgent = kwargs.get("userAgent")
+        self.solution = "solution"
+        self.result_getter = "gRecaptchaResponse"
 
     def createTask(self, website_url, website_key, proxyAddress, proxyPort, proxyLogin, proxyPassword, proxyType="https", cookies=None):
         data = {
@@ -47,37 +47,3 @@ class HCaptchaTask(CapmonsterClient):
         task = self.make_request(method="createTask", data=data)
         self.checkResponse(response=task)
         return task.json()["taskId"]
-
-    def getTaskResult(self, taskId):
-        data = {
-            "clientKey": self.client_key,
-            "taskId": taskId
-        }
-        task_result = self.make_request(method="getTaskResult", data=data)
-        self.checkResponse(response=task_result)
-        is_ready = self.checkReady(response=task_result)
-        task_result = task_result.json()
-        if is_ready:
-            return task_result.get("solution").get("gRecaptchaResponse")
-        else:
-            return False
-
-    def joinTaskResult(self, taskId, maximum_time=120):
-        data = {
-            "clientKey": self.client_key,
-            "taskId": taskId
-        }
-        i = 0
-        while True:
-            task_result = self.make_request(method="getTaskResult", data=data)
-            self.checkResponse(response=task_result)
-            is_ready = self.checkReady(response=task_result)
-            task_result = task_result.json()
-            if is_ready and task_result.get("solution") is not None:
-                return task_result.get("solution").get("gRecaptchaResponse")
-            elif i >= maximum_time:
-                raise CapmonsterException(None, 61, "Maximum time is exceed.")
-            elif task_result.get("solution") is not None:
-                i += 1
-                time.sleep(2)
-                continue
