@@ -1,9 +1,9 @@
 import unittest
-from inspect import stack
 from os import environ
 from capmonster_python import *
 
-client_key = environ["KEY"]
+client_key = environ.get("KEY")
+proxy = environ.get("PROXY").split(",")
 acceptable_error_codes = ["ERROR_CAPTCHA_UNSOLVABLE", "ERROR_MAXIMUM_TIME_EXCEED"]
 
 
@@ -62,7 +62,7 @@ class TestRecaptchaV2(unittest.TestCase):
 
     def test_proxy_recaptchav2(self):
         self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
-        self.captcha.set_proxy("http", "8.8.8.8", 8080)
+        self.captcha.set_proxy(proxy[0], proxy[1], int(proxy[2]), proxy[3], proxy[4])
         task_id = self.captcha.create_task("https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level"
                                            "=high", "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd",
                                            cookies=self.dump_cookies, no_cache=True)
@@ -100,42 +100,32 @@ class TestFuncaptchaTask(unittest.TestCase):
         }
 
     def test_proxyless_funcaptcha(self):
-        try:
-            task_id = self.captcha.create_task("https://funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A"
-                                               "-E7FA06677FFC", "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
-                                               data_blob="{\"blob\":\"dyXvXANMbHj1iDyz.Qj97JtSqR2n%2BuoY1V%2FbdgbrG7p"
-                                                         "%2FmKiqdU9AwJ6MifEt0np4vfYn6TTJDJEfZDlcz9Q1XMn9przeOV%2FCr2"
-                                                         "%2FIpi%2FC1s%3D\"}")
-            self.assertIs(type(task_id), int)
-            solution = self.captcha.join_task_result(task_id)
-            self.assertIs(type(solution), dict)
-            self.assertIn("token", solution)
-            del solution, task_id
-        except CapmonsterException as err:
-            if any(err.error_code in s for s in acceptable_error_codes):
-                print("Raised error code in " + stack()[0][3] + " but it's ok: {}".format(err.error_code))
-                pass
+        task_id = self.captcha.create_task("https://funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A"
+                                           "-E7FA06677FFC", "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
+                                           data_blob="{\"blob\":\"dyXvXANMbHj1iDyz.Qj97JtSqR2n%2BuoY1V%2FbdgbrG7p"
+                                                     "%2FmKiqdU9AwJ6MifEt0np4vfYn6TTJDJEfZDlcz9Q1XMn9przeOV%2FCr2"
+                                                     "%2FIpi%2FC1s%3D\"}")
+        self.assertIs(type(task_id), int)
+        solution = self.captcha.join_task_result(task_id)
+        self.assertIs(type(solution), dict)
+        self.assertIn("token", solution)
+        del solution, task_id
 
     def test_proxy_funcaptcha(self):
-        try:
-            self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
-            self.captcha.set_proxy("http", "8.8.8.8", 8080)
-            task_id = self.captcha.create_task("https://funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A"
-                                               "-E7FA06677FFC", "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
-                                               data_blob="{\"blob\":\"dyXvXANMbHj1iDyz.Qj97JtSqR2n%2BuoY1V%2FbdgbrG7p"
-                                                         "%2FmKiqdU9AwJ6MifEt0np4vfYn6TTJDJEfZDlcz9Q1XMn9przeOV%2FCr2"
-                                                         "%2FIpi%2FC1s%3D\"}")
-            self.assertIs(type(task_id), int)
-            solution = self.captcha.join_task_result(task_id)
-            self.assertIs(type(solution), dict)
-            self.assertIn("token", solution)
-            self.captcha.disable_proxy()
-            self.captcha.reset_user_agent()
-            del solution, task_id
-        except CapmonsterException as err:
-            if any(err.error_code in s for s in acceptable_error_codes):
-                print("Raised error code in " + stack()[0][3] + " but it's ok: {}".format(err.error_code))
-                pass
+        self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
+        self.captcha.set_proxy(proxy[0], proxy[1], int(proxy[2]), proxy[3], proxy[4])
+        task_id = self.captcha.create_task("https://funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A"
+                                           "-E7FA06677FFC", "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
+                                           data_blob="{\"blob\":\"dyXvXANMbHj1iDyz.Qj97JtSqR2n%2BuoY1V%2FbdgbrG7p"
+                                                     "%2FmKiqdU9AwJ6MifEt0np4vfYn6TTJDJEfZDlcz9Q1XMn9przeOV%2FCr2"
+                                                     "%2FIpi%2FC1s%3D\"}")
+        self.assertIs(type(task_id), int)
+        solution = self.captcha.join_task_result(task_id)
+        self.assertIs(type(solution), dict)
+        self.assertIn("token", solution)
+        self.captcha.disable_proxy()
+        self.captcha.reset_user_agent()
+        del solution, task_id
 
 
 class TestHCaptcha(unittest.TestCase):
@@ -149,51 +139,36 @@ class TestHCaptcha(unittest.TestCase):
         }
 
     def test_proxyless_hcaptcha(self):
-        try:
-            self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
-            task_id = self.captcha.create_task("https://lessons.zennolab.com/captchas/hcaptcha/?level=easy",
-                                               "472fc7af-86a4-4382-9a49-ca9090474471", cookies=self.dump_cookies)
-            self.assertIs(type(task_id), int)
-            solution = self.captcha.join_task_result(task_id)
-            self.assertIs(type(solution), dict)
-            self.assertIn("gRecaptchaResponse", solution)
-            del solution, task_id
-        except CapmonsterException as err:
-            if any(err.error_code in s for s in acceptable_error_codes):
-                print("Raised error code in " + stack()[0][3] + " but it's ok: {}".format(err.error_code))
-                pass
+        self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
+        task_id = self.captcha.create_task("https://lessons.zennolab.com/captchas/hcaptcha/?level=easy",
+                                           "472fc7af-86a4-4382-9a49-ca9090474471", cookies=self.dump_cookies)
+        self.assertIs(type(task_id), int)
+        solution = self.captcha.join_task_result(task_id)
+        self.assertIs(type(solution), dict)
+        self.assertIn("gRecaptchaResponse", solution)
+        del solution, task_id
 
     def test_proxy_hcaptcha(self):
-        try:
-            self.captcha.set_proxy("http", "8.8.8.8", 8080)
-            task_id = self.captcha.create_task("https://lessons.zennolab.com/captchas/hcaptcha/?level=moderate",
-                                               "d391ffb1-bc91-4ef8-a45a-2e2213af091b", cookies=self.dump_cookies)
-            self.assertIs(type(task_id), int)
-            solution = self.captcha.join_task_result(task_id)
-            self.assertIs(type(solution), dict)
-            self.assertIn("gRecaptchaResponse", solution)
-            self.captcha.disable_proxy()
-            self.captcha.reset_user_agent()
-            del solution, task_id
-        except CapmonsterException as err:
-            if any(err.error_code in s for s in acceptable_error_codes):
-                print("Raised error code in " + stack()[0][3] + " but it's ok: {}".format(err.error_code))
-                pass
+        self.captcha.set_proxy(proxy[0], proxy[1], int(proxy[2]), proxy[3], proxy[4])
+        task_id = self.captcha.create_task("https://lessons.zennolab.com/captchas/hcaptcha/?level=moderate",
+                                           "d391ffb1-bc91-4ef8-a45a-2e2213af091b", cookies=self.dump_cookies)
+        self.assertIs(type(task_id), int)
+        solution = self.captcha.join_task_result(task_id)
+        self.assertIs(type(solution), dict)
+        self.assertIn("gRecaptchaResponse", solution)
+        self.captcha.disable_proxy()
+        self.captcha.reset_user_agent()
+        del solution, task_id
 
     def test_invisible_hcaptcha(self):
-        try:
-            task_id = self.captcha.create_task(
-                "https://lessons.zennolab.com/captchas/hcaptcha/invisible.php?level=moderate",
-                "d391ffb1-bc91-4ef8-a45a-2e2213af091b", is_invisible=True)
-            self.assertIs(type(task_id), int)
-            solution = self.captcha.join_task_result(task_id)
-            self.assertIs(type(solution), dict)
-            self.assertIn("gRecaptchaResponse", solution)
-            del solution, task_id
-        except CapmonsterException as err:
-            if any(err.error_code in s for s in acceptable_error_codes):
-                print("Raised error code in " + stack()[0][3] + " but it's ok: {}".format(err.error_code))
-                pass
+        task_id = self.captcha.create_task(
+            "https://lessons.zennolab.com/captchas/hcaptcha/invisible.php?level=moderate",
+            "d391ffb1-bc91-4ef8-a45a-2e2213af091b", is_invisible=True)
+        self.assertIs(type(task_id), int)
+        solution = self.captcha.join_task_result(task_id)
+        self.assertIs(type(solution), dict)
+        self.assertIn("gRecaptchaResponse", solution)
+        del solution, task_id
 
 
 if __name__ == "__main__":

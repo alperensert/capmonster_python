@@ -7,7 +7,7 @@ class FuncaptchaTask(UserAgent, Proxy):
         super(FuncaptchaTask, self).__init__(client_key)
 
     def create_task(self, website_url: str, website_public_key: str, api_js_subdomain: str = None,
-                    data_blob: str = None, cookies: Union[dict, list, str] = None):
+                    data_blob: str = None, cookies: Union[dict, list, str] = None, no_cache: bool = None):
         data = {
             "clientKey": self._client_key,
             "task": {
@@ -25,4 +25,6 @@ class FuncaptchaTask(UserAgent, Proxy):
                 data = self._add_cookies(cookies, data)
         if api_js_subdomain is not None:
             data["task"]["funcaptchaApiJSSubdomain"] = api_js_subdomain
+        if no_cache:
+            data["task"]["nocache"] = no_cache
         return self._make_request("createTask", data).get("taskId")

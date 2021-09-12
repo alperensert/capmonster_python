@@ -22,6 +22,6 @@ class RecaptchaV2Task(UserAgent, Proxy):
         data = self._add_cookies(cookies, data)
         if recaptcha_s_value is not None:
             data["task"]["recaptchaDataSValue"] = recaptcha_s_value
-        if no_cache is not None and no_cache is not False:
+        if no_cache:
             data["task"]["nocache"] = no_cache
         return self._make_request("createTask", data).get("taskId")

@@ -4,7 +4,7 @@ Capmonster.cloud for Python
 
 [Capmonster.cloud](https://capmonster.cloud) package for Python3
 
-If you have any problem with usage, [read the documentation](https://github.com/alperensert/capmonster_python/wiki), [create an issue](https://github.com/alperensert/capmonster_python/issues/new) or [join the community](https://discord.gg/33HwSqb5su)
+If you have any problem with usage, [read the documentation](https://github.com/alperensert/capmonster_python/wiki) or [create an issue](https://github.com/alperensert/capmonster_python/issues/new)
 
 *At least 2x cheaper, up to 30x faster than manual recognition services.*
 
@@ -50,6 +50,7 @@ For other examples and api documentation please visit [wiki](https://github.com/
 ### Migration from 1.3.2 to 2.x
 - v2.x is created for automation and stability.
 - If you want to use old version: (no longer supported)
+
     ```
     pip install capmonster-python==1.3.2
     ```

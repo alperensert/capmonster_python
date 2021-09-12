@@ -8,7 +8,7 @@ class HCaptchaTask(UserAgent, Proxy):
         super(HCaptchaTask, self).__init__(client_key)
 
     def create_task(self, website_url: str, website_key: str, is_invisible: bool = None, custom_data: str = None,
-                    cookies: Union[dict, list, str] = None):
+                    cookies: Union[dict, list, str] = None, no_cache: bool = None):
         data = {
             "clientKey": self._client_key,
             "task": {
@@ -31,4 +31,6 @@ class HCaptchaTask(UserAgent, Proxy):
         if custom_data is None:
             data, is_user_agent = self._add_user_agent(data)
         data, is_proxy = self._is_proxy_task(data)
+        if no_cache:
+            data["task"]["nocache"] = no_cache
         return self._make_request("createTask", data).get("taskId")
