@@ -1,4 +1,5 @@
 import unittest
+from inspect import stack
 from os import environ
 from capmonster_python import *
 
@@ -112,20 +113,26 @@ class TestFuncaptchaTask(unittest.TestCase):
         del solution, task_id
 
     def test_proxy_funcaptcha(self):
-        self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
-        self.captcha.set_proxy(proxy[0], proxy[1], int(proxy[2]), proxy[3], proxy[4])
-        task_id = self.captcha.create_task("https://funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A"
-                                           "-E7FA06677FFC", "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
-                                           data_blob="{\"blob\":\"dyXvXANMbHj1iDyz.Qj97JtSqR2n%2BuoY1V%2FbdgbrG7p"
-                                                     "%2FmKiqdU9AwJ6MifEt0np4vfYn6TTJDJEfZDlcz9Q1XMn9przeOV%2FCr2"
-                                                     "%2FIpi%2FC1s%3D\"}")
-        self.assertIs(type(task_id), int)
-        solution = self.captcha.join_task_result(task_id)
-        self.assertIs(type(solution), dict)
-        self.assertIn("token", solution)
-        self.captcha.disable_proxy()
-        self.captcha.reset_user_agent()
-        del solution, task_id
+        try:
+            self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) "
+                                        "Gecko/20100101 Firefox/91.0")
+            self.captcha.set_proxy(proxy[0], proxy[1], int(proxy[2]), proxy[3], proxy[4])
+            task_id = self.captcha.create_task("https://funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A"
+                                               "-E7FA06677FFC", "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
+                                               data_blob="{\"blob\":\"dyXvXANMbHj1iDyz.Qj97JtSqR2n%2BuoY1V%2FbdgbrG7p"
+                                                         "%2FmKiqdU9AwJ6MifEt0np4vfYn6TTJDJEfZDlcz9Q1XMn9przeOV%2FCr2"
+                                                         "%2FIpi%2FC1s%3D\"}")
+            self.assertIs(type(task_id), int)
+            solution = self.captcha.join_task_result(task_id)
+            self.assertIs(type(solution), dict)
+            self.assertIn("token", solution)
+            self.captcha.disable_proxy()
+            self.captcha.reset_user_agent()
+            del solution, task_id
+        except CapmonsterException as err:
+            if any(err.error_code in s for s in acceptable_error_codes):
+                print("Raised error code in " + stack()[0][3] + " but it's ok: {}".format(err.error_code))
+                pass
 
 
 class TestHCaptcha(unittest.TestCase):
