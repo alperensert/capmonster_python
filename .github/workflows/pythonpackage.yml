@@ -1,6 +1,8 @@
 name: Python Package Tests 📦
 
 on:
+  schedule:
+    - cron: '0 3 * * FRI'
   push:
     branches:
       - master
@@ -13,7 +15,7 @@ jobs:
       max-parallel: 4
       fail-fast: false
       matrix:
-        python-version: [3.6, 3.7]
+        python-version: [3.6, 3.7, 3.9]
 
     steps:
     - uses: actions/checkout@v1
