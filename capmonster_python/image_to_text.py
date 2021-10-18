@@ -25,7 +25,7 @@ class ImageToTextTask(Capmonster):
         else:
             data["task"]["body"] = base64_encoded_image
         if module is not None:
-            data["task"]["СapMonsterModule"] = module
+            data["task"]["CapMonsterModule"] = module
         if recognizing_threshold is not None and (0 <= recognizing_threshold <= 100):
             data["task"]["recognizingThreshold"] = recognizing_threshold
         if case is not None:
