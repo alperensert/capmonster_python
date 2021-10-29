@@ -19,6 +19,7 @@ pip install capmonster_python
 - Recaptcha v3
 - Fun Captcha
 - HCaptcha
+- GeeTest
 
 Usage examples
 -
@@ -43,6 +44,19 @@ capmonster = RecaptchaV2Task("API_KEY")
 task_id = capmonster.create_task("website_url", "website_key")
 result = capmonster.join_task_result(task_id)
 print(result.get("gRecaptchaResponse"))
+```
+
+#### GeeTest
+
+```python
+from capmonster_python import GeeTestTask
+
+capmonster_python = GeeTestTask("API_KEY")
+task_id = capmonster_python.create_task("website_url", "gt", "challenge")
+result= capmonster_python.join_task_result(task_id)
+print(result.get("challenge"))
+print(result.get("seccode"))
+print(result.get("validate"))
 ```
 
 For other examples and api documentation please visit [wiki](https://github.com/alperensert/capmonster_python/wiki)

@@ -1,3 +1,5 @@
+import re
+import requests
 import unittest
 from inspect import stack
 from os import environ
@@ -5,7 +7,7 @@ from capmonster_python import *
 
 client_key = environ.get("KEY")
 proxy = environ.get("PROXY").split(",")
-acceptable_error_codes = ["ERROR_CAPTCHA_UNSOLVABLE", "ERROR_MAXIMUM_TIME_EXCEED"]
+acceptable_error_codes = ["ERROR_CAPTCHA_UNSOLVABLE", "ERROR_MAXIMUM_TIME_EXCEED", "ERROR_NO_SLOT_AVAILABLE"]
 
 
 class TestImageToText(unittest.TestCase):
@@ -52,8 +54,8 @@ class TestRecaptchaV2(unittest.TestCase):
         }
 
     def test_proxyless_recaptchav2(self):
-        task_id = self.captcha.create_task("https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level"
-                                           "=high", "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd",
+        task_id = self.captcha.create_task("https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=high",
+                                           "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd",
                                            cookies=self.dump_cookies)
         self.assertIs(type(task_id), int)
         solution = self.captcha.join_task_result(task_id)
@@ -62,17 +64,23 @@ class TestRecaptchaV2(unittest.TestCase):
         del task_id, solution
 
     def test_proxy_recaptchav2(self):
-        self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
-        self.captcha.set_proxy(proxy[0], proxy[1], int(proxy[2]), proxy[3], proxy[4])
-        task_id = self.captcha.create_task("https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level"
-                                           "=high", "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd",
-                                           cookies=self.dump_cookies, no_cache=True)
-        self.assertIs(type(task_id), int)
-        solution = self.captcha.join_task_result(task_id)
-        self.assertIs(type(solution), dict)
-        self.assertIn("gRecaptchaResponse", solution)
-        self.captcha.disable_proxy()
-        self.captcha.reset_user_agent()
+        try:
+            self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
+            self.captcha.set_proxy(proxy[0], proxy[1], int(proxy[2]), proxy[3], proxy[4])
+            task_id = self.captcha.create_task(
+                "https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=high",
+                "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd",
+                                               cookies=self.dump_cookies, no_cache=True)
+            self.assertIs(type(task_id), int)
+            solution = self.captcha.join_task_result(task_id)
+            self.assertIs(type(solution), dict)
+            self.assertIn("gRecaptchaResponse", solution)
+            self.captcha.disable_proxy()
+            self.captcha.reset_user_agent()
+        except CapmonsterException as err:
+            if any(err.error_code in s for s in acceptable_error_codes):
+                print("Raised error code in " + stack()[0][3] + " but it's ok: {}".format(err.error_code))
+                pass
 
 
 class TestRecaptchaV3(unittest.TestCase):
@@ -176,6 +184,52 @@ class TestHCaptcha(unittest.TestCase):
         self.assertIs(type(solution), dict)
         self.assertIn("gRecaptchaResponse", solution)
         del solution, task_id
+
+
+class TestGeeTest(unittest.TestCase):
+    def __init__(self, *args, **kwargs):
+        super(TestGeeTest, self).__init__(*args, **kwargs)
+        self.captcha = GeeTestTask(client_key)
+
+    def getProperties(self):
+        r = requests.get("https://2captcha.com/tr/demo/geetest").text
+        return re.search("gt: '(.+?)'", r).group(1), re.search("challenge: '(.+?)'", r).group(1)
+
+    def test_proxy_geetest(self):
+        try:
+            self.captcha.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
+            self.captcha.set_proxy(proxy[0], proxy[1], int(proxy[2]), proxy[3], proxy[4])
+            gt, challenge = self.getProperties()
+            task_id = self.captcha.create_task(website_url="https://2captcha.com/tr/demo/geetest",
+                                               gt=gt, challenge=challenge)
+            solution = self.captcha.join_task_result(task_id)
+            self.assertIs(type(solution), dict)
+            self.assertIn("challenge", solution)
+            self.assertIn("seccode", solution)
+            self.assertIn("validate", solution)
+            self.captcha.disable_proxy()
+            self.captcha.reset_user_agent()
+            del solution, task_id
+        except CapmonsterException as err:
+            if any(err.error_code in s for s in acceptable_error_codes):
+                print("Raised error code in " + stack()[0][3] + " but it's ok: {}".format(err.error_code))
+                pass
+
+    def test_proxyless_geetest(self):
+        try:
+            gt, challenge = self.getProperties()
+            task_id = self.captcha.create_task(website_url="https://2captcha.com/tr/demo/geetest",
+                                               gt=gt, challenge=challenge)
+            solution = self.captcha.join_task_result(task_id)
+            self.assertIs(type(solution), dict)
+            self.assertIn("challenge", solution)
+            self.assertIn("seccode", solution)
+            self.assertIn("validate", solution)
+            del solution, task_id
+        except CapmonsterException as err:
+            if any(err.error_code in s for s in acceptable_error_codes):
+                print("Raised error code in " + stack()[0][3] + " but it's ok: {}".format(err.error_code))
+                pass
 
 
 if __name__ == "__main__":
