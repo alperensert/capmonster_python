@@ -1,4 +1,6 @@
+import re
 import unittest
+import requests
 from inspect import stack
 from os import environ
 from capmonster_python import *
@@ -177,6 +179,37 @@ class TestHCaptcha(unittest.TestCase):
         self.assertIn("gRecaptchaResponse", solution)
         del solution, task_id
 
+
+class TestGeeTest(unittest.TestCase):
+    def __init__(self, *args, **kwargs) -> None:
+        super(TestGeeTest, self).__init__(*args, **kwargs)
+        self.captcha = GeeTestTask(client_key)
+
+    def getProperties(self):
+        r = requests.get("https://2captcha.com/tr/demo/geetest").text
+        return (re.search("gt: '(.+?)'", r).group(1), re.search("challenge: '(.+?)'", r).group(1))
+
+    def test_proxyless_geetest(self):
+        gt, challenge = self.getProperties()
+        task_id = self.captcha.create_task(website_url="https://2captcha.com/tr/demo/geetest", gt=gt, challenge=challenge)
+        self.assertIs(type(task_id), int)
+        solution = self.captcha.join_task_result(task_id)
+        self.assertIs(type(solution), dict)
+        self.assertIn("validate", solution)
+        self.assertIn("seccode", solution)
+        del solution, task_id
+
+    def test_proxy_geetest(self):
+        self.captcha.set_proxy(proxy[0], proxy[1], int(proxy[2]), proxy[3], proxy[4])
+        gt, challenge = self.getProperties()
+        task_id = self.captcha.create_task(website_url="https://2captcha.com/tr/demo/geetest", gt=gt, challenge=challenge)
+        self.assertIs(type(task_id), int)
+        solution = self.captcha.join_task_result(task_id)
+        self.assertIs(type(solution), dict)
+        self.assertIn("validate", solution)
+        self.assertIn("seccode", solution)
+        self.captcha.disable_proxy()
+        del solution, task_id
 
 if __name__ == "__main__":
     unittest.main()
