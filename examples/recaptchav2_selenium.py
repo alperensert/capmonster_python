@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from webdriver_manager.firefox import GeckoDriverManager
 from capmonster_python import RecaptchaV2Task
@@ -16,7 +17,7 @@ class RecaptchaV2Selenium:
 
     def _get_site_key(self):
         self.browser.get("https://www.google.com/recaptcha/api2/demo")
-        return self.browser.find_element_by_id("recaptcha-demo").get_attribute("data-sitekey")
+        return self.browser.find_element(By.ID, "recaptcha-demo").get_attribute("data-sitekey")
 
     def _solve_recaptcha(self):
         self.captcha.set_user_agent(self.user_agent)
@@ -30,9 +31,9 @@ class RecaptchaV2Selenium:
         self.browser.execute_script("document.getElementsByClassName('g-recaptcha-response')[0].innerHTML = "
                                     f"'{self._solve_recaptcha()}';")
         print("# Response received and placed to g-recaptcha-response textarea")
-        self.browser.find_element_by_id("recaptcha-demo-submit").click()
+        self.browser.find_element(By.ID, "recaptcha-demo-submit").click()
         sleep(5)
-        source = self.browser.find_element_by_class_name("recaptcha-success")
+        source = self.browser.find_element(By.CLASS_NAME, "recaptcha-success")
         self.browser.close()
         return source
 

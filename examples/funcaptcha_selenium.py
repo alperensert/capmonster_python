@@ -1,6 +1,7 @@
 import re
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
 from webdriver_manager.firefox import GeckoDriverManager
 from capmonster_python import FuncaptchaTask
 from time import sleep
@@ -34,9 +35,9 @@ class FuncaptchaSelenium:
         document.getElementById('submit-btn').disabled = false
         """.format(self._solve_funcaptcha()))
         print("# Response received and placed to (FunCaptcha-Token and verifaction-token) textarea")
-        self.browser.find_element_by_id("submit-btn").click()
+        self.browser.find_element(By.ID, "submit-btn").click()
         sleep(5)
-        h3_text = self.browser.find_element_by_css_selector("h3").text
+        h3_text = self.browser.find_element(By.CSS_SELECTOR, "h3").text
         self.browser.close()
         return h3_text
 
