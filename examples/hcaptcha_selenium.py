@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
 from webdriver_manager.firefox import GeckoDriverManager
 from capmonster_python import HCaptchaTask
 from time import sleep
@@ -17,7 +18,7 @@ class HCaptchaSelenium:
 
     def _get_site_key(self):
         self.browser.get(self.website_url)
-        return self.browser.find_element_by_class_name("h-captcha").get_attribute("data-sitekey")
+        return self.browser.find_element(By.CLASS_NAME, "h-captcha").get_attribute("data-sitekey")
 
     def _solve_hcaptcha(self):
         self.captcha.set_user_agent(self.user_agent)
@@ -31,8 +32,8 @@ class HCaptchaSelenium:
         self.browser.execute_script("document.querySelector(\"textarea[name='g-recaptcha-response'"
                                     "]\").value = '{}'".format(self._solve_hcaptcha()))
         print("# Response received and placed to textarea")
-        self.browser.find_element_by_id("fname").send_keys("xxx")
-        self.browser.find_element_by_css_selector("input[type='submit']").click()
+        self.browser.find_element(By.ID, "fname").send_keys("xxx")
+        self.browser.find_element(By.CSS_SELECTOR, "input[type='submit']").click()
         sleep(5)
         source = self.browser.page_source
         self.browser.close()
