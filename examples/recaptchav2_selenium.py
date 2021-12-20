@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
 from capmonster_python import RecaptchaV2Task
 from time import sleep
@@ -12,7 +13,7 @@ class RecaptchaV2Selenium:
         self.options.headless = _headless
         self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0"
         self.captcha = RecaptchaV2Task(_client_key)
-        self.browser = webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=self.options)
+        self.browser = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=self.options)
         self.website_url = "https://www.google.com/recaptcha/api2/demo"
 
     def _get_site_key(self):
