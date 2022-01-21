@@ -1,6 +1,5 @@
 import requests
 import asyncio
-
 from time import sleep
 from .utils import *
 
@@ -41,7 +40,7 @@ class Capmonster:
                 sleep(2)
         raise CapmonsterException(61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
 
-    async def async_join_task_result(self, task_id: int, maximum_time: int = 120):
+    async def join_task_result_async(self, task_id: int, maximum_time: int = 120):
         for i in range(0, maximum_time + 1, 2):
             result = self.get_task_result(task_id)
             if result is not False and result is not None:
