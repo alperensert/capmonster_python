@@ -1,5 +1,5 @@
 beautifulsoup4==4.10.0
 capmonster-python
 requests==2.27.1
-selenium==4.1.0
+selenium==4.1.1
 webdriver-manager==3.5.2
