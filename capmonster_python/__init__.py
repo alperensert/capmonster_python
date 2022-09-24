@@ -1,4 +1,5 @@
 from .recaptcha_v2 import RecaptchaV2Task
+from .recaptcha_v2_enterprise import RecaptchaV2EnterpriseTask
 from .fun_captcha import FuncaptchaTask
 from .recaptcha_v3 import RecaptchaV3Task
 from .hcaptcha import HCaptchaTask

@@ -1,6 +1,6 @@
 Capmonster.cloud for Python
 =
-![Python Package Tests](https://github.com/alperensert/capmonster_python/actions/workflows/pythonpackage.yml/badge.svg?branch=master) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/capmonster-python?style=plastic) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/capmonster_python?style=flat) ![GitHub last commit](https://img.shields.io/github/last-commit/alperensert/capmonster_python?style=flat) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/alperensert/capmonster_python?style=flat) ![PyPI - Downloads](https://img.shields.io/pypi/dm/capmonster_python?style=flat) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/alperensert/capmonster_python?style=flat) ![GitHub Repo stars](https://img.shields.io/github/stars/alperensert/capmonster_python?style=social) 
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/capmonster-python?style=plastic) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/capmonster_python?style=flat) ![GitHub last commit](https://img.shields.io/github/last-commit/alperensert/capmonster_python?style=flat) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/alperensert/capmonster_python?style=flat) ![PyPI - Downloads](https://img.shields.io/pypi/dm/capmonster_python?style=flat) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/alperensert/capmonster_python?style=flat) ![GitHub Repo stars](https://img.shields.io/github/stars/alperensert/capmonster_python?style=social) 
 
 [Capmonster.cloud](https://capmonster.cloud) package for Python3
 
@@ -16,6 +16,7 @@ pip install capmonster_python
 ### Supported captcha types
 - Image to text
 - Recaptcha v2
+- Recaptcha v2 enterprise
 - Recaptcha v3
 - Fun Captcha
 - HCaptcha
@@ -42,6 +43,17 @@ from capmonster_python import RecaptchaV2Task
 
 capmonster = RecaptchaV2Task("API_KEY")
 task_id = capmonster.create_task("website_url", "website_key")
+result = capmonster.join_task_result(task_id)
+print(result.get("gRecaptchaResponse"))
+```
+
+#### Recaptcha v2 enterprise
+
+```python
+from capmonster_python import RecaptchaV2EnterpriseTask
+
+capmonster = RecaptchaV2EnterpriseTask("API_KEY")
+task_id = capmonster.create_task("website_url", "website_key", {"s": "payload value"}, "api_domain")
 result = capmonster.join_task_result(task_id)
 print(result.get("gRecaptchaResponse"))
 ```

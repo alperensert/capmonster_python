@@ -28,7 +28,6 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     use_scm_version=True,
-    test_suite="tests",
     setup_requires=["setuptools_scm", "wheel"],
     install_requires=["requests", "six"],
     python_requires=">=3",
