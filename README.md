@@ -4,7 +4,7 @@ Capmonster.cloud for Python
 
 [Capmonster.cloud](https://capmonster.cloud) package for Python3
 
-If you have any problem with usage, [read the documentation](https://github.com/alperensert/capmonster_python/wiki) or [create an issue](https://github.com/alperensert/capmonster_python/issues/new)
+If you have any problem with usage, [read the documentation](https://alperensert.github.io/capmonster_python) or [create an issue](https://github.com/alperensert/capmonster_python/issues/new)
 
 *At least 2x cheaper, up to 30x faster than manual recognition services.*
 
@@ -71,15 +71,4 @@ print(result.get("seccode"))
 print(result.get("validate"))
 ```
 
-For other examples and api documentation please visit [wiki](https://github.com/alperensert/capmonster_python/wiki)
-
-### Migration from 1.3.2 to 2.x
-- v2.x is created for automation and stability.
-- If you want to use old version: (no longer supported)
-
-    ```
-    pip install capmonster-python==1.3.2
-    ```
-- If you want to use new version 2.x:
-  - All methods, classes and fields are changed for maximum optimization and continuous automation.
-    Check out [wiki](https://github.com/alperensert/capmonster_python/wiki) for usage examples and package api.
+For other examples and api documentation please visit [wiki](https://alperensert.github.io/capmonster_python)

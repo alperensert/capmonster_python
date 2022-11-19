@@ -7,6 +7,7 @@ with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="capmonster_python",
+    version="2.2.1",
     packages=["capmonster_python"],
     url="https://github.com/alperensert/capmonster_python",
     long_description=long_description,
@@ -32,7 +33,7 @@ setup(
     install_requires=["requests", "six"],
     python_requires=">=3",
     project_urls={
-        "Documentation": 'https://github.com/alperensert/capmonster_python/wiki/',
+        "Documentation": 'https://alperensert.github.io/capmonster_python/',
         "Source": 'https://github.com/alperensert/capmonster_python/',
         "Tracker": 'https://github.com/alperensert/capmonster_python/issues',
     },
