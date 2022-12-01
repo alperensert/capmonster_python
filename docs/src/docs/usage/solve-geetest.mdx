@@ -1,0 +1,34 @@
+---
+title: Solve GeeTest
+description: Learn how to solve GeeTest
+---
+
+> First of all, you need an API key to work. You can get one from [here](https://capmonster.cloud)
+
+## What you need
+1. GeeTest identifier key (a.k.a. _gt_)
+2. Challenge key
+2. Website url
+
+### How to get you needs?
+- The gt, challenge and geetestApiServerSubdomain parameters are most often found inside the initGeetest JavaScript function.
+- Also you can see in the HTML code of the page. 
+You can find it in the **script** block, which appears after the page is fully loaded in the browser.
+![geetest](/geetest.jpg)
+
+## Solve
+
+```py title=solve_geetest.py
+from capmonster_python import GeeTestTask
+
+capmonster = GeeTestTask("API_KEY")
+task_id = capmonster.create_task("website_url", "gt", "challenge")
+result= capmonster.join_task_result(task_id)
+print(result.get("challenge"))
+print(result.get("seccode"))
+print(result.get("validate"))
+```
+
+## Important Note
+> Keep in mind, the _gt_ challenge is rarely updated. 
+> But challenge value is always changing when everytime you see a GeeTest Captcha.

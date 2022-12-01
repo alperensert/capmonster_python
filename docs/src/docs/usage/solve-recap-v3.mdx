@@ -1,0 +1,27 @@
+---
+title: Solve ReCaptcha v3
+description: Learn how to solve ReCaptcha V3
+---
+
+> First of all, you need an API key to work. You can get one from [here](https://capmonster.cloud)
+
+## What you need
+1. Website key
+2. Website url
+
+### Get website key
+Mostly, you can find the site key in _api.js_'s query parameters.
+```html
+<script src="https://www.google.com/recaptcha/api.js?render=THAT_ONE"/>
+``` 
+
+## Solve
+
+```py title=solve_recaptcha_v3.py
+from capmonster_python import RecaptchaV3Task
+
+capmonster = RecaptchaV3Task("API_KEY")
+task_id = capmonster.create_task("website_url", "website_key")
+result = capmonster.join_task_result(task_id)
+print(result.get("gRecaptchaResponse"))
+```

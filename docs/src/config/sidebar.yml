@@ -1,0 +1,52 @@
+# Sidebar navigation
+
+- label: 'Introduction'
+  link: '/'
+- label: 'Installation'
+  link: '/installation'
+- label: Usage
+  items:
+    - label: 'Image to Text'
+      link: '/usage/solve-img-to-text'
+    - label: 'ReCaptcha v2'
+      link: '/usage/solve-recap-v2'
+    - label: 'FunCaptcha'
+      link: '/usage/solve-funcap'
+    - label: 'HCaptcha'
+      link: '/usage/solve-hcaptcha'
+    - label: 'ReCaptcha v3'
+      link: '/usage/solve-recap-v3'
+    - label: 'GeeTest'
+      link: '/usage/solve-geetest'
+    - label: 'Proxy and User Agent'
+      link: '/usage/proxy-and-ua'
+- label: API
+  items:
+    - label: class Capmonster
+      link: '/api/class-capmonster'
+    - label: class ImageToTextTask
+      link: '/api/class-img-to-text'
+    - label: class ReCaptchaV2Task
+      link: '/api/class-recap-v2'
+    - label: class GeeTestTask
+      link: '/api/class-geetest'
+    - label: class ReCaptchaV3Task
+      link: '/api/class-recap-v3'
+    - label: class FunCaptchaTask
+      link: '/api/class-funcap'
+    - label: class HCaptchaTask
+      link: '/api/class-hcap'
+    - label: class Proxy
+      link: '/api/class-proxy'
+    - label: class UserAgent
+      link: '/api/class-useragent'
+- label: More
+  items:
+    - label: Error Types
+      link: /error-types
+    - label: No Cache
+      link: /no-cache
+    - label: Examples
+      link: /examples
+    - label: 'Github'
+      link: https://github.com/alperensert/capmonster_python

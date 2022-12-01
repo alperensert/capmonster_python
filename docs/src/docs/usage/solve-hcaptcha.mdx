@@ -1,0 +1,21 @@
+---
+title: Solve HCaptcha
+description: Learn how to solve HCaptcha
+---
+
+> First of all, you need an API key to work. You can get one from [here](https://capmonster.cloud)
+
+## What you need
+1. Website key
+2. Website url
+
+## Solve
+
+```py title=solve_hcaptcha.py
+from capmonster_python import HCaptchaTask
+
+capmonster = HCaptchaTask("API_KEY")
+task_id = capmonster.create_task("website_url", "website_key")
+result = capmonster.join_task_result(task_id)
+print(result.get("gRecaptchaResponse"))
+```

@@ -1,0 +1,24 @@
+---
+title: class FunCaptchaTask
+---
+
+## Constructor
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|client_key|String|Yes|-|Your unique key to solve captchas|
+
+## Methods
+### create_task
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|website_url|String|Yes|-|Address of a webpage with FunCaptcha|
+|website_public_key|String|Yes|-|FunCaptcha website key <br/><br/>_(div id="funcaptcha" data-pkey="THAT_ONE")_|
+|api_js_subdomain|String|No|-|A special subdomain of funcaptcha.com, from which the JS captcha widget should be loaded. Most FunCaptcha installations work from shared domains, so this option is only needed in certain rare cases.|
+|data_blob|String|No|-|Additional parameter that may be required by Funcaptcha implementation. <br/><br/>Use this property to send "blob" value as a stringified array. See example how it may look like. <br/>_{"\blob\":\"HERE_COMES_THE_blob_VALUE\"}_|
+|cookies|Dict, List, String|No|-|Additional cookies which we must use during interaction with target page or Google <br/><br/>If you are pass the cookies as string, here is the format: cookiename1=cookievalue1; cookiename2=cookievalue2|
+|no_cache|Boolean|No|-|You receive a token, send it to the site, but the site rejects it. Moreover, sometimes the site can accept a token, e.g. in one case out of 10 (_the percentage of success in your case may be different_)|
+
+### Inherited methods
+- See [_Capmonster_](/api/class-capmonster) class for inherited methods.
+- See [_Proxy_](/api/class-proxy) class for inherited methods.
+- See [_UserAgent_](/api/class-useragent) class for inherited methods.

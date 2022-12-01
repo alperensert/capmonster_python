@@ -1,0 +1,25 @@
+---
+title: class HCaptchaTask
+---
+
+## Constructor
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|client_key|String|Yes|-|Your unique key to solve captchas|
+
+## Methods
+
+### create_task
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|website_url|String|Yes|-|Address of a webpage with hCaptcha|
+|website_key|String|Yes|-|hCaptcha website key|
+|is_invisible|Boolean|No|-|Use `True` for invisible version of hcaptcha|
+|custom_data|String|No|-|Custom data that is used in some implementations of hCaptcha, mostly with isInvisible=true. In most cases you see it as rqdata inside network requests<br/><br/>**IMPORTANT:** You **MUST** provide an user agent if you submit captcha with data parameter. The value should match the user agent you use when interacting with the target website.|
+|cookies|Dict, List, String|No|-|Additional cookies which we must use during interaction with target page or Google <br/><br/>If you are pass the cookies as string, here is the format: cookiename1=cookievalue1; cookiename2=cookievalue2|
+|no_cache|Boolean|No|-|You receive a token, send it to the site, but the site rejects it. Moreover, sometimes the site can accept a token, e.g. in one case out of 10 (_the percentage of success in your case may be different_)|
+
+### Inherited methods
+- See [_Capmonster_](/api/class-capmonster) class for inherited methods.
+- See [_Proxy_](/api/class-proxy) class for inherited methods.
+- See [_UserAgent_](/api/class-useragent) class for inherited methods.

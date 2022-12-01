@@ -1,0 +1,35 @@
+---
+title: Examples
+---
+
+To run the examples in your local machine, please do the followings:
+
+## Steps
+
+1. Create a folder and clone the repository
+
+    ```sh
+    mkdir capmonster-python
+    cd capmonster-python
+    git init
+    git clone https://github.com/alperensert/capmonster_python.git
+    ```
+2. Go to examples folder and install the requirements (examples only)
+
+    ```sh
+    cd examples
+    pip install -r requirements.txt
+    ```
+3. Then set 2 environment variables for correctly run the examples, _API_KEY_ and _HEADLESS_
+    1. Api key is your unique key to solve captchas
+    2. Headless is needed for running selenium examples.
+
+4. Now you are ready to run examples, e.g.
+
+    ```sh
+    python recaptchav2_selenium.py
+    ```
+
+> Note: If you want to run selenium examples, Firefox must be installed
+
+- All examples are [here](https://github.com/alperensert/capmonster_python/tree/master/tests)

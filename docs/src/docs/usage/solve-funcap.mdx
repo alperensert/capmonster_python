@@ -1,0 +1,27 @@
+---
+title: Solve FunCaptcha
+description: Learn how to solve funcaptcha
+---
+
+> First of all, you need an API key to work. You can get one from [here](https://capmonster.cloud)
+
+## What you need
+1. Website's public key
+2. Website url
+
+### Get public website key
+Mostly, you can find the key in _data-pkey_ attribute.
+```html
+<div id="funcaptcha" data-pkey="THAT_ONE"></div>
+````
+
+## Solve
+
+```py title=solve_funcaptcha.py
+from capmonster_python import FuncaptchaTask
+
+capmonster = FuncaptchaTask("API_KEY")
+task_id = capmonster.create_task("website_url", "website_public_key")
+result = capmonster.join_task_result(task_id)
+print(result.get("token"))
+````

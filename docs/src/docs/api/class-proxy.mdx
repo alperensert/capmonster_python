@@ -1,0 +1,18 @@
+---
+title: class Proxy
+---
+
+## Methods
+### set_proxy
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|proxy_type|String|Yes|-|Type of the proxy<br/><br/>**http** - usual http/https proxy<br/>**https** - try this only if "http" doesn't work (required by some custom proxy servers)<br/>**socks4** - socks4 proxy<br/>**socks5** - socks5 proxy<br/>|
+|proxy_address|String|Yes|-|Proxy IP address IPv4/IPv6. Not allowed to use:<br/><br/><ul><li>host names instead of IPs</li><li>transparent proxies (where client IP is visible)</li><li>proxies from local networks (192.., 10.., 127...)</li></ul>|
+|proxy_port|Integer|Yes|-|Proxy port|
+|proxy_login|String|No *|-|Login for proxy which requires authorizaiton (basic)|
+|proxy_password|String|No *|-|Proxy password|
+
+\* If your proxy isn't authorized by IP you must pass the both of them. But the proxy is authorized by IP, then be sure to add **116.203.55.208** to the white list.
+
+### method disable_proxy
+Doesn't have any specific parameters, it's disables and clear the proxy.

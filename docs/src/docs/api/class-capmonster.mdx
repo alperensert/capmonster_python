@@ -1,0 +1,32 @@
+---
+title: class Capmonster 
+---
+
+## Methods
+### get_balance
+- Does not have any specific parameter, returns the current balance of specified api key.
+
+### get_task_result
+- Get task's result. Returns a dictionary if task is ready, else returns `false`
+
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|task_id|Integer|Yes|-|ID which was obtained in createTask method|
+
+### join_task_result
+- Get task's result. Returns a dictionary if task is ready, else raise CapmonsterException with error code `MAXIMUM_TIME_EXCEED`
+
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|task_id|Integer|Yes|-|ID which was obtained in createTask method|
+|maximum_time|Integer|No|120|
+
+### join_task_result_async
+- Get task's result. Returns a dictionary if task is ready, else raise CapmonsterException with error code `MAXIMUM_TIME_EXCEED`
+
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|task_id|Integer|Yes|-|ID which was obtained in createTask method|
+|maximum_time|Integer|No|120|
+
+> All task classes are inherits the _Capmonster_ class.

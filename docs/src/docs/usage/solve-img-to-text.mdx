@@ -1,0 +1,37 @@
+---
+title: Solve Image to Text Captcha
+description: Learn how to solve image to text captchas.
+---
+
+> First of all, you need an API key to work. You can get one from [here](https://capmonster.cloud)
+
+Image to Text Captcha's can be send with two different ways.
+
+### Send image with ImagePath
+
+If you have the image on your local path, or if you can download it, use _image_path_ way.
+
+```py title=image_to_text_with_image_path.py
+from capmonster_python import ImageToTextTask
+
+capmonster = ImageToTextTask("API_KEY")
+task_id = capmonster.create_task(image_path="img.png")
+result = capmonster.join_task_result(task_id)
+print(result.get("text"))
+```
+
+### Send image as Base64 Encoded
+
+If you have to handle the captchas real-time, 
+you can download the image and convert it to Base64.
+
+```python title=image_to_text_base64_encoded.py
+from capmonster_python import ImageToTextTask
+
+capmonster = ImageToTextTask("API_KEY")
+task_id = capmonster.create_task(base64_encoded_image="base64encodedimage_as_string")
+result = capmonster.join_task_result(task_id)
+print(result.get("text"))
+```
+
+> Make sure to send it without line breaks while using Base64 Encoded way.

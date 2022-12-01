@@ -1,0 +1,24 @@
+---
+title: class ImageToTextTask
+---
+
+## Constructor
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|client_key|String|Yes|-|Your unique key to solve captchas|
+
+## Methods
+
+### create_task
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|image_path|String|Yes *|-|Automatically encode with base64|
+|base64_encoded_image|String|Yes *|-|Image body encoded in base64. Make sure to send it without line breaks and as string|
+|module|String|No|-|Name of recognizing module e.g _yandex_
+|recognizing_threshold|Integer|No|-|Captcha recognition threshold with a possible value from 0 to 100. For example, if a value of 90 was sent to the system, and the problem was solved with confidence of 80, then the money for the solution will not be charged. In this case, the user will receive an ERROR_CAPTCHA_UNSOLVABLE exception|
+|case|Boolean|No|-|Whether to consider case when deciding or not|
+|numeric|Integer|No|0|**1** - if the captcha consists of numbers only|
+|math|Boolean|No|-|**true** - captcha requires a mathematical action (e.g captcha 2 + 6 = will return the value 8)|
+
+### Inherited methods
+See [_Capmonster_](/api/class-capmonster) class for inherited methods.

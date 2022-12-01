@@ -1,0 +1,22 @@
+---
+title: class ReCaptchaV3Task
+---
+
+## Constructor
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|client_key|String|Yes|-|Your unique key to solve captchas|
+
+## Methods
+
+### create_task
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|website_url|String|Yes|-|Address of a webpage with Google ReCaptcha|
+|website_key|String|Yes|-|Recaptcha website key <br/><br/> _(google.com/recaptcha/api.js?render="THAT_ONE")_|
+|minimum_score|Float (double)|No|0.3|Value from 0.1 to 0.9|
+|page_action|String|No|verify|Widget action value. Website owner defines what user is doing on the page through this parameter. <br/><br/> _e.g. grecaptcha.execute('site_key', {action:'login_test'})_|
+|no_cache|Boolean|No|-|You receive a token, send it to the site, but the site rejects it. Moreover, sometimes the site can accept a token, e.g. in one case out of 10 (_the percentage of success in your case may be different_)|
+
+### Inherited methods
+See [_Capmonster_](/api/class-capmonster) class for inherited methods.

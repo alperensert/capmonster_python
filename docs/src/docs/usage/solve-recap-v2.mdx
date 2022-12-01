@@ -1,0 +1,29 @@
+---
+title: Solve ReCaptcha V2
+description: Learn how to solve re-captcha v2
+---
+
+> First of all, you need an API key to work. You can get one from [here](https://capmonster.cloud)
+
+ReCaptcha v2 is a captcha service implementation from Google.
+
+## What you need
+1. Website's captcha key
+2. Website url
+
+### Get website key
+Mostly, you can find website key inside the _g-recaptcha_ div.
+```html
+<div class="g-recaptcha" data-sitekey="THAT_ONE"></div>
+````
+
+## Solve
+
+```py title=solve_recaptchav2.py
+from capmonster_python import RecaptchaV2Task
+
+capmonster = RecaptchaV2Task("API_KEY")
+task_id = capmonster.create_task("website_url", "website_key")
+result = capmonster.join_task_result(task_id)
+print(result.get("gRecaptchaResponse"))
+````

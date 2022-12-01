@@ -1,0 +1,23 @@
+---
+title: class GeeTestTask
+---
+
+## Constructor
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|client_key|String|Yes|-|Your unique key to solve captchas|
+
+## Methods
+### create_task
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|website_url|String|Yes|-|Address of the page on which the captcha is ricognized|
+|gt|String|Yes|-|The GeeTest identifier key for the domain. Static value, rarely updated.|
+|challenge|String|Yes|-|A dynamic key.<br/>Each time our API is called, we need to get a new key value. If the captcha is loaded on the page, then the challenge value is no longer valid.<br/>It is necessary to examine the requests and find the one in which this value is returned and, before each creation of the recognition task, execute this request and parse the challenge from it.|
+|api_server_subdomain|String|No|-|Optional parameter. May be required for some sites.|
+|get_lib|String|No|-|Optional parameter. May be required for some sites.<br/>Send JSON as a string.|
+
+### Inherited methods
+- See [_Capmonster_](/api/class-capmonster) class for inherited methods.
+- See [_Proxy_](/api/class-proxy) class for inherited methods.
+- See [_UserAgent_](/api/class-useragent) class for inherited methods.
