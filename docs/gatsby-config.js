@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     siteTitle: `capmonster-python docs`,
-    defaultTitle: `capmonster-python Docs`,
-    siteTitleShort: `capmonster-python Docs`,
+    defaultTitle: `capmonster-python docs`,
+    siteTitleShort: `capmonster-python`,
     siteDescription: `capmonster-python documentation for capmonster.cloud`,
     siteUrl: `https://docs.alperenn.com`,
     siteAuthor: `@alperensert`,

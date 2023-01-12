@@ -18,6 +18,8 @@
       link: '/usage/solve-recap-v3'
     - label: 'GeeTest'
       link: '/usage/solve-geetest'
+    - label: 'Turnstile'
+      link: '/usage/solve-turnstile'
     - label: 'Proxy and User Agent'
       link: '/usage/proxy-and-ua'
 - label: API
@@ -36,6 +38,8 @@
       link: '/api/class-funcap'
     - label: class HCaptchaTask
       link: '/api/class-hcap'
+    - label: class TurnstileTask
+      link: '/api/class-turnstile'
     - label: class Proxy
       link: '/api/class-proxy'
     - label: class UserAgent

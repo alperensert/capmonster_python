@@ -16,11 +16,12 @@ pip install capmonster_python
 ### Supported captcha types
 - Image to text
 - Recaptcha v2
-- Recaptcha v2 enterprise
+- Recaptcha v2 Enterprise
 - Recaptcha v3
 - Fun Captcha
 - HCaptcha
 - GeeTest
+- Turnstile Task
 
 Usage examples
 -

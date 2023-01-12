@@ -1,0 +1,20 @@
+---
+title: class TurnstileTask
+---
+
+## Constructor
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|client_key|String|Yes|-|Your unique key to solve captchas|
+
+## Methods
+### create_task
+|Parameter|Type|Required|Default value|Purpose|
+|---------|----|--------|-------------|-------|
+|website_url|String|Yes|-|Address of a webpage with Google ReCaptcha Enterprise|
+|website_key|String|Yes|-|Turnstile key|
+|no_cache|Boolean|No|-|You receive a token, send it to the site, but the site rejects it. Moreover, sometimes the site can accept a token, e.g. in one case out of 10 (_the percentage of success in your case may be different_)|
+
+### Inherited methods
+- See [_Capmonster_](/api/class-capmonster) class for inherited methods.
+- See [_Proxy_](/api/class-proxy) class for inherited methods.

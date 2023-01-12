@@ -1,0 +1,23 @@
+---
+title: Solve Turnstile Task
+description: Learn how to solve turnstile task
+---
+
+> First of all, you need an API key to work. You can get one from [here](https://capmonster.cloud)
+
+> All Turnstile subtypes are automatically supported: manual, non-interactive and invisible. Therefore, there is no need to specify a subtype.
+
+## What you need
+1. Website's key
+2. Website url
+
+## Solve
+
+```py title=solve_turnstile.py
+from capmonster_python import TurnstileV2Task
+
+capmonster = TurnstileV2Task("API_KEY")
+task_id = capmonster.create_task("website_url", "website_key")
+result = capmonster.join_task_result(task_id)
+print(result.get("token"))
+````
