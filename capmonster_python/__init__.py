@@ -6,3 +6,4 @@ from .hcaptcha import HCaptchaTask
 from .image_to_text import ImageToTextTask
 from .geetest import GeeTestTask
 from .utils import CapmonsterException
+from .compleximage import ComplexImageTask

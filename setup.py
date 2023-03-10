@@ -7,14 +7,14 @@ with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="capmonster_python",
-    version="2.3",
+    version="2.4.1",
     packages=["capmonster_python"],
     url="https://github.com/alperensert/capmonster_python",
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
     author="Alperen Sert",
-    author_email="mail@alperenn.com",
+    author_email="business@alperen.io",
     description="capmonster.cloud library for Python",
     requires=["requests"],
     classifiers=[
@@ -27,6 +27,8 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
     use_scm_version=True,
     setup_requires=["setuptools_scm", "wheel"],

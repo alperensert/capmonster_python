@@ -64,12 +64,24 @@ print(result.get("gRecaptchaResponse"))
 ```python
 from capmonster_python import GeeTestTask
 
-capmonster_python = GeeTestTask("API_KEY")
-task_id = capmonster_python.create_task("website_url", "gt", "challenge")
-result= capmonster_python.join_task_result(task_id)
+capmonster = GeeTestTask("API_KEY")
+task_id = capmonster.create_task("website_url", "gt", "challenge")
+result= capmonster.join_task_result(task_id)
 print(result.get("challenge"))
 print(result.get("seccode"))
 print(result.get("validate"))
+```
+
+#### Report incorrect captchas
+
+```python
+from capmonster_python import RecaptchaV2Task
+
+capmonster = RecaptchaV2Task("API_KEY")
+task_id = capmonster.create_task("website_url", "website_key")
+result = capmonster.join_task_result(task_id)
+report_result = capmonster.report_incorrect_captcha("token", task_id)
+print(report_result)
 ```
 
 For other examples and api documentation please visit [wiki](https://alperensert.github.io/capmonster_python)

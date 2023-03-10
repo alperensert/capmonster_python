@@ -10,6 +10,8 @@ class Capmonster:
     _CREATE_TASK_URL = "/createTask"
     _TASK_RESULT_URL = "/getTaskResult"
     _BALANCE_URL = "/getBalance"
+    _INCORRECT_IMAGE_CAPTCHA_URL = "/reportIncorrectImageCaptcha"
+    _INCORRECT_TOKEN_CAPTCHA_URL = "/reportIncorrectTokenCaptcha"
 
     def __init__(self, client_key):
         self._client_key = client_key
@@ -38,7 +40,8 @@ class Capmonster:
             elif result is False:
                 i += 1
                 sleep(2)
-        raise CapmonsterException(61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
+        raise CapmonsterException(
+            61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
 
     async def join_task_result_async(self, task_id: int, maximum_time: int = 120):
         for i in range(0, maximum_time + 1, 2):
@@ -48,7 +51,31 @@ class Capmonster:
             elif result is False:
                 i += 1
                 await asyncio.sleep(2)
-        raise CapmonsterException(61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
+        raise CapmonsterException(
+            61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
+
+    def report_incorrect_captcha(self, captcha_type: str, task_id: int) -> bool:
+        if captcha_type is not "image" or "token":
+            raise CapmonsterException(
+                1, "ERROR_INCORRECT_CAPTCHA_TYPE", "Valid captcha_type parameters are only 'image' or 'token'.")
+        try:
+            self._report_incorrect_captcha(
+                captcha_type=captcha_type, task_id=task_id)
+            return True
+        except:
+            return False
+
+    @check_response()
+    def _report_incorrect_captcha(self, captcha_type: str, task_id: int):
+        data = {
+            "clientKey": self._client_key,
+            "taskId": task_id
+        }
+        if captcha_type is "image":
+            response = self._make_request("reportIncorrectImageCaptcha", data)
+        else:
+            response = self._make_request("reportIncorrectTokenCaptcha", data)
+        return response
 
     @staticmethod
     def _is_ready(response: dict):
@@ -68,8 +95,13 @@ class Capmonster:
         elif method == "createTask":
             _method = self._CREATE_TASK_URL
             data["softId"] = self.__SOFT_ID
+        elif method == "reportIncorrectImageCaptcha":
+            _method = self._INCORRECT_IMAGE_CAPTCHA_URL
+        elif method == "reportIncorrectTokenCaptcha":
+            _method = self._INCORRECT_TOKEN_CAPTCHA_URL
         try:
-            response = requests.post("{}{}".format(self._HOST_URL, _method), json=data).json()
+            response = requests.post("{}{}".format(
+                self._HOST_URL, _method), json=data).json()
         except Exception as err:
             raise CapmonsterException(-1, type(err).__name__, str(err))
         return response
@@ -88,7 +120,8 @@ class Capmonster:
         elif type(cookies) == list:
             for i in cookies:
                 if not len(cookies) % 2 == 0:
-                    raise AttributeError("List cookies length must be even numbers")
+                    raise AttributeError(
+                        "List cookies length must be even numbers")
                 if cookies.index(i) % 2 == 0:
                     str_cookies += "{}=".format(i)
                 elif cookies[cookies.index(i)] == cookies[-1]:
