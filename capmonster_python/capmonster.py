@@ -162,7 +162,7 @@ class Proxy(Capmonster):
     def _is_proxy_task(self, data: dict):
         """
         Determine for is this a proxy task or not?
-        e.g if you are not set the values with set_proxy method, it is a proxyless method, or if you are set up it is a
+        e.g. if you are not set the values with set_proxy method, it is a proxyless method, or if you are set up it is a
         proxy task.
         """
         if self._proxy_type and self._proxy_address and self._proxy_port:
@@ -181,6 +181,7 @@ class UserAgent(Capmonster):
     def __init__(self, client_key):
         super().__init__(client_key)
         self._user_agent = None
+        self._fallback = False
 
     def set_user_agent(self, user_agent: str):
         self._user_agent = user_agent
@@ -189,7 +190,11 @@ class UserAgent(Capmonster):
         self._user_agent = None
 
     def _add_user_agent(self, data):
+        data["task"]["fallbackToActualUA"] = self._fallback
         if self._user_agent:
             data["task"]["userAgent"] = self._user_agent
             return data, True
         return data, False
+
+    def set_fallback_to_actual_user_agent(self, fallback: bool):
+        self._fallback = fallback
