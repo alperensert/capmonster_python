@@ -5,6 +5,7 @@ from .utils import *
 
 
 class Capmonster:
+    """A class that interacts with the Capmonster API."""
     __SOFT_ID = 30
     _HOST_URL = "https://api.capmonster.cloud"
     _CREATE_TASK_URL = "/createTask"
@@ -16,11 +17,20 @@ class Capmonster:
     def __init__(self, client_key):
         self._client_key = client_key
 
-    def get_balance(self):
+    def get_balance(self) -> float:
+        """
+        Retrieves the balance of the client.
+
+        :return: The balance of the client as a float.
+        """
         data = {"clientKey": self._client_key}
         return self._make_request("getBalance", data).get("balance")
 
     def get_task_result(self, task_id: int):
+        """
+        :param task_id: The ID of the task for which the result is requested.
+        :return: The result of the task if it is ready, otherwise False.
+        """
         data = {
             "clientKey": self._client_key,
             "taskId": task_id
@@ -55,7 +65,15 @@ class Capmonster:
             61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
 
     def report_incorrect_captcha(self, captcha_type: str, task_id: int) -> bool:
-        if captcha_type is not "image" or "token":
+        """
+        Reports an incorrect captcha.
+
+        :param captcha_type: The type of captcha ("image" or "token").
+        :param task_id: The ID of the task.
+        :return: True if the captcha is successfully reported, False otherwise.
+        :raises CapmonsterException: If the captcha type is invalid.
+        """
+        if captcha_type != "image" or "token":
             raise CapmonsterException(
                 1, "ERROR_INCORRECT_CAPTCHA_TYPE", "Valid captcha_type parameters are only 'image' or 'token'.")
         try:
@@ -71,7 +89,7 @@ class Capmonster:
             "clientKey": self._client_key,
             "taskId": task_id
         }
-        if captcha_type is "image":
+        if captcha_type == "image":
             response = self._make_request("reportIncorrectImageCaptcha", data)
         else:
             response = self._make_request("reportIncorrectTokenCaptcha", data)
@@ -111,13 +129,13 @@ class Capmonster:
         if cookies is None:
             return data
         str_cookies = ""
-        if type(cookies) == dict:
+        if type(cookies) is dict:
             for key, value in cookies.items():
                 if value == list(cookies.items())[-1][1]:
                     str_cookies += "{}={}".format(key, value)
                 else:
                     str_cookies += "{}={};".format(key, value)
-        elif type(cookies) == list:
+        elif type(cookies) is list:
             for i in cookies:
                 if not len(cookies) % 2 == 0:
                     raise AttributeError(
@@ -128,7 +146,7 @@ class Capmonster:
                     str_cookies += "{}".format(i)
                 elif cookies.index(i) % 2 == 1:
                     str_cookies += "{};".format(i)
-        elif type(cookies) == str:
+        elif type(cookies) is str:
             data["task"]["cookies"] = cookies
             return data
         data["task"]["cookies"] = str_cookies
@@ -146,6 +164,16 @@ class Proxy(Capmonster):
 
     def set_proxy(self, proxy_type: str, proxy_address: str, proxy_port: int,
                   proxy_login: str = None, proxy_password: str = None):
+        """
+        Sets the proxy settings for the client.
+
+        :param proxy_type: The type of the proxy. (e.g. "HTTP", "SOCKS5")
+        :param proxy_address: The address of the proxy server.
+        :param proxy_port: The port number of the proxy server.
+        :param proxy_login: (optional) The login username for proxy authentication.
+        :param proxy_password: (optional) The login password for proxy authentication.
+        :return: None
+        """
         self._proxy_type = proxy_type
         self._proxy_address = proxy_address
         self._proxy_port = proxy_port
@@ -153,6 +181,11 @@ class Proxy(Capmonster):
         self._proxy_password = proxy_password
 
     def disable_proxy(self):
+        """
+        Disables the proxy settings.
+
+        :return: None
+        """
         self._proxy_type = None
         self._proxy_address = None
         self._proxy_port = None
@@ -184,9 +217,20 @@ class UserAgent(Capmonster):
         self._fallback = False
 
     def set_user_agent(self, user_agent: str):
+        """
+        Set the user agent for the instance.
+
+        :param user_agent: The user agent string to set.
+        :return: None
+        """
         self._user_agent = user_agent
 
     def reset_user_agent(self):
+        """
+        Reset the user agent to None.
+
+        :return:
+        """
         self._user_agent = None
 
     def _add_user_agent(self, data):
@@ -197,4 +241,11 @@ class UserAgent(Capmonster):
         return data, False
 
     def set_fallback_to_actual_user_agent(self, fallback: bool):
+        """
+        Set the fallback value for the actual user agent.
+
+        :param fallback: A boolean value indicating whether to enable or disable the fallback.
+        :type fallback: bool
+        :return: None
+        """
         self._fallback = fallback

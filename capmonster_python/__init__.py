@@ -7,3 +7,4 @@ from .image_to_text import ImageToTextTask
 from .geetest import GeeTestTask
 from .utils import CapmonsterException
 from .compleximage import ComplexImageTask
+from .datadome import DataDomeTask
