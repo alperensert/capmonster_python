@@ -17,7 +17,7 @@ def check_response():
         @wraps(f)
         def wrap(*args, **kwargs):
             rf = f(*args, **kwargs)
-            if type(rf) == dict:
+            if type(rf) is dict:
                 if rf.get("errorId") == 0:
                     return rf
                 else:
@@ -29,5 +29,7 @@ def check_response():
                                           error_code="CAPMONSTER_API_ERROR",
                                           error_description="Sometimes can be happen if capmonster_python "
                                                             "servers there is too much intensity")
+
         return wrap
+
     return checker

@@ -1,12 +1,13 @@
-from .capmonster import Proxy, UserAgent
 from typing import Union
+from .capmonster import Proxy, UserAgent
+
 
 class RecaptchaV2EnterpriseTask(UserAgent, Proxy):
     def __init__(self, client_key):
         super(RecaptchaV2EnterpriseTask, self).__init__(client_key)
 
     def create_task(self, website_url: str, website_key: str,
-                    enterprise_payload = None, api_domain: str = None,
+                    enterprise_payload=None, api_domain: str = None,
                     cookies: Union[dict, list, str] = None,
                     no_cache: bool = None):
         data = {
