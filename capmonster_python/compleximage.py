@@ -11,7 +11,7 @@ class ComplexImageTask(UserAgent):
                     images_base64: list = None,
                     task: str = None,
                     websiteUrl: str = None):
-        if _class != "recaptcha" or _class != "hcaptcha":
+        if _class != "recaptcha" and _class != "hcaptcha":
             raise ValueError("Currently only recaptcha or hcaptcha is supported as _class value.")
         data = {
             "clientKey": self._client_key,
