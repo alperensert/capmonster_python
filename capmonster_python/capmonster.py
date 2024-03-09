@@ -73,7 +73,9 @@ class Capmonster:
         :return: True if the captcha is successfully reported, False otherwise.
         :raises CapmonsterException: If the captcha type is invalid.
         """
-        if captcha_type != "image" or "token":
+        valid_captcha_types = ["image", "token"]
+        
+        if captcha_type not in valid_captcha_types:
             raise CapmonsterException(
                 1, "ERROR_INCORRECT_CAPTCHA_TYPE", "Valid captcha_type parameters are only 'image' or 'token'.")
         try:
