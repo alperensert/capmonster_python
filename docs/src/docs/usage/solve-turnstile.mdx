@@ -14,9 +14,9 @@ description: Learn how to solve turnstile task
 ## Solve
 
 ```py title=solve_turnstile.py
-from capmonster_python import TurnstileV2Task
+from capmonster_python import TurnstileTask
 
-capmonster = TurnstileV2Task("API_KEY")
+capmonster = TurnstileTask("API_KEY")
 task_id = capmonster.create_task("website_url", "website_key")
 result = capmonster.join_task_result(task_id)
 print(result.get("token"))
