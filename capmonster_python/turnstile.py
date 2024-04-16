@@ -1,8 +1,8 @@
-from .capmonster import Proxy
+from .capmonster import Proxy, UserAgent
 from typing import Union
 
 
-class TurnstileTask(Proxy):
+class TurnstileTask(UserAgent, Proxy):
     def __init__(self, client_key):
         super(TurnstileTask, self).__init__(client_key)
 
@@ -16,6 +16,7 @@ class TurnstileTask(Proxy):
                 "websiteKey": website_key
             }
         }
+        data, is_user_agent = self._add_user_agent(data)
         data, is_proxy = self._is_proxy_task(data)
         if no_cache:
             data["task"]["nocache"] = no_cache
