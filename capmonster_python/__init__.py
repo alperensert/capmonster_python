@@ -8,3 +8,4 @@ from .geetest import GeeTestTask
 from .utils import CapmonsterException
 from .compleximage import ComplexImageTask
 from .datadome import DataDomeTask
+from .turnstile import TurnstileTask
