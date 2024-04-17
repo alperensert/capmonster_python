@@ -4,3 +4,9 @@ updates:
     directory: "/capmonster_python"
     schedule:
       interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/docs"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "*"
