@@ -1,0 +1,6 @@
+assign_issues:
+  - alperensert
+assign_prs:
+  - alperensert
+ignore_authors:
+  - dependabot
