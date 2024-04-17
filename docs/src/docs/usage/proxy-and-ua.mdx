@@ -10,6 +10,7 @@ You can use proxy and user agent in supported tasks.
 - Fun captcha
 - HCaptcha
 - GeeTest
+- Turnstile
 
 > For GeeTest and HCaptcha, proxies with IP authorization are not yet supported.<br/>
 > For others, if the proxy is authorized by IP, then be sure to add **116.203.55.208** to the white list.
@@ -63,3 +64,16 @@ print(result.get("challenge"))
 print(result.get("seccode"))
 print(result.get("validate"))
 ```
+
+## Turnstile Usage
+```py title=turnstile_proxy.py
+from capmonster_python import TurnstileTask
+
+capmonster = TurnstileTask("API_KEY")
+capmonster.set_proxy("http", "8.8.8.8", 8080)
+capmonster.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0")
+task_id = capmonster.create_task("website_url", "website_key")
+result = capmonster.join_task_result(task_id)
+print(result.get("token"))
+```
+
