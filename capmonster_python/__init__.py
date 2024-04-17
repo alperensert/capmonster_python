@@ -9,3 +9,4 @@ from .utils import CapmonsterException
 from .compleximage import ComplexImageTask
 from .datadome import DataDomeTask
 from .turnstile import TurnstileTask
+from .tendi import TenDITask
