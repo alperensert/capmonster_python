@@ -2,6 +2,8 @@ from .capmonster import UserAgent
 
 
 class ComplexImageTask(UserAgent):
+    __VALID_CLASSES = ["recaptcha", "hcaptcha"]
+
     def __init__(self, client_key):
         super(ComplexImageTask, self).__init__(client_key)
 
@@ -11,7 +13,7 @@ class ComplexImageTask(UserAgent):
                     images_base64: list = None,
                     task: str = None,
                     websiteUrl: str = None):
-        if _class != "recaptcha" or _class != "hcaptcha":
+        if _class not in self.__VALID_CLASSES:
             raise ValueError("Currently only recaptcha or hcaptcha is supported as _class value.")
         data = {
             "clientKey": self._client_key,
