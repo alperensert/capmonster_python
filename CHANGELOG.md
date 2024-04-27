@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/alperensert/capmonster_python/compare/v3.1.0...v3.2.0) (2024-04-27)
+
+
+### Features
+
+* add amazon waf task support ([c78ff56](https://github.com/alperensert/capmonster_python/commit/c78ff5654b7ded310e5e647e7052712d7870e5f7))
+
 ## [3.1.0](https://github.com/alperensert/capmonster_python/compare/v3.0.0...v3.1.0) (2024-04-17)
 
 
