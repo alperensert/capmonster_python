@@ -10,3 +10,4 @@ from .compleximage import ComplexImageTask
 from .datadome import DataDomeTask
 from .turnstile import TurnstileTask
 from .tendi import TenDITask
+from .aws_waf import AmazonWafTask
