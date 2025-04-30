@@ -1,6 +1,6 @@
 import pytest
 
-from capmonster_python import ComplexImageRecaptchaTask, ComplexImageRecaptchaMetadata
+from capmonster_python import ComplexImageRecaptchaTask, ComplexImageRecaptchaMetadata, CapmonsterValidationException
 
 
 def test_to_request():
@@ -15,7 +15,7 @@ def test_to_request():
 
 
 def test_to_request_raises_value_error_if_url_and_base64_are_provided_together():
-    with pytest.raises(ValueError):
+    with pytest.raises(CapmonsterValidationException):
         task = ComplexImageRecaptchaTask(
             imageUrls=["url1", "url2"],
             imagesBase64=["base64_1", "base64_2"],
@@ -25,7 +25,7 @@ def test_to_request_raises_value_error_if_url_and_base64_are_provided_together()
 
 
 def test_to_request_raises_value_error_if_url_or_base64_are_not_provided():
-    with pytest.raises(ValueError):
+    with pytest.raises(CapmonsterValidationException):
         task = ComplexImageRecaptchaTask(
             metadata=ComplexImageRecaptchaMetadata(Task="Click on traffic lights", Grid="4x4")
         )

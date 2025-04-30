@@ -3,7 +3,7 @@ from typing import Optional, Any
 from pydantic import Field, BaseModel, model_validator
 
 from .task import TaskPayload, UserAgentPayload, ProxyPayload
-from .. import CapmonsterValidationException
+from ..exceptions import CapmonsterValidationException
 
 
 class DataDomeMetadata(BaseModel):

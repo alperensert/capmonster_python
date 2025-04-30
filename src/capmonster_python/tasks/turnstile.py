@@ -3,7 +3,7 @@ from typing import Optional, Dict, Any, Literal
 from pydantic import Field, model_validator
 
 from .task import TaskPayload, ProxyPayload
-from .. import CapmonsterValidationException
+from ..exceptions import CapmonsterValidationException
 
 
 class TurnstileTask(TaskPayload):

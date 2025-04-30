@@ -1,7 +1,7 @@
-site_name: Capmonster Python
-site_url: https://yourusername.github.io/capmonster-python
-repo_url: https://github.com/yourusername/capmonster-python
-repo_name: capmonster-python
+site_name: capmonster_python
+site_url: https://alperensert.github.io/capmonster_python
+repo_url: https://github.com/alperensert/capmonster_python
+repo_name: capmonster_python
 
 theme:
   name: material

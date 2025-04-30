@@ -11,8 +11,5 @@ install_pkg:
 	python -m pip install --upgrade pip wheel
 	pip install .
 
-test:
-	python -m unittest -v tests/test_tasks.py
-
 setup_dependencies:
 	pip install setuptools_scm wheel

@@ -30,7 +30,7 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["capmonster_python"]
+packages = ["capmonster_python", "capmonster_python.tasks"]
 
 [tool.setuptools.package-dir]
 "" = "src"

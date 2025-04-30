@@ -3,7 +3,7 @@ from typing import List, Literal, Optional, Any
 from pydantic import Field, BaseModel, model_validator
 
 from .task import TaskPayload
-from .. import CapmonsterValidationException
+from ..exceptions import CapmonsterValidationException
 
 
 class ComplexImageRecaptchaMetadata(BaseModel):
