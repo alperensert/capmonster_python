@@ -1,12 +1,6 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "/capmonster_python"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "npm"
-    directory: "/docs"
+    directory: "/src/capmonster_python"
     schedule:
       interval: "weekly"
-    ignore:
-      - dependency-name: "*"

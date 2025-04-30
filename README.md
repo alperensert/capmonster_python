@@ -1,91 +1,128 @@
-Capmonster.cloud for Python
-=
-![PyPI - Wheel](https://img.shields.io/pypi/wheel/capmonster-python?style=plastic) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/capmonster_python?style=flat) ![GitHub last commit](https://img.shields.io/github/last-commit/alperensert/capmonster_python?style=flat) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/alperensert/capmonster_python?style=flat) ![PyPI - Downloads](https://img.shields.io/pypi/dm/capmonster_python?style=flat) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/alperensert/capmonster_python?style=flat) ![GitHub Repo stars](https://img.shields.io/github/stars/alperensert/capmonster_python?style=social)
+# 🤖 Capmonster Python
 
-[Capmonster.cloud](https://capmonster.cloud) package for Python3
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/capmonster-python?style=for-the-badge)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/alperensert/capmonster_python?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/alperensert/capmonster_python?style=for-the-badge)
+![GitHub Release](https://img.shields.io/github/v/release/alperensert/capmonster_python?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/alperensert/capmonster_python?style=for-the-badge&color=rgb(255%2C%20255%2C%20143)&cacheSeconds=3600)
 
-If you have any problem with usage, [read the documentation](https://alperensert.github.io/capmonster_python)
-or [create an issue](https://github.com/alperensert/capmonster_python/issues/new)
+A modern, strongly typed, async-friendly Python SDK for solving CAPTCHA challenges
+using [Capmonster.Cloud](https://capmonster.cloud/).
 
-*At least 2x cheaper, up to 30x faster than manual recognition services.*
+Supports reCAPTCHA v2 & v3, Cloudflare Turnstile, GeeTest (v3 & v4) and [much more](#-supported-captcha-types).
 
-### Installation
+---
 
-```
+## ✨ Features
+
+- ✅ Fully typed Pydantic v2 models
+- 🔁 Both sync and async API support
+- 🔐 Proxy and User-Agent configuration
+- 📦 Supports the most common CAPTCHA types
+- 📚 Intuitive API with powerful task building
+
+---
+
+## 🔧 Installation
+
+```bash
 pip install capmonster_python
 ```
 
-### Supported captcha types
+> [!IMPORTANT]  
+> You're viewing the documentation for **Capmonster Python v4**, which includes breaking changes. If you prefer the
+> old syntax used in versions prior to 4.x, you can continue using it by installing the legacy version:  
+> ```pip install capmonster_python==3.2```
 
-- Image to text
-- Recaptcha v2
-- Recaptcha v2 Enterprise
-- Recaptcha v3
-- Fun Captcha
-- HCaptcha
-- GeeTest
-- Turnstile Task
-- Data Dome
+## 🚀 Quick Start
 
-Usage examples
--
-
-#### ImageToText
+### Async Example
 
 ```python
-from capmonster_python import ImageToTextTask
+import asyncio
+from capmonster_python import CapmonsterClient, RecaptchaV3Task
 
-capmonster = ImageToTextTask("API_KEY")
-task_id = capmonster.create_task(image_path="img.png")
-result = capmonster.join_task_result(task_id)
-print(result.get("text"))
+
+async def main():
+    client = CapmonsterClient(api_key="YOUR_API_KEY")
+
+    task = RecaptchaV3Task(
+        websiteURL="https://example.com",
+        websiteKey="SITE_KEY_HERE",
+        minScore=0.5,
+        pageAction="verify"
+    )
+
+    task_id = await client.create_task_async(task)
+    result = await client.join_task_result_async(task_id)
+    print(result)
+
+
+asyncio.run(main())
+
 ```
 
-#### Recaptcha v2
+### Sync Example
 
 ```python
-from capmonster_python import RecaptchaV2Task
+from capmonster_python import CapmonsterClient, RecaptchaV2Task
 
-capmonster = RecaptchaV2Task("API_KEY")
-task_id = capmonster.create_task("website_url", "website_key")
-result = capmonster.join_task_result(task_id)
-print(result.get("gRecaptchaResponse"))
+client = CapmonsterClient(api_key="<YOUR_API_KEY>")
+
+task = RecaptchaV2Task(
+    websiteURL="https://example.com",
+    websiteKey="SITE_KEY_HERE"
+)
+
+task_id = client.create_task(task)
+result = client.join_task_result(task_id)
+print(result)
 ```
 
-#### Recaptcha v2 enterprise
+---
 
-```python
-from capmonster_python import RecaptchaV2EnterpriseTask
+## 🧠 Supported CAPTCHA Types
 
-capmonster = RecaptchaV2EnterpriseTask("API_KEY")
-task_id = capmonster.create_task("website_url", "website_key", {"s": "payload value"}, "api_domain")
-result = capmonster.join_task_result(task_id)
-print(result.get("gRecaptchaResponse"))
-```
+Capmonster Python v4 supports a wide range of CAPTCHA formats — from mainstream challenges like reCAPTCHA and Turnstile
+to enterprise-grade shields like Imperva and DataDome. Each task supports full Pydantic validation ✅ and both sync and
+async clients 🔄 unless noted.
 
-#### GeeTest
+| 🔖 Category               | CAPTCHA Type                   | Class Name                    | Proxy Required | Notes                                  |
+|---------------------------|--------------------------------|-------------------------------|----------------|----------------------------------------|
+| 🧩 reCAPTCHA              | reCAPTCHA v2                   | `RecaptchaV2Task`             | Optional       | Visible / Invisible supported ✅ 🔄     |
+|                           | reCAPTCHA v2 Enterprise        | `RecaptchaV2EnterpriseTask`   | Optional       | `enterprisePayload` & `apiDomain` ✅ 🔄 |
+|                           | reCAPTCHA v3                   | `RecaptchaV3Task`             | ❌ No           | Score-based, proxyless ✅ 🔄            |
+| 🛡️ Cloudflare            | Turnstile (token)              | `TurnstileTask`               | ❌ No           | Lightweight, async-ready ✅ 🔄          |
+|                           | Turnstile (cf_clearance)       | `TurnstileCloudFlareTask`     | ✅ Yes          | Full HTML + proxy required ✅ 🔄        |
+| 📸 Image-based            | Image-to-Text OCR              | `ImageToTextTask`             | ❌ No           | Base64 image + module control ✅ 🔄     |
+|                           | Complex Image (Recaptcha-like) | `ComplexImageRecaptchaTask`   | ❌ No           | Grid-based, metadata aware ✅ 🔄        |
+|                           | Complex Image Recognition (AI) | `ComplexImageRecognitionTask` | ❌ No           | Supports tasks like Shein, OOCL ✅ 🔄   |
+| 🧠 Human Behavior         | GeeTest v3                     | `GeeTestV3Task`               | Optional       | Challenge + `gt` key + freshness ✅ 🔄  |
+|                           | GeeTest v4                     | `GeeTestV4Task`               | Optional       | `initParameters` supported ✅ 🔄        |
+| 🛡️ Enterprise Protection | DataDome                       | `DataDomeTask`                | ✅ Recommended  | Cookie & page context needed ✅ 🔄      |
+|                           | Imperva                        | `ImpervaTask`                 | ✅ Recommended  | Incapsula + Reese84 logic ✅ 🔄         |
+| 🏦 Platform-Specific      | Binance Login                  | `BinanceTask`                 | ✅ Yes          | `validateId` for login flow ✅ 🔄       |
+|                           | Temu                           | `TemuTask`                    | ❌ No           | Cookie-injected behavioral solver ✅ 🔄 |
+|                           | TenDI                          | `TenDITask`                   | ✅ Yes          | Custom captchaAppId field ✅ 🔄         |
+| 🧪 Miscellaneous          | Prosopo                        | `ProsopoTask`                 | Optional       | Used in zk or crypto UIs ✅ 🔄          |
+|                           | Basilisk                       | `BasiliskTask`                | ❌ No           | Minimalist site-key puzzle ✅ 🔄        |
 
-```python
-from capmonster_python import GeeTestTask
+## 🧩 Advanced Usage
 
-capmonster = GeeTestTask("API_KEY")
-task_id = capmonster.create_task("website_url", "gt", "challenge")
-result = capmonster.join_task_result(task_id)
-print(result.get("challenge"))
-print(result.get("seccode"))
-print(result.get("validate"))
-```
+- Callback URLs are supported during task creation.
+- Includes auto-retry loop for polling results (up to 120s)
 
-#### Report incorrect captchas
+## 💬 Community & Support
 
-```python
-from capmonster_python import RecaptchaV2Task
+Need help or have a question?
 
-capmonster = RecaptchaV2Task("API_KEY")
-task_id = capmonster.create_task("website_url", "website_key")
-result = capmonster.join_task_result(task_id)
-report_result = capmonster.report_incorrect_captcha("token", task_id)
-print(report_result)
-```
+- 📧 Contact: business@alperen.io
+- 🐛 Found a bug? [Open an issue](https://github.com/alperensert/capmonster_python/issues)
 
-For other examples and api documentation please visit [wiki](https://alperensert.github.io/capmonster_python)
+> [!NOTE]  
+> Community support is intended only for questions and issues related to this project. Custom usage scenarios,
+> integrations, or application-specific logic are outside the scope of support.
+
+## 📄 License
+
+This project is licensed under the [MIT License](/LICENSE).
