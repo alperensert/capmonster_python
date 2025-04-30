@@ -15,3 +15,16 @@ Jump into your first integration:
 - [Installation](installation.md)
 - [Examples](examples.md)
 - [API Reference](reference/overview.md)
+
+## 📦 Features
+
+- ✅ Async-first, httpx-based HTTP client
+- ✅ Full Pydantic v2 data validation
+- ✅ Task abstraction for all Capmonster types
+- ✅ Clear and typed API responses
+- ✅ Retry logic and error wrapping
+- ✅ Fully documented public API
+
+---
+
+Capmonster.Cloud is a service by ZennoLab. This project is not affiliated with them.
