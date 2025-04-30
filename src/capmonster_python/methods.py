@@ -10,8 +10,8 @@ class GetBalancePayload(BaseModel):
     Represents a payload for retrieving the balance.
 
     Attributes:
-    clientKey (str): The key representing the client, used for identifying
-    the client in balance-related operations.
+        clientKey (str): The key representing the client, used for identifying
+            the client in balance-related operations.
     """
     clientKey: str = Field(..., description="Client key")
 
