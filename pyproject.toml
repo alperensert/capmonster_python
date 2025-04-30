@@ -29,8 +29,8 @@ Tracker = "https://github.com/alperensert/capmonster_python/issues"
 requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-packages = ["capmonster_python", "capmonster_python.tasks"]
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.setuptools.package-dir]
 "" = "src"
