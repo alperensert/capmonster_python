@@ -2,7 +2,7 @@ from typing import List, Literal, Optional, Any
 
 from pydantic import Field, BaseModel, model_validator
 
-from capmonster_python.tasks.task import TaskPayload
+from .task import TaskPayload
 
 
 class ComplexImageRecaptchaMetadata(BaseModel):

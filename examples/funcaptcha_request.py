@@ -1,6 +1,8 @@
-import requests
 import re
-from capmonster_python import FuncaptchaTask
+
+import requests
+
+from src.capmonster_python import FuncaptchaTask
 
 
 class FuncaptchaRequest:
@@ -35,6 +37,7 @@ class FuncaptchaRequest:
 
 if __name__ == "__main__":
     from os import environ
+
     client_key = environ["API_KEY"]
     example_request = FuncaptchaRequest(client_key)
     assert example_request.expected in example_request.submit_form()

@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from capmonster_python import HCaptchaTask
+
+from src.capmonster_python import HCaptchaTask
 
 
 class HCaptchaRequest:
@@ -35,6 +36,7 @@ class HCaptchaRequest:
 
 if __name__ == "__main__":
     from os import environ
+
     client_key = environ["API_KEY"]
     example_request = HCaptchaRequest(client_key)
     assert example_request.expected in example_request.submit_form()

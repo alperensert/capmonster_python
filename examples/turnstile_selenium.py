@@ -1,10 +1,12 @@
+from time import sleep
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
-from capmonster_python import TurnstileTask
-from time import sleep
+
+from src.capmonster_python import TurnstileTask
 
 
 class TurnstileSelenium:
@@ -18,7 +20,9 @@ class TurnstileSelenium:
 
     def _get_site_key(self):
         self.browser.get(self.website_url)
-        return self.browser.find_elements(By.TAG_NAME, "script")[1].get_attribute("innerHTML").split("sitekey: '")[1].split("'")[0]
+        return \
+        self.browser.find_elements(By.TAG_NAME, "script")[1].get_attribute("innerHTML").split("sitekey: '")[1].split(
+            "'")[0]
 
     def _solve_turnstile(self):
         self.captcha.set_user_agent(self.user_agent)
@@ -43,6 +47,7 @@ class TurnstileSelenium:
 
 if __name__ == "__main__":
     from os import environ
+
     client_key = environ["API_KEY"]
     headless = environ["HEADLESS"]
     environ["WDM_LOG_LEVEL"] = "0"

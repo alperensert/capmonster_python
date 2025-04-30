@@ -1,11 +1,13 @@
 import re
+from time import sleep
+
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
-from capmonster_python import FuncaptchaTask
-from time import sleep
+
+from src.capmonster_python import FuncaptchaTask
 
 
 class FuncaptchaSelenium:
@@ -45,6 +47,7 @@ class FuncaptchaSelenium:
 
 if __name__ == "__main__":
     from os import environ
+
     client_key = environ["API_KEY"]
     headless = environ["HEADLESS"]
     environ["WDM_LOG_LEVEL"] = "0"

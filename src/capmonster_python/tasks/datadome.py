@@ -2,7 +2,7 @@ from typing import Optional, Any
 
 from pydantic import Field, BaseModel, model_validator
 
-from capmonster_python.tasks.task import TaskPayload, UserAgentPayload, ProxyPayload
+from .task import TaskPayload, UserAgentPayload, ProxyPayload
 
 
 class DataDomeMetadata(BaseModel):

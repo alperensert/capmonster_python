@@ -2,7 +2,7 @@ from typing import Optional, Any
 
 from pydantic import Field
 
-from capmonster_python.tasks.task import TaskPayload, ProxyPayload
+from .task import TaskPayload, ProxyPayload
 
 
 class ProsopoTask(TaskPayload):

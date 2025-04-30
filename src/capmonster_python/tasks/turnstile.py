@@ -2,7 +2,7 @@ from typing import Optional, Dict, Any, Literal
 
 from pydantic import Field, model_validator
 
-from capmonster_python.tasks.task import TaskPayload, ProxyPayload
+from .task import TaskPayload, ProxyPayload
 
 
 class TurnstileTask(TaskPayload):

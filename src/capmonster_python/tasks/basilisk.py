@@ -2,7 +2,7 @@ from typing import Any
 
 from pydantic import Field
 
-from capmonster_python.tasks.task import TaskPayload, UserAgentPayload
+from .task import TaskPayload, UserAgentPayload
 
 
 class BasiliskTask(TaskPayload, UserAgentPayload):

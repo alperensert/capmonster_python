@@ -33,7 +33,7 @@ Usage examples
 #### ImageToText
 
 ```python
-from capmonster_python import ImageToTextTask
+from src.capmonster_python import ImageToTextTask
 
 capmonster = ImageToTextTask("API_KEY")
 task_id = capmonster.create_task(image_path="img.png")
@@ -44,7 +44,7 @@ print(result.get("text"))
 #### Recaptcha v2
 
 ```python
-from capmonster_python import RecaptchaV2Task
+from src.capmonster_python import RecaptchaV2Task
 
 capmonster = RecaptchaV2Task("API_KEY")
 task_id = capmonster.create_task("website_url", "website_key")
@@ -55,7 +55,7 @@ print(result.get("gRecaptchaResponse"))
 #### Recaptcha v2 enterprise
 
 ```python
-from capmonster_python import RecaptchaV2EnterpriseTask
+from src.capmonster_python import RecaptchaV2EnterpriseTask
 
 capmonster = RecaptchaV2EnterpriseTask("API_KEY")
 task_id = capmonster.create_task("website_url", "website_key", {"s": "payload value"}, "api_domain")
@@ -66,7 +66,7 @@ print(result.get("gRecaptchaResponse"))
 #### GeeTest
 
 ```python
-from capmonster_python import GeeTestTask
+from src.capmonster_python import GeeTestTask
 
 capmonster = GeeTestTask("API_KEY")
 task_id = capmonster.create_task("website_url", "gt", "challenge")
@@ -79,7 +79,7 @@ print(result.get("validate"))
 #### Report incorrect captchas
 
 ```python
-from capmonster_python import RecaptchaV2Task
+from src.capmonster_python import RecaptchaV2Task
 
 capmonster = RecaptchaV2Task("API_KEY")
 task_id = capmonster.create_task("website_url", "website_key")

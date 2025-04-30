@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from capmonster_python import BasiliskTask, CapmonsterClient
+from capmonster_python import CapmonsterClient, BasiliskTask
 
 API_KEY = os.getenv("API_KEY")
 WEBSITE_URL = "https://faucetpay.io/account/register"

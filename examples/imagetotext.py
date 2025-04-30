@@ -1,4 +1,4 @@
-from capmonster_python import ImageToTextTask
+from src.capmonster_python import ImageToTextTask
 
 
 class TextNumericExample:
@@ -26,6 +26,7 @@ class TextNumericExample:
 
 if __name__ == "__main__":
     from os import environ
+
     client_key = environ["API_KEY"]
     example_text_numeric = TextNumericExample(client_key)
     assert example_text_numeric.expected_1 in example_text_numeric.solve_text()

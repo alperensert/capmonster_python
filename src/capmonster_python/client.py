@@ -4,9 +4,9 @@ from typing import Optional
 
 from httpx import Response, AsyncClient, Client
 
-from capmonster_python.exceptions import CapmonsterException
-from capmonster_python.methods import GetBalancePayload, GetTaskResultPayload, CreateTaskPayload
-from capmonster_python.tasks.task import TaskPayload
+from .exceptions import CapmonsterException
+from .methods import GetBalancePayload, GetTaskResultPayload, CreateTaskPayload
+from .tasks.task import TaskPayload
 
 
 class CapmonsterClient:

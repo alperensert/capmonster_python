@@ -2,7 +2,7 @@ from typing import List, Literal, Any
 
 from pydantic import Field
 
-from capmonster_python.tasks.task import TaskPayload
+from .task import TaskPayload
 
 
 class ComplexImageRecognitionTask(TaskPayload):

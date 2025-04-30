@@ -1,0 +1,36 @@
+[project]
+name = "capmonster_python"
+version = "3.2.0"
+description = "capmonster.cloud library/package for Python"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Alperen Sert", email = "business@alperen.io" }]
+dependencies = [
+    "httpx>=0.27.0",
+    "pydantic>=2.0"
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11"
+]
+
+[project.urls]
+Documentation = "https://alperensert.github.io/capmonster_python/"
+Source = "https://github.com/alperensert/capmonster_python/"
+Tracker = "https://github.com/alperensert/capmonster_python/issues"
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["capmonster_python"]
+
+[tool.setuptools.package-dir]
+"" = "src"
