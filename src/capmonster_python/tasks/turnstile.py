@@ -3,6 +3,7 @@ from typing import Optional, Dict, Any, Literal
 from pydantic import Field, model_validator
 
 from .task import TaskPayload, ProxyPayload
+from .. import CapmonsterValidationException
 
 
 class TurnstileTask(TaskPayload):
@@ -45,7 +46,7 @@ class TurnstileCloudFlareTask(TurnstileTask):
             omitted for the "token" type.
 
     Raises:
-        ValueError: When field requirements specific to the `cloudflareTaskType`
+        CapmonsterValidationException: When field requirements specific to the `cloudflareTaskType`
             are not satisfied.
     """
     type: str = Field(default="TurnstileTask")
@@ -63,14 +64,14 @@ class TurnstileCloudFlareTask(TurnstileTask):
     def check_fields_match_type(self) -> "TurnstileCloudFlareTask":
         if self.cloudflareTaskType == "token":
             if not self.apiJsUrl:
-                raise ValueError("apiJsUrl is required for cloudflareTaskType='token'")
+                raise CapmonsterValidationException("apiJsUrl is required for cloudflareTaskType='token'")
             if self.proxy is not None:
-                raise ValueError("proxy must be omitted for cloudflareTaskType='token'")
+                raise CapmonsterValidationException("proxy must be omitted for cloudflareTaskType='token'")
         elif self.cloudflareTaskType == "cf_clearance":
             if not self.htmlPageBase64:
-                raise ValueError("htmlPageBase64 is required for cloudflareTaskType='cf_clearance'")
+                raise CapmonsterValidationException("htmlPageBase64 is required for cloudflareTaskType='cf_clearance'")
             if self.proxy is None:
-                raise ValueError("proxy is required for cloudflareTaskType='cf_clearance'")
+                raise CapmonsterValidationException("proxy is required for cloudflareTaskType='cf_clearance'")
         return self
 
     def to_request(self) -> dict[str, Any]:

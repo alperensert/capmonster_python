@@ -15,11 +15,6 @@ class TemuTask(TaskPayload, UserAgentPayload):
         websiteURL (str): The full URL of the webpage where the CAPTCHA is loaded.
         cookie (str): Cookies obtained from the webpage where the CAPTCHA is
             loaded. These cookies are typically required for CAPTCHA validation.
-
-    Methods:
-        to_request: Converts the current task instance into a dictionary format
-            suitable for making a network request, including specific metadata
-            processing for cookies.
     """
     type: str = Field(default="CustomTask", frozen=True)
     class_: str = Field(default="Temu", alias="class", frozen=True)

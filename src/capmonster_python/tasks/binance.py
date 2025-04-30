@@ -7,11 +7,7 @@ from .task import TaskPayload, UserAgentPayload, ProxyPayload
 
 class BinanceTask(TaskPayload, UserAgentPayload):
     """
-    Represents a Binance task to solve captcha challenges with specific payload. Use only to log in with your account.
-
-    This class encapsulates the payload required for a Binance captcha-solving task, including necessary user
-    agent and security details. It inherits common task and user agent payloads, allowing for integration
-    with systems handling such authentication processes. This class also supports optional proxy configuration.
+    Represents a Binance task to solve captcha challenges with a specific payload. Use only to log in with your account.
 
     Attributes:
         websiteURL: The address of the main page where the captcha is solved.

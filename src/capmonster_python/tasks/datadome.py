@@ -3,6 +3,7 @@ from typing import Optional, Any
 from pydantic import Field, BaseModel, model_validator
 
 from .task import TaskPayload, UserAgentPayload, ProxyPayload
+from .. import CapmonsterValidationException
 
 
 class DataDomeMetadata(BaseModel):
@@ -16,6 +17,10 @@ class DataDomeMetadata(BaseModel):
             like: "https://geo.captcha-delivery.com/captcha/?initialCid=...".
         datadomeCookie: Mandatory; Stores the DataDome cookies, retrievable on
             the page using `document.cookie`.
+
+    Raises:
+        CapmonsterValidationException: If neither `htmlPageBase64` nor `captchaUrl` is provided,
+            or if both are provided at the same time.
     """
     htmlPageBase64: Optional[str] = Field(default=None,
                                           description="Object that contains additional data about the captcha.")
@@ -27,14 +32,15 @@ class DataDomeMetadata(BaseModel):
     @model_validator(mode="after")
     def validate_fields(self) -> "DataDomeMetadata":
         if self.htmlPageBase64 is None and self.captchaUrl is None:
-            raise ValueError("htmlPageBase64 or captchaUrl are required.")
+            raise CapmonsterValidationException("htmlPageBase64 or captchaUrl required.")
         if self.htmlPageBase64 is not None and self.captchaUrl is not None:
-            raise ValueError("htmlPageBase64 and captchaUrl are mutually exclusive.")
+            raise CapmonsterValidationException("htmlPageBase64 and captchaUrl are mutually exclusive.")
         return self
 
 
 class DataDomeTask(TaskPayload, UserAgentPayload):
-    """Represents a task payload for solving captchas on the DataDome platform.
+    """
+    Represents a task payload for solving captchas on the DataDome platform.
 
     Attributes:
         websiteURL: A string that contains the address of the page where the captcha is solved.

@@ -40,10 +40,6 @@ class ImpervaTask(TaskPayload, UserAgentPayload):
 
         metadata (ImpervaTaskMetadata): Encapsulated metadata specific to the
         Imperva challenge, such as the website key.
-
-    Methods:
-        to_request:
-            Converts the task instance to a dictionary suitable for making a request.
     """
     type: str = Field(default="CustomTask", frozen=True)
     class_: str = Field(default="Imperva", alias="class", frozen=True)

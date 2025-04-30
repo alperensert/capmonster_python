@@ -17,12 +17,6 @@ class RecaptchaV3Task(TaskPayload):
             the solution response.
         pageAction: Specifies the widget action value, typically indicating what
             the user action represents on the page. This value is set by the website owner.
-
-    Methods:
-        to_request():
-            Processes the instance's data into a request-ready dictionary format, including
-            additional proxy settings if applicable. This method ensures the final payload
-            is prepared as needed for sending a solve captcha request.
     """
     type: str = Field(default="RecaptchaV3TaskProxyless", frozen=True)
     websiteURL: str = Field(..., description='Address of a webpage with captcha.')

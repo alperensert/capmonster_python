@@ -3,6 +3,7 @@ from typing import List, Literal, Optional, Any
 from pydantic import Field, BaseModel, model_validator
 
 from .task import TaskPayload
+from .. import CapmonsterValidationException
 
 
 class ComplexImageRecaptchaMetadata(BaseModel):
@@ -47,6 +48,10 @@ class ComplexImageRecaptchaTask(TaskPayload):
             3x3, or others.
         metadata: Metadata describing additional details required for solving the recaptcha
             challenge. This attribute must be provided.
+
+    Raises:
+        CapmonsterValidationException: If neither `imageUrls` nor `imagesBase64` is provided,
+            or if both are provided at the same time.
     """
     type: str = Field(default="ComplexImageTask", frozen=True)
     class_: str = Field(default="recaptcha", alias="class", frozen=True)
@@ -59,9 +64,9 @@ class ComplexImageRecaptchaTask(TaskPayload):
     @model_validator(mode="after")
     def check_fields_match_type(self) -> "ComplexImageRecaptchaTask":
         if self.imageUrls is None and self.imagesBase64 is None:
-            raise ValueError("imageUrls or imagesBase64 must be set")
+            raise CapmonsterValidationException("imageUrls or imagesBase64 must be set")
         if self.imageUrls is not None and self.imagesBase64 is not None:
-            raise ValueError("only one of imageUrls or imagesBase64 must be set")
+            raise CapmonsterValidationException("only one of imageUrls or imagesBase64 must be set")
         return self
 
     def to_request(self) -> dict[str, Any]:

@@ -4,7 +4,7 @@ from typing import Optional
 
 from httpx import Response, AsyncClient, Client
 
-from .exceptions import CapmonsterException
+from .exceptions import CapmonsterAPIException, CapmonsterException
 from .methods import GetBalancePayload, GetTaskResultPayload, CreateTaskPayload
 from .tasks.task import TaskPayload
 
@@ -63,15 +63,12 @@ class CapmonsterClient:
         task creation endpoint, and parsing the response to retrieve the task ID.
 
         Args:
-            task: TaskPayload
-                The task configuration payload that defines the specifics of the task to be
+            task: The task configuration payload that defines the specifics of the task to be
                 created.
-            callback_url: Optional[str]
-                An optional URL to be called back upon task completion or update.
+            callback_url: An optional URL to be called back upon task completion or update.
 
         Returns:
-            int
-                The unique identifier of the created task.
+            The unique identifier of the created task.
 
         Raises:
             CapmonsterException: If the task creation request fails or the response is not contains valid task id.
@@ -86,16 +83,17 @@ class CapmonsterClient:
         """
         Asynchronously creates a task based on the provided payload and returns the task ID.
 
+        This method is responsible for initiating a task by preparing the request with the
+        provided task details and optional callback URL, sending a synchronous request to the
+        task creation endpoint, and parsing the response to retrieve the task ID.
+
         Args:
-            task: TaskPayload
-                The task configuration payload that defines the specifics of the task to be
+            task: The task configuration payload that defines the specifics of the task to be
                 created.
-            callback_url: Optional[str]
-                An optional URL to be called back upon task completion or update.
+            callback_url: An optional URL to be called back upon task completion or update.
 
         Returns:
-            int
-                The unique identifier of the created task.
+            The unique identifier of the created task.
 
         Raises:
             CapmonsterException: If the task creation request fails or the response is not contains valid task id.
@@ -157,9 +155,8 @@ class CapmonsterClient:
         Joins and retrieves the result of a task given its ID, retrying a specified number
         of times if the result is not immediately available.
 
-        Parameters:
-        task_id: int
-            The identifier of the task for which the result needs to be retrieved.
+        Args:
+            task_id: The identifier of the task for which the result needs to be retrieved.
 
         Returns:
             dict:
@@ -175,7 +172,7 @@ class CapmonsterClient:
                 return result
             elif not result:
                 sleep(self.__PER_RETRY_DELAY)
-        raise CapmonsterException(
+        raise CapmonsterAPIException(
             61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
 
     async def join_task_result_async(self, task_id: int):
@@ -183,9 +180,8 @@ class CapmonsterClient:
         Asynchronously joins and retrieves the result of a task given its ID, retrying a specified number
         of times if the result is not immediately available.
 
-        Parameters:
-        task_id: int
-            The identifier of the task for which the result needs to be retrieved.
+        Args:
+            task_id:  The identifier of the task for which the result needs to be retrieved.
 
         Returns:
             dict:
@@ -201,7 +197,7 @@ class CapmonsterClient:
                 return result
             elif not result:
                 await asyncio.sleep(self.__PER_RETRY_DELAY)
-        raise CapmonsterException(
+        raise CapmonsterAPIException(
             61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
 
     def __make_sync_request(self, url: str, payload: dict) -> Response:
@@ -226,24 +222,24 @@ class CapmonsterClient:
         elif status == "ready":
             return True
         else:
-            raise CapmonsterException(error_id=-1,
-                                      error_code="CAPMONSTER_API_ERROR",
-                                      error_description="Sometimes can be happen if Capmonster "
-                                                        "servers there is too much intensity")
+            raise CapmonsterAPIException(error_id=-1,
+                                         error_code="CAPMONSTER_API_ERROR",
+                                         error_description="Sometimes can be happen if Capmonster "
+                                                           "servers there is too much intensity")
 
     @staticmethod
     def __check_response(data: Response) -> Response:
         response = data.json()
         if type(response) is dict:
             if response.get("errorId", 0) != 0:
-                raise CapmonsterException(
+                raise CapmonsterAPIException(
                     response.get("errorId"),
                     response.get("errorCode", response.get("errorCode", "UNKNOWN_ERROR")),
                     response.get("errorDescription", response.get("errorDescription", "Unknown error"))
                 )
             return data
         else:
-            raise CapmonsterException(error_id=-1,
-                                      error_code="CAPMONSTER_API_ERROR",
-                                      error_description="Sometimes can be happen if Capmonster "
-                                                        "servers there is too much intensity")
+            raise CapmonsterAPIException(error_id=-1,
+                                         error_code="CAPMONSTER_API_ERROR",
+                                         error_description="Sometimes can be happen if Capmonster "
+                                                           "servers there is too much intensity")

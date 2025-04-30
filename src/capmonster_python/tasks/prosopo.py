@@ -13,11 +13,6 @@ class ProsopoTask(TaskPayload):
         websiteURL: The full URL of the CAPTCHA page that needs to be solved.
         websiteKey: The site key parameter value obtained from the CAPTCHA page.
         proxy: Optional proxy settings to be used in sending the task request.
-
-    Methods:
-        to_request:
-            Converts the data of the task, including proxy settings if provided,
-            into a dictionary format suitable for creating task requests.
     """
     type: str = Field(default="ProsopoTask", frozen=True)
     websiteURL: str = Field(..., description="The full URL of the CAPTCHA page.")

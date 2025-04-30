@@ -13,18 +13,13 @@ class RecaptchaV2Task(TaskPayload, UserAgentPayload):
         type: The constant string value identifying the task type as "RecaptchaV2Task".
         websiteURL: The URL of the webpage containing the reCAPTCHA challenge.
         websiteKey: The site key associated with the reCAPTCHA on the webpage.
-        recaptchaDataSValue: Optional. A one-time token specific to certain custom
+        recaptchaDataSValue: A one-time token specific to certain custom
             implementations of reCAPTCHA v2. If applicable, this parameter needs
-            to be retrieved for each challenge solving attempt.
-        isInvisible: Optional. When set to True, specifies that the challenge
+            to be retrieved for each challenge-solving attempt.
+        isInvisible: When set to True, specifies that the challenge
             being solved is an invisible reCAPTCHA.
-        proxy: Optional. Proxy settings to route the request through a specified
+        proxy: Proxy settings to route the request through a specified
             proxy server.
-
-    Methods:
-        to_request():
-            Converts the instance into a dictionary suitable for request payloads,
-            integrating proxy settings if provided.
     """
     type: str = Field(default="RecaptchaV2Task", frozen=True)
     websiteURL: str = Field(..., description='Address of a webpage with captcha.')

@@ -18,10 +18,6 @@ class RecaptchaV2EnterpriseTask(TaskPayload, UserAgentPayload):
             This parameter should only be set if explicitly needed.
         cookies: Optional cookies to be sent with the request.
         proxy: Optional proxy settings for handling the task.
-
-    Methods:
-        to_request: Converts the object to its corresponding request dictionary for
-            task execution, merging proxy settings if provided.
     """
     type: str = Field(default="RecaptchaV2EnterpriseTask", frozen=True)
     websiteURL: str = Field(..., description='Address of a webpage with Google reCAPTCHA Enterprise.')

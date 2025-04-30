@@ -9,28 +9,21 @@ class GeeTestV3Task(TaskPayload, UserAgentPayload):
     """
     Represents a payload for solving GeeTest V3 captcha.
 
-    Attributes
-    ----------
-    websiteURL : str
-        Address of the page on which the captcha is being solved.
-    gt : str
-        The GeeTest identifier key 'gt' corresponding to the domain.
-    challenge : str
-        A dynamic key that must be fresh on each request. Reusing a non-fresh challenge
-        value will result in an ERROR_TOKEN_EXPIRED.
-    geetestApiServerSubdomain : Optional[str]
-        Optional API subdomain server for Geetest that must be different from
-        `api.geetest.com`.
-    geetestGetLib : Optional[str]
-        Optional path to the captcha script. This must be provided as a JSON string.
-    proxy : Optional[ProxyPayload]
-        Optional proxy settings to be used while solving the captcha.
-
-    Methods
-    -------
-    to_request()
-        Constructs a dictionary representation of the payload, including proxy settings
-        if provided.
+    Attributes:
+        websiteURL:
+            Address of the page on which the captcha is being solved.
+        gt:
+            The GeeTest identifier key 'gt' corresponding to the domain.
+        challenge:
+            A dynamic key that must be fresh on each request. Reusing a non-fresh challenge
+            value will result in an ERROR_TOKEN_EXPIRED.
+        geetestApiServerSubdomain:
+            Optional API subdomain server for Geetest that must be different from
+            `api.geetest.com`.
+        geetestGetLib:
+            Optional path to the captcha script. This must be provided as a JSON string.
+        proxy:
+            Optional proxy settings to be used while solving the captcha.
     """
     type: str = Field(default="GeeTestTask", frozen=True)
     websiteURL: str = Field(..., description="Address of the page on which the captcha is solved.")
@@ -57,21 +50,17 @@ class GeeTestV3Task(TaskPayload, UserAgentPayload):
 
 class GeeTestV4Task(TaskPayload, UserAgentPayload):
     """
-    Handles the creation of a GeeTest v4 task payload for solving the GeeTest CAPTCHA.
+    Represents a GeeTest V4 task payload.
 
     Attributes:
-        type: Specifies the type of the task. The value is fixed as "GeeTestTask".
-        websiteURL: Specifies the URL of the webpage where CAPTCHA is being solved.
-        gt: The GeeTest identifier key for the domain.
-        version: The version of the payload, which is fixed to 4.
-        initParameters: Optional. Additional parameters used for risk type identification or challenge details.
-        geetestApiServerSubdomain: Optional. Subdomain for the Geetest API server, differing from "api.geetest.com".
-        geetestGetLib: Optional. Path to the CAPTCHA script provided as a JSON string.
-        proxy: Optional. Proxy configuration used for solving CAPTCHA.
-
-    Methods:
-        to_request:
-            Prepares a dictionary representation of the task payload, including proxy configuration if provided.
+        type: Indicates the type of the task, defaulted and frozen as "GeeTestTask".
+        websiteURL: Address of the page on which the captcha is solved.
+        gt: The GeeTest identifier key gt for the domain.
+        version: Version of the GeeTest task, defaulted and frozen as 4.
+        initParameters: Extra parameters for v4, used with 'riskType' or challenge details.
+        geetestApiServerSubdomain: Geetest API subdomain server (must differ from api.geetest.com).
+        geetestGetLib: Path to a captcha script. Must be passed as a JSON string.
+        proxy: Proxy settings to be used for the task.
     """
     type: str = Field(default="GeeTestTask", frozen=True)
     websiteURL: str = Field(..., description="Address of the page on which the captcha is solved.")
