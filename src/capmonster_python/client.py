@@ -14,13 +14,26 @@ class CapmonsterClient:
     __BALANCE_URL = "/getBalance"
     __TASK_RESULT_URL = "/getTaskResult"
     __CREATE_TASK_URL = "/createTask"
-    __MAX_RETRY = 120
-    __PER_RETRY_DELAY = 1
 
-    def __init__(self, api_key: str, timeout: Optional[float] = 30.0) -> None:
+    def __init__(self, api_key: str, timeout: Optional[float] = 30.0,
+                 max_retries: int = 120, retry_delay: float = 1.0) -> None:
         self.api_key = api_key
+        self.__max_retries = max_retries
+        self.__retry_delay = retry_delay
         self.__async_client = AsyncClient(timeout=timeout, base_url=self.__BASE_URL)
         self.__sync_client = Client(timeout=timeout, base_url=self.__BASE_URL)
+
+    def __enter__(self) -> "CapmonsterClient":
+        return self
+
+    def __exit__(self, *args) -> None:
+        self.__sync_client.close()
+
+    async def __aenter__(self) -> "CapmonsterClient":
+        return self
+
+    async def __aexit__(self, *args) -> None:
+        await self.__async_client.aclose()
 
     def get_balance(self) -> float:
         """
@@ -84,7 +97,7 @@ class CapmonsterClient:
         Asynchronously creates a task based on the provided payload and returns the task ID.
 
         This method is responsible for initiating a task by preparing the request with the
-        provided task details and optional callback URL, sending a synchronous request to the
+        provided task details and optional callback URL, sending an asynchronous request to the
         task creation endpoint, and parsing the response to retrieve the task ID.
 
         Args:
@@ -166,12 +179,12 @@ class CapmonsterClient:
             CapmonsterException:
                 If the maximum retry limit is exceeded without obtaining the task result.
         """
-        for _ in range(0, self.__MAX_RETRY + 1):
+        for _ in range(0, self.__max_retries + 1):
             result = self.get_task_result(task_id)
             if result:
                 return result
             elif not result:
-                sleep(self.__PER_RETRY_DELAY)
+                sleep(self.__retry_delay)
         raise CapmonsterAPIException(
             61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
 
@@ -191,14 +204,46 @@ class CapmonsterClient:
             CapmonsterException:
                 If the maximum retry limit is exceeded without obtaining the task result.
         """
-        for _ in range(0, self.__MAX_RETRY + 1):
+        for _ in range(0, self.__max_retries + 1):
             result = await self.get_task_result_async(task_id)
             if result:
                 return result
             elif not result:
-                await asyncio.sleep(self.__PER_RETRY_DELAY)
+                await asyncio.sleep(self.__retry_delay)
         raise CapmonsterAPIException(
             61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
+
+    def solve(self, task: TaskPayload, callback_url: Optional[str] = None) -> dict:
+        """
+        Convenience method that creates a task and polls for its result.
+
+        Equivalent to calling create_task() followed by join_task_result().
+
+        Args:
+            task: The task configuration payload.
+            callback_url: An optional callback URL for task completion.
+
+        Returns:
+            dict: The solution dictionary from the completed task.
+        """
+        task_id = self.create_task(task, callback_url)
+        return self.join_task_result(task_id)
+
+    async def solve_async(self, task: TaskPayload, callback_url: Optional[str] = None) -> dict:
+        """
+        Async convenience method that creates a task and polls for its result.
+
+        Equivalent to calling create_task_async() followed by join_task_result_async().
+
+        Args:
+            task: The task configuration payload.
+            callback_url: An optional callback URL for task completion.
+
+        Returns:
+            dict: The solution dictionary from the completed task.
+        """
+        task_id = await self.create_task_async(task, callback_url)
+        return await self.join_task_result_async(task_id)
 
     def __make_sync_request(self, url: str, payload: dict) -> Response:
         try:
