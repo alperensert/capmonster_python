@@ -7,3 +7,5 @@
 **/site
 **/dist
 **/*.egg-info
+**/.idea
+.

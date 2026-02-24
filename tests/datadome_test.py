@@ -29,10 +29,9 @@ def test_to_request():
 
 
 @pytest.mark.skipif(API_KEY is None, reason="API_KEY is not set")
-async def test_create_task_async():
+def test_create_task():
     client = CapmonsterClient(API_KEY, timeout=30.0)
     task_id = client.create_task(task=DataDomeTask(websiteURL=WEBSITE_URL, metadata=METADATA))
-    assert task_id != 0
     assert task_id != 0
 
 

@@ -175,7 +175,7 @@ class CapmonsterClient:
         raise CapmonsterAPIException(
             61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
 
-    async def join_task_result_async(self, task_id: int):
+    async def join_task_result_async(self, task_id: int) -> dict:
         """
         Asynchronously joins and retrieves the result of a task given its ID, retrying a specified number
         of times if the result is not immediately available.
@@ -213,19 +213,6 @@ class CapmonsterClient:
             return self.__check_response(post)
         except Exception as e:
             raise CapmonsterException(-1, type(e).__name__, str(e))
-
-    @staticmethod
-    def __is_ready(response: dict):
-        status = response.get("status")
-        if status == "processing":
-            return False
-        elif status == "ready":
-            return True
-        else:
-            raise CapmonsterAPIException(error_id=-1,
-                                         error_code="CAPMONSTER_API_ERROR",
-                                         error_description="Sometimes can be happen if Capmonster "
-                                                           "servers there is too much intensity")
 
     @staticmethod
     def __check_response(data: Response) -> Response:
