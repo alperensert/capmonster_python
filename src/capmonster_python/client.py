@@ -249,6 +249,8 @@ class CapmonsterClient:
         try:
             response = self.__sync_client.post(url, json=payload)
             return self.__check_response(response)
+        except CapmonsterException:
+            raise
         except Exception as e:
             raise CapmonsterException(-1, type(e).__name__, str(e))
 
@@ -256,6 +258,8 @@ class CapmonsterClient:
         try:
             post = await self.__async_client.post(url, json=payload)
             return self.__check_response(post)
+        except CapmonsterException:
+            raise
         except Exception as e:
             raise CapmonsterException(-1, type(e).__name__, str(e))
 
