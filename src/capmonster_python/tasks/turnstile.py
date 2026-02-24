@@ -80,3 +80,32 @@ class TurnstileCloudFlareTask(TurnstileTask):
         if proxy_dict:
             base.update(proxy_dict)
         return base
+
+
+class TurnstileWaitingRoomTask(TaskPayload):
+    """
+    Represents a Turnstile task for Cloudflare Waiting Room challenges.
+
+    Returns a cf_clearance cookie. Proxy is required for this task type.
+
+    Attributes:
+        websiteURL: URL of the page containing the waiting room check.
+        websiteKey: Cloudflare site key.
+        htmlPageBase64: Base64-encoded HTML page containing the waiting room.
+        userAgent: Browser User-Agent string (must be from Windows OS).
+        proxy: Proxy settings (required).
+    """
+    type: str = Field(default="TurnstileTask")
+    websiteURL: str = Field(..., description='URL of the page containing the waiting room check.')
+    websiteKey: str = Field(..., description='Cloudflare site key.')
+    cloudflareTaskType: str = Field(default="wait_room", frozen=True)
+    htmlPageBase64: str = Field(..., description='Base64-encoded HTML page containing the waiting room.')
+    userAgent: str = Field(..., description='Browser User-Agent string (must be from Windows OS).')
+    proxy: ProxyPayload = Field(..., description='Proxy settings (required).')
+
+    def to_request(self) -> dict[str, Any]:
+        base = self.model_dump(exclude_none=True)
+        proxy_dict = base.pop("proxy", {})
+        if proxy_dict:
+            base.update(proxy_dict)
+        return base
