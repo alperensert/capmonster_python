@@ -1,4 +1,4 @@
-name: Publish Python Package 🐍
+name: Publish Python Package
 
 on:
   release:
@@ -9,30 +9,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: '3.12'
 
-      - name: Install setup dependencies
-        run: make setup_dependencies
-
-      - name: Install dependencies
-        run: make build
+      - name: Install build dependencies
+        run: |
+          pip install --upgrade pip setuptools wheel build
 
       - name: Build package
         run: python -m build
 
-      - name: Publish package to TestPYPI
-        uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: __token__
           password: ${{ secrets.TEST_PYPI_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/legacy/
 
-      - name: Publish package to PYPI
-        uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: __token__
           password: ${{ secrets.PYPI_TOKEN }}
