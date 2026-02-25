@@ -1,10 +1,11 @@
-name: Deploy MkDocs to GitHub Pages
+name: Deploy Retype to GitHub Pages
 
 on:
   push:
     branches: [ "master" ]
     paths:
       - docs/**
+      - retype.yml
   workflow_dispatch:
 
 permissions:
@@ -21,22 +22,27 @@ defaults:
     shell: bash
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
-      - name: Install dependencies
-        run: |
-          pip install mkdocs mkdocs-material mkdocstrings[python]
+      - name: Generate changelog from GitHub Releases
+        run: python scripts/generate_changelog.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and deploy
-        run: |
-          mkdocs gh-deploy --force
+      - name: Build with Retype
+        uses: retypeapp/action-build@latest
+
+      - name: Deploy to GitHub Pages
+        uses: retypeapp/action-github-pages@latest
+        with:
+          update-branch: true

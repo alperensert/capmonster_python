@@ -1,0 +1,91 @@
+input: docs
+output: .retype
+
+branding:
+  title: capmonster_python
+  label: v4
+
+links:
+  - text: GitHub
+    link: https://github.com/alperensert/capmonster_python
+
+footer:
+  copyright: capmonster_python &copy; {{ year }}
+
+nav:
+  - label: Home
+    icon: home
+    link: index.md
+  - label: Installation
+    icon: download
+    link: installation.md
+  - label: Examples
+    icon: code
+    link: examples.md
+  - label: References
+    icon: book
+    items:
+      - Overview: reference/overview.md
+      - label: Core
+        icon: gear
+        items:
+          - CapmonsterClient: reference/client.md
+          - Abstract: reference/abstract.md
+          - Exceptions: reference/exceptions.md
+      - label: reCAPTCHA
+        icon: shield-check
+        items:
+          - reCAPTCHA: reference/recaptcha.md
+      - label: Cloudflare
+        icon: cloud
+        items:
+          - Turnstile: reference/turnstile.md
+      - label: GeeTest
+        items:
+          - GeeTest: reference/geetest.md
+      - label: Image-Based
+        icon: image
+        items:
+          - Image Tasks: reference/image.md
+      - label: Anti-Bot
+        icon: shield-lock
+        items:
+          - DataDome: reference/datadome.md
+          - Imperva: reference/imperva.md
+          - label: Amazon WAF
+            link: reference/amazon.md
+            badge: NEW
+          - label: FunCaptcha
+            link: reference/funcaptcha.md
+            badge: NEW
+          - label: TSPD
+            link: reference/tspd.md
+            badge: NEW
+      - label: Platform
+        icon: device-desktop
+        items:
+          - Binance: reference/binance.md
+          - Temu: reference/temu.md
+          - TenDI: reference/tendi.md
+      - label: Other
+        items:
+          - Prosopo: reference/prosopo.md
+          - Basilisk: reference/basilisk.md
+          - label: MTCaptcha
+            link: reference/mtcaptcha.md
+            badge: NEW
+          - label: Yidun
+            link: reference/yidun.md
+            badge: NEW
+          - label: Altcha
+            link: reference/altcha.md
+            badge: NEW
+          - label: Castle
+            link: reference/castle.md
+            badge: NEW
+  - label: Error Codes
+    icon: alert
+    link: error_codes.md
+  - label: Changelog
+    icon: history
+    link: changelog.md

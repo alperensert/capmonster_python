@@ -8,4 +8,5 @@
 **/dist
 **/*.egg-info
 **/.idea
+**/.retype
 .
