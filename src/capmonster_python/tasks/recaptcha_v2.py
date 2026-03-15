@@ -30,6 +30,10 @@ class RecaptchaV2Task(TaskPayload, UserAgentPayload):
                                                            'and must be grabbed every time you want to solve a reCAPTCHA v2.')
     isInvisible: Optional[bool] = Field(default=None,
                                         description='Set to true if you want to solve invisible reCAPTCHA.')
+    cookies: Optional[str] = Field(default=None,
+                                   description='Additional cookies in the format: cookieName1=value1; cookieName2=value2.')
+    nocache: Optional[bool] = Field(default=None,
+                                    description='Set to true to force fresh token generation (prevents reuse of cached tokens).')
     proxy: Optional[ProxyPayload] = Field(default=None, description='Proxy settings.')
 
     def to_request(self) -> dict[str, Any]:

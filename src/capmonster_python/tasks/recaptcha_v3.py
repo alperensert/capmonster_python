@@ -25,6 +25,10 @@ class RecaptchaV3Task(TaskPayload):
     pageAction: Optional[str] = Field(default=None,
                                       description='Widget action value. Website owner defines what user is doing on '
                                                   'the page through this parameter. Default value: verify')
+    isEnterprise: Optional[bool] = Field(default=None,
+                                         description='Set to true to solve as Enterprise (equivalent to RecaptchaV3EnterpriseTask).')
+    nocache: Optional[bool] = Field(default=None,
+                                    description='Set to true to force fresh token generation (prevents reuse of cached tokens).')
 
     def to_request(self) -> dict[str, Any]:
         return self.model_dump(exclude_none=True)

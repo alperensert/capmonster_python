@@ -8,10 +8,12 @@ from .complex_image_recognition import ComplexImageRecognitionTask
 from .datadome import DataDomeTask, DataDomeMetadata
 from .funcaptcha import FunCaptchaTask
 from .geetest import GeeTestV4Task, GeeTestV3Task
+from .hunt import HuntTask
 from .image_to_text import ImageToTextTask
 from .imperva import ImpervaTask, ImpervaTaskMetadata
 from .mtcaptcha import MTCaptchaTask
 from .prosopo import ProsopoTask
+from .recaptcha_click import RecaptchaClickTask
 from .recaptcha_v2 import RecaptchaV2Task
 from .recaptcha_v2_enterprise import RecaptchaV2EnterpriseTask
 from .recaptcha_v3 import RecaptchaV3Task
@@ -42,11 +44,13 @@ __all__ = [
     "FunCaptchaTask",
     "GeeTestV3Task",
     "GeeTestV4Task",
+    "HuntTask",
     "ImageToTextTask",
     "ImpervaTask",
     "ImpervaTaskMetadata",
     "MTCaptchaTask",
     "ProsopoTask",
+    "RecaptchaClickTask",
     "RecaptchaV2Task",
     "RecaptchaV2EnterpriseTask",
     "RecaptchaV3Task",

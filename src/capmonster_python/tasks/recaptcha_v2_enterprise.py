@@ -22,14 +22,18 @@ class RecaptchaV2EnterpriseTask(TaskPayload, UserAgentPayload):
     type: str = Field(default="RecaptchaV2EnterpriseTask", frozen=True)
     websiteURL: str = Field(..., description='Address of a webpage with Google reCAPTCHA Enterprise.')
     websiteKey: str = Field(..., description='reCAPTCHA website key.')
+    pageAction: Optional[str] = Field(default=None,
+                                      description='Action parameter if different from default “verify”.')
     enterprisePayload: Optional[str] = Field(default=None,
                                              description='Some implementations of the reCAPTCHA Enterprise widget '
                                                          'may contain additional parameters that are passed to the '
-                                                         '“grecaptcha.enterprise.render” method along with the sitekey.')
+                                                         '”grecaptcha.enterprise.render” method along with the sitekey.')
     apiDomain: Optional[str] = Field(default=None,
                                      description='Domain address from which to load reCAPTCHA Enterprise. '
                                                  'Don\'t use a parameter if you don\'t know why it\'s needed.')
     cookies: Optional[str] = Field(default=None, description='Cookies to be sent with the request.')
+    nocache: Optional[bool] = Field(default=None,
+                                    description='Set to true to force fresh token generation (prevents reuse of cached tokens).')
     proxy: Optional[ProxyPayload] = Field(default=None, description='Proxy settings.')
 
     def to_request(self) -> dict[str, Any]:
