@@ -5,7 +5,7 @@ The main client for interacting with the Capmonster Cloud API. Supports both syn
 ## Constructor
 
 ```python
-CapmonsterClient(api_key: str, timeout: float = 30.0, max_retries: int = 120, retry_delay: float = 1.0)
+CapmonsterClient(api_key: str, timeout: float = 30.0, max_retries: int = 120, retry_delay: float = 2.0)
 ```
 
 | Parameter | Type | Default | Description |
@@ -13,7 +13,7 @@ CapmonsterClient(api_key: str, timeout: float = 30.0, max_retries: int = 120, re
 | `api_key` | `str` | **required** | Your Capmonster Cloud API key. |
 | `timeout` | `float` | `30.0` | HTTP request timeout in seconds. |
 | `max_retries` | `int` | `120` | Maximum number of polling attempts in `join_task_result` / `solve`. |
-| `retry_delay` | `float` | `1.0` | Delay in seconds between polling attempts. |
+| `retry_delay` | `float` | `2.0` | Delay in seconds between polling attempts. |
 
 ## Context Manager
 
@@ -119,3 +119,50 @@ async def solve_async(self, task: TaskPayload, callback_url: str | None = None) 
 | `callback_url` | `str \| None` | `None` | Optional callback URL for task completion. |
 
 **Returns:** `dict` — The solution dictionary from the completed task.
+
+---
+
+### `report_incorrect_image`
+
+Reports an incorrect image captcha solution.
+
+```python
+def report_incorrect_image(self, task_id: int) -> None
+async def report_incorrect_image_async(self, task_id: int) -> None
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier to report. |
+
+**Raises:** `CapmonsterAPIException` if the API returns an error.
+
+---
+
+### `report_incorrect_token`
+
+Reports an incorrect token captcha solution (reCAPTCHA, GeeTest, Turnstile, etc.).
+
+```python
+def report_incorrect_token(self, task_id: int) -> None
+async def report_incorrect_token_async(self, task_id: int) -> None
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier to report. |
+
+**Raises:** `CapmonsterAPIException` if the API returns an error.
+
+---
+
+### `get_user_agent`
+
+Fetches the current valid Windows User-Agent string from CapMonster Cloud.
+
+```python
+def get_user_agent(self) -> str
+async def get_user_agent_async(self) -> str
+```
+
+**Returns:** `str` — The current User-Agent string to use with captcha tasks.
