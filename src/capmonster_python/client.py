@@ -5,7 +5,7 @@ from typing import Optional
 from httpx import Response, AsyncClient, Client
 
 from .exceptions import CapmonsterAPIException, CapmonsterException
-from .methods import GetBalancePayload, GetTaskResultPayload, CreateTaskPayload
+from .methods import GetBalancePayload, GetTaskResultPayload, CreateTaskPayload, ReportIncorrectCaptchaPayload
 from .tasks.task import TaskPayload
 
 
@@ -15,8 +15,12 @@ class CapmonsterClient:
     __TASK_RESULT_URL = "/getTaskResult"
     __CREATE_TASK_URL = "/createTask"
 
+    __REPORT_IMAGE_URL = "/reportIncorrectImageCaptcha"
+    __REPORT_TOKEN_URL = "/reportIncorrectTokenCaptcha"
+    __USER_AGENT_URL = "https://capmonster.cloud/api/useragent/actual"
+
     def __init__(self, api_key: str, timeout: Optional[float] = 30.0,
-                 max_retries: int = 120, retry_delay: float = 1.0) -> None:
+                 max_retries: int = 120, retry_delay: float = 2.0) -> None:
         self.api_key = api_key
         self.__max_retries = max_retries
         self.__retry_delay = retry_delay
@@ -244,6 +248,84 @@ class CapmonsterClient:
         """
         task_id = await self.create_task_async(task, callback_url)
         return await self.join_task_result_async(task_id)
+
+    def report_incorrect_image(self, task_id: int) -> None:
+        """
+        Reports an incorrect image captcha solution.
+
+        Args:
+            task_id: The identifier of the task to report.
+
+        Raises:
+            CapmonsterAPIException: If the API returns an error.
+        """
+        payload = ReportIncorrectCaptchaPayload(clientKey=self.api_key, taskId=task_id).model_dump()
+        self.__make_sync_request(self.__REPORT_IMAGE_URL, payload)
+
+    async def report_incorrect_image_async(self, task_id: int) -> None:
+        """
+        Asynchronously reports an incorrect image captcha solution.
+
+        Args:
+            task_id: The identifier of the task to report.
+
+        Raises:
+            CapmonsterAPIException: If the API returns an error.
+        """
+        payload = ReportIncorrectCaptchaPayload(clientKey=self.api_key, taskId=task_id).model_dump()
+        await self.__make_async_request(self.__REPORT_IMAGE_URL, payload)
+
+    def report_incorrect_token(self, task_id: int) -> None:
+        """
+        Reports an incorrect token captcha solution (reCAPTCHA, GeeTest, Turnstile, etc.).
+
+        Args:
+            task_id: The identifier of the task to report.
+
+        Raises:
+            CapmonsterAPIException: If the API returns an error.
+        """
+        payload = ReportIncorrectCaptchaPayload(clientKey=self.api_key, taskId=task_id).model_dump()
+        self.__make_sync_request(self.__REPORT_TOKEN_URL, payload)
+
+    async def report_incorrect_token_async(self, task_id: int) -> None:
+        """
+        Asynchronously reports an incorrect token captcha solution (reCAPTCHA, GeeTest, Turnstile, etc.).
+
+        Args:
+            task_id: The identifier of the task to report.
+
+        Raises:
+            CapmonsterAPIException: If the API returns an error.
+        """
+        payload = ReportIncorrectCaptchaPayload(clientKey=self.api_key, taskId=task_id).model_dump()
+        await self.__make_async_request(self.__REPORT_TOKEN_URL, payload)
+
+    def get_user_agent(self) -> str:
+        """
+        Fetches the current valid Windows User-Agent string from CapMonster Cloud.
+
+        Returns:
+            str: The current User-Agent string to use with captcha tasks.
+        """
+        try:
+            response = self.__sync_client.get(self.__USER_AGENT_URL)
+            return response.text
+        except Exception as e:
+            raise CapmonsterException(-1, type(e).__name__, str(e))
+
+    async def get_user_agent_async(self) -> str:
+        """
+        Asynchronously fetches the current valid Windows User-Agent string from CapMonster Cloud.
+
+        Returns:
+            str: The current User-Agent string to use with captcha tasks.
+        """
+        try:
+            response = await self.__async_client.get(self.__USER_AGENT_URL)
+            return response.text
+        except Exception as e:
+            raise CapmonsterException(-1, type(e).__name__, str(e))
 
     def __make_sync_request(self, url: str, payload: dict) -> Response:
         try:

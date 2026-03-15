@@ -21,6 +21,11 @@ class GetTaskResultPayload(BaseModel):
     taskId: int = Field(..., description="ID which was obtained from create task method.")
 
 
+class ReportIncorrectCaptchaPayload(BaseModel):
+    clientKey: str = Field(..., description="Client key")
+    taskId: int = Field(..., description="ID of the task to report as incorrect.")
+
+
 class CreateTaskPayload(BaseModel):
     clientKey: str = Field(..., description="Client key")
     task: TaskPayload = Field(..., description="Task data")
