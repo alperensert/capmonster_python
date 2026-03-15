@@ -1,5 +1,32 @@
 # Changelog
 
+## [5.0.0](https://github.com/alperensert/capmonster_python/compare/v4.0.0...v5.0.0) (2026-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* default retry_delay changed from 1.0 to 2.0 seconds.
+
+### Features
+
+* add context manager, solve() convenience, configurable polling, multi-Python CI ([5399fbb](https://github.com/alperensert/capmonster_python/commit/5399fbb5fcd34489d00b441555426825a0a95ce2))
+* add FunCaptcha, Amazon WAF, reCAPTCHA v3 Enterprise, and Cloudflare Waiting Room ([b939c7b](https://github.com/alperensert/capmonster_python/commit/b939c7bfa0b8e32a7f71ae89ad53f2fae257773f))
+* add MTCaptcha, Yidun, Altcha, Castle, and TSPD task types ([221aa0e](https://github.com/alperensert/capmonster_python/commit/221aa0e9912b943b8daa99774259be4458eefd03))
+* add RecaptchaClickTask, HuntTask, and missing API fields ([eb38897](https://github.com/alperensert/capmonster_python/commit/eb38897fac930f89c79bd322ce9320687f424e1c))
+* add reportIncorrect and getUserAgent client methods ([152dc97](https://github.com/alperensert/capmonster_python/commit/152dc978537bc774be99d0bfc4f75262d8a27202))
+
+
+### Bug Fixes
+
+* **ci:** add respx to test dependencies ([1976b6f](https://github.com/alperensert/capmonster_python/commit/1976b6fc2da0c98e6fdfbd78cf500e37095fa191))
+* **ci:** specify release-please config and manifest paths ([5fb508a](https://github.com/alperensert/capmonster_python/commit/5fb508af7a2cfa938dcc819a357a40a22e9fe3b0))
+* resolve test function shadowing, remove dead code, and cleanup ([4fcf311](https://github.com/alperensert/capmonster_python/commit/4fcf3119eb9b3deb85b852d8ac8fc589e9574fa2))
+
+
+### Documentation
+
+* update README and API reference for new features ([c8793f6](https://github.com/alperensert/capmonster_python/commit/c8793f66e3a844aca78b6f113e4ed99b72004a67))
+
 ## [4.0.0](https://github.com/alperensert/capmonster_python/compare/v3.2.0...v4.0.0) (2025-04-30)
 
 
