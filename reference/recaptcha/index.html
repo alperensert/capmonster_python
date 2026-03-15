@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.0.0.825293904713">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826900150189">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.0.0">
+    <meta name="generator" content="Retype 4.2.0">
 
     <!-- Primary Meta Tags -->
     <title>reCAPTCHA</title>
@@ -27,11 +27,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.0.0.825293904713" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.2.0.826900150189" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.0.0.825293904713" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.0.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.0.0.825293904713" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826900150189" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826900150189" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -186,6 +186,18 @@
 <td>Set to <code translate="no" v-pre>True</code> for invisible reCAPTCHA.</td>
 </tr>
 <tr>
+<td><code translate="no" v-pre>cookies</code></td>
+<td><code translate="no" v-pre>str \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Additional cookies in the format: <code translate="no" v-pre>name1=val1; name2=val2</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>nocache</code></td>
+<td><code translate="no" v-pre>bool \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Set to <code translate="no" v-pre>True</code> to force fresh token generation (prevents reuse of cached tokens).</td>
+</tr>
+<tr>
 <td><code translate="no" v-pre>userAgent</code></td>
 <td><code translate="no" v-pre>str \| None</code></td>
 <td><code translate="no" v-pre>None</code></td>
@@ -233,6 +245,12 @@
 <td>reCAPTCHA site key.</td>
 </tr>
 <tr>
+<td><code translate="no" v-pre>pageAction</code></td>
+<td><code translate="no" v-pre>str \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Action parameter if different from default <code translate="no" v-pre>&quot;verify&quot;</code>.</td>
+</tr>
+<tr>
 <td><code translate="no" v-pre>enterprisePayload</code></td>
 <td><code translate="no" v-pre>str \| None</code></td>
 <td><code translate="no" v-pre>None</code></td>
@@ -249,6 +267,12 @@
 <td><code translate="no" v-pre>str \| None</code></td>
 <td><code translate="no" v-pre>None</code></td>
 <td>Cookies to send with the request.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>nocache</code></td>
+<td><code translate="no" v-pre>bool \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Set to <code translate="no" v-pre>True</code> to force fresh token generation (prevents reuse of cached tokens).</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>userAgent</code></td>
@@ -309,6 +333,18 @@
 <td><code translate="no" v-pre>None</code></td>
 <td>Widget action value defined by the site owner. Default: <code translate="no" v-pre>verify</code>.</td>
 </tr>
+<tr>
+<td><code translate="no" v-pre>isEnterprise</code></td>
+<td><code translate="no" v-pre>bool \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Set to <code translate="no" v-pre>True</code> to solve as Enterprise (equivalent to <code translate="no" v-pre>RecaptchaV3EnterpriseTask</code>).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>nocache</code></td>
+<td><code translate="no" v-pre>bool \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Set to <code translate="no" v-pre>True</code> to force fresh token generation (prevents reuse of cached tokens).</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -357,6 +393,12 @@
 <td><code translate="no" v-pre>str \| None</code></td>
 <td><code translate="no" v-pre>None</code></td>
 <td>Widget action value defined by the site owner. Default: <code translate="no" v-pre>verify</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>nocache</code></td>
+<td><code translate="no" v-pre>bool \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Set to <code translate="no" v-pre>True</code> to force fresh token generation (prevents reuse of cached tokens).</td>
 </tr>
 </tbody>
 </table>

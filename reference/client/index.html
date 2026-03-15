@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.0.0.825293904713">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826900150189">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.0.0">
+    <meta name="generator" content="Retype 4.2.0">
 
     <!-- Primary Meta Tags -->
     <title>CapmonsterClient</title>
@@ -27,12 +27,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.0.0.825293904713" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.2.0.826900150189" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.0.0.825293904713" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.0.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.0.0.825293904713" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.0.0.825293904713" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826900150189" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826900150189" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826900150189" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -149,8 +149,8 @@
         <span>Constructor</span>
     </h2>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre translate="no" class="language-python"><code v-pre class="language-python">CapmonsterClient(api_key: str, timeout: float = 30.0, max_retries: int = 120, retry_delay: float = 1.0)</code></pre>
+<div id="constructor-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">CapmonsterClient(api_key: str, timeout: float = 30.0, max_retries: int = 120, retry_delay: float = 2.0)</code></pre>
 </doc-codeblock></div>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
@@ -184,7 +184,7 @@
 <tr>
 <td><code translate="no" v-pre>retry_delay</code></td>
 <td><code translate="no" v-pre>float</code></td>
-<td><code translate="no" v-pre>1.0</code></td>
+<td><code translate="no" v-pre>2.0</code></td>
 <td>Delay in seconds between polling attempts.</td>
 </tr>
 </tbody>
@@ -227,7 +227,7 @@
     </h3>
 </doc-anchor-target>
 <p>Fetches the current account balance.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="get_balance-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def get_balance(self) -&gt; float
 async def get_balance_async(self) -&gt; float</code></pre>
 </doc-codeblock></div>
@@ -240,7 +240,7 @@ async def get_balance_async(self) -&gt; float</code></pre>
     </h3>
 </doc-anchor-target>
 <p>Creates a captcha-solving task and returns the task ID.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="create_task-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def create_task(self, task: TaskPayload, callback_url: str | None = None) -&gt; int
 async def create_task_async(self, task: TaskPayload, callback_url: str | None = None) -&gt; int</code></pre>
 </doc-codeblock></div>
@@ -280,7 +280,7 @@ async def create_task_async(self, task: TaskPayload, callback_url: str | None = 
     </h3>
 </doc-anchor-target>
 <p>Fetches the result of a completed task (single poll, no waiting).</p>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="get_task_result-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def get_task_result(self, task_id: int) -&gt; dict
 async def get_task_result_async(self, task_id: int) -&gt; dict</code></pre>
 </doc-codeblock></div>
@@ -311,7 +311,7 @@ async def get_task_result_async(self, task_id: int) -&gt; dict</code></pre>
     </h3>
 </doc-anchor-target>
 <p>Polls for the task result until it is ready, up to <code translate="no" v-pre>max_retries</code> attempts with <code translate="no" v-pre>retry_delay</code> between each.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="join_task_result-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def join_task_result(self, task_id: int) -&gt; dict
 async def join_task_result_async(self, task_id: int) -&gt; dict</code></pre>
 </doc-codeblock></div>
@@ -343,7 +343,7 @@ async def join_task_result_async(self, task_id: int) -&gt; dict</code></pre>
     </h3>
 </doc-anchor-target>
 <p>Convenience method that creates a task and polls for its result in one call. Equivalent to <code translate="no" v-pre>create_task()</code> followed by <code translate="no" v-pre>join_task_result()</code>.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="solve-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def solve(self, task: TaskPayload, callback_url: str | None = None) -&gt; dict
 async def solve_async(self, task: TaskPayload, callback_url: str | None = None) -&gt; dict</code></pre>
 </doc-codeblock></div>
@@ -374,6 +374,81 @@ async def solve_async(self, task: TaskPayload, callback_url: str | None = None) 
 </table>
 </div>
 <p><strong>Returns:</strong> <code translate="no" v-pre>dict</code> — The solution dictionary from the completed task.</p>
+<hr>
+<doc-anchor-target id="report_incorrect_image">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#report_incorrect_image">#</doc-anchor-trigger>
+        <span><code translate="no" v-pre>report_incorrect_image</code></span>
+    </h3>
+</doc-anchor-target>
+<p>Reports an incorrect image captcha solution.</p>
+<div id="report_incorrect_image-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">def report_incorrect_image(self, task_id: int) -&gt; None
+async def report_incorrect_image_async(self, task_id: int) -&gt; None</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>task_id</code></td>
+<td><code translate="no" v-pre>int</code></td>
+<td>The task identifier to report.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Raises:</strong> <code translate="no" v-pre>CapmonsterAPIException</code> if the API returns an error.</p>
+<hr>
+<doc-anchor-target id="report_incorrect_token">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#report_incorrect_token">#</doc-anchor-trigger>
+        <span><code translate="no" v-pre>report_incorrect_token</code></span>
+    </h3>
+</doc-anchor-target>
+<p>Reports an incorrect token captcha solution (reCAPTCHA, GeeTest, Turnstile, etc.).</p>
+<div id="report_incorrect_token-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">def report_incorrect_token(self, task_id: int) -&gt; None
+async def report_incorrect_token_async(self, task_id: int) -&gt; None</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>task_id</code></td>
+<td><code translate="no" v-pre>int</code></td>
+<td>The task identifier to report.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Raises:</strong> <code translate="no" v-pre>CapmonsterAPIException</code> if the API returns an error.</p>
+<hr>
+<doc-anchor-target id="get_user_agent">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#get_user_agent">#</doc-anchor-trigger>
+        <span><code translate="no" v-pre>get_user_agent</code></span>
+    </h3>
+</doc-anchor-target>
+<p>Fetches the current valid Windows User-Agent string from CapMonster Cloud.</p>
+<div id="get_user_agent-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">def get_user_agent(self) -&gt; str
+async def get_user_agent_async(self) -&gt; str</code></pre>
+</doc-codeblock></div>
+<p><strong>Returns:</strong> <code translate="no" v-pre>str</code> — The current User-Agent string to use with captcha tasks.</p>
 
                 
                 <!-- Required only on API pages -->

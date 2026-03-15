@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.0.0.825293904713">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826900150189">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.0.0">
+    <meta name="generator" content="Retype 4.2.0">
 
     <!-- Primary Meta Tags -->
     <title>Exceptions</title>
@@ -27,12 +27,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.0.0.825293904713" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.2.0.826900150189" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.0.0.825293904713" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.0.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.0.0.825293904713" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.0.0.825293904713" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826900150189" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826900150189" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826900150189" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -150,7 +150,7 @@
         <span>CapmonsterException</span>
     </h2>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="capmonsterexception-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">class CapmonsterException(Exception)</code></pre>
 </doc-codeblock></div>
 <p>Generic base exception for all errors. Raised for errors not caught by more specific exception classes, including HTTP request failures and unexpected issues.</p>
@@ -161,7 +161,7 @@
         <span>CapmonsterAPIException</span>
     </h2>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="capmonsterapiexception-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">class CapmonsterAPIException(CapmonsterException)</code></pre>
 </doc-codeblock></div>
 <p>Raised when the Capmonster Cloud API returns an error response.</p>
@@ -199,7 +199,7 @@
         <span>Constructor</span>
     </h3>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="constructor-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">CapmonsterAPIException(error_id, error_code, error_description)</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="string-representation">
@@ -208,7 +208,7 @@
         <span>String representation</span>
     </h3>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="string-representation-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-none"><code v-pre class="language-none">[ERROR_CODE] Error description</code></pre>
 </doc-codeblock></div>
 <hr>
@@ -218,7 +218,7 @@
         <span>CapmonsterValidationException</span>
     </h2>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="capmonstervalidationexception-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">class CapmonsterValidationException(CapmonsterException)</code></pre>
 </doc-codeblock></div>
 <p>Raised when a task configuration is invalid at the SDK level (before any API call is made).</p>
@@ -260,7 +260,7 @@
         <span>Constructor</span>
     </h3>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="constructor-1-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">CapmonsterValidationException(message: str, *, field: str = None, task: str = None)</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="string-representation-1">
@@ -269,7 +269,7 @@
         <span>String representation</span>
     </h3>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
+<div id="string-representation-1-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-none"><code v-pre class="language-none">[CapmonsterValidationError] message (field: fieldName) [task: TaskType]</code></pre>
 </doc-codeblock></div>
 
