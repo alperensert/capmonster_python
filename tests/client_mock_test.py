@@ -3,8 +3,10 @@ import respx
 from httpx import Response
 
 from capmonster_python import (
-    CapmonsterClient, RecaptchaV2Task, RecaptchaV3Task,
-    CapmonsterAPIException, ProxyPayload, FunCaptchaTask
+    CapmonsterClient, RecaptchaV2Task, RecaptchaV2EnterpriseTask,
+    RecaptchaV3Task, RecaptchaV3EnterpriseTask,
+    CapmonsterAPIException, CapmonsterException, ProxyPayload,
+    FunCaptchaTask, RecaptchaClickTask, HuntTask
 )
 
 BASE_URL = "https://api.capmonster.cloud"
@@ -213,3 +215,394 @@ def test_configurable_retry_params():
     client = CapmonsterClient("key", max_retries=5, retry_delay=0.5)
     assert client._CapmonsterClient__max_retries == 5
     assert client._CapmonsterClient__retry_delay == 0.5
+
+
+def test_default_retry_delay_is_two_seconds():
+    client = CapmonsterClient("key")
+    assert client._CapmonsterClient__retry_delay == 2.0
+
+
+@respx.mock
+def test_report_incorrect_image():
+    respx.post(f"{BASE_URL}/reportIncorrectImageCaptcha").mock(
+        return_value=Response(200, json={"errorId": 0, "status": "success"})
+    )
+    client = CapmonsterClient("test_key")
+    client.report_incorrect_image(123)
+
+
+@respx.mock
+@pytest.mark.asyncio
+async def test_report_incorrect_image_async():
+    respx.post(f"{BASE_URL}/reportIncorrectImageCaptcha").mock(
+        return_value=Response(200, json={"errorId": 0, "status": "success"})
+    )
+    client = CapmonsterClient("test_key")
+    await client.report_incorrect_image_async(123)
+
+
+@respx.mock
+def test_report_incorrect_token():
+    respx.post(f"{BASE_URL}/reportIncorrectTokenCaptcha").mock(
+        return_value=Response(200, json={"errorId": 0, "status": "success"})
+    )
+    client = CapmonsterClient("test_key")
+    client.report_incorrect_token(456)
+
+
+@respx.mock
+@pytest.mark.asyncio
+async def test_report_incorrect_token_async():
+    respx.post(f"{BASE_URL}/reportIncorrectTokenCaptcha").mock(
+        return_value=Response(200, json={"errorId": 0, "status": "success"})
+    )
+    client = CapmonsterClient("test_key")
+    await client.report_incorrect_token_async(456)
+
+
+@respx.mock
+def test_get_user_agent():
+    respx.get("https://capmonster.cloud/api/useragent/actual").mock(
+        return_value=Response(200, text="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
+    )
+    client = CapmonsterClient("test_key")
+    ua = client.get_user_agent()
+    assert "Mozilla" in ua
+
+
+@respx.mock
+@pytest.mark.asyncio
+async def test_get_user_agent_async():
+    respx.get("https://capmonster.cloud/api/useragent/actual").mock(
+        return_value=Response(200, text="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
+    )
+    client = CapmonsterClient("test_key")
+    ua = await client.get_user_agent_async()
+    assert "Mozilla" in ua
+
+
+def test_nocache_recaptcha_v2():
+    task = RecaptchaV2Task(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        nocache=True
+    )
+    result = task.to_request()
+    assert result["nocache"] is True
+
+
+def test_nocache_recaptcha_v3():
+    task = RecaptchaV3Task(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        nocache=True
+    )
+    result = task.to_request()
+    assert result["nocache"] is True
+
+
+def test_nocache_excluded_when_none():
+    task = RecaptchaV2Task(
+        websiteURL="https://example.com",
+        websiteKey="key123"
+    )
+    result = task.to_request()
+    assert "nocache" not in result
+
+
+def test_recaptcha_click_task():
+    task = RecaptchaClickTask(
+        websiteURL="https://example.com",
+        websiteKey="key123"
+    )
+    result = task.to_request()
+    assert result["type"] == "RecaptchaClickTask"
+    assert result["websiteURL"] == "https://example.com"
+    assert result["websiteKey"] == "key123"
+
+
+def test_recaptcha_click_task_with_proxy():
+    task = RecaptchaClickTask(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        proxy=ProxyPayload(
+            proxyType="http",
+            proxyAddress="1.2.3.4",
+            proxyPort=8080
+        )
+    )
+    result = task.to_request()
+    assert result["proxyType"] == "http"
+    assert result["proxyAddress"] == "1.2.3.4"
+    assert "proxy" not in result
+
+
+def test_hunt_task():
+    task = HuntTask(
+        websiteURL="https://example.com",
+        websiteKey="key123"
+    )
+    result = task.to_request()
+    assert result["type"] == "HuntTask"
+    assert result["websiteURL"] == "https://example.com"
+    assert result["websiteKey"] == "key123"
+
+
+def test_hunt_task_with_proxy():
+    task = HuntTask(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        proxy=ProxyPayload(
+            proxyType="socks5",
+            proxyAddress="10.0.0.1",
+            proxyPort=1080
+        )
+    )
+    result = task.to_request()
+    assert result["proxyType"] == "socks5"
+    assert "proxy" not in result
+
+
+def test_recaptcha_v2_cookies():
+    task = RecaptchaV2Task(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        cookies="session=abc; token=xyz"
+    )
+    result = task.to_request()
+    assert result["cookies"] == "session=abc; token=xyz"
+
+
+def test_recaptcha_v2_cookies_excluded_when_none():
+    task = RecaptchaV2Task(
+        websiteURL="https://example.com",
+        websiteKey="key123"
+    )
+    result = task.to_request()
+    assert "cookies" not in result
+
+
+def test_recaptcha_v2_enterprise_page_action():
+    task = RecaptchaV2EnterpriseTask(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        pageAction="login_test"
+    )
+    result = task.to_request()
+    assert result["pageAction"] == "login_test"
+
+
+def test_recaptcha_v2_enterprise_page_action_excluded_when_none():
+    task = RecaptchaV2EnterpriseTask(
+        websiteURL="https://example.com",
+        websiteKey="key123"
+    )
+    result = task.to_request()
+    assert "pageAction" not in result
+
+
+def test_recaptcha_v3_is_enterprise():
+    task = RecaptchaV3Task(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        isEnterprise=True
+    )
+    result = task.to_request()
+    assert result["isEnterprise"] is True
+
+
+def test_recaptcha_v3_is_enterprise_excluded_when_none():
+    task = RecaptchaV3Task(
+        websiteURL="https://example.com",
+        websiteKey="key123"
+    )
+    result = task.to_request()
+    assert "isEnterprise" not in result
+
+
+# --- Report methods: error paths and payload verification ---
+
+@respx.mock
+def test_report_incorrect_image_sends_correct_payload():
+    route = respx.post(f"{BASE_URL}/reportIncorrectImageCaptcha").mock(
+        return_value=Response(200, json={"errorId": 0, "status": "success"})
+    )
+    client = CapmonsterClient("my_api_key")
+    client.report_incorrect_image(999)
+    request_body = route.calls[0].request.content
+    import json
+    payload = json.loads(request_body)
+    assert payload["clientKey"] == "my_api_key"
+    assert payload["taskId"] == 999
+
+
+@respx.mock
+def test_report_incorrect_token_sends_correct_payload():
+    route = respx.post(f"{BASE_URL}/reportIncorrectTokenCaptcha").mock(
+        return_value=Response(200, json={"errorId": 0, "status": "success"})
+    )
+    client = CapmonsterClient("my_api_key")
+    client.report_incorrect_token(777)
+    request_body = route.calls[0].request.content
+    import json
+    payload = json.loads(request_body)
+    assert payload["clientKey"] == "my_api_key"
+    assert payload["taskId"] == 777
+
+
+@respx.mock
+def test_report_incorrect_image_api_error():
+    respx.post(f"{BASE_URL}/reportIncorrectImageCaptcha").mock(
+        return_value=Response(200, json={
+            "errorId": 1,
+            "errorCode": "ERROR_NO_SUCH_CAPCHA_ID",
+            "errorDescription": "Task not found"
+        })
+    )
+    client = CapmonsterClient("test_key")
+    with pytest.raises(CapmonsterAPIException) as exc_info:
+        client.report_incorrect_image(99999)
+    assert exc_info.value.error_code == "ERROR_NO_SUCH_CAPCHA_ID"
+
+
+@respx.mock
+def test_report_incorrect_token_api_error():
+    respx.post(f"{BASE_URL}/reportIncorrectTokenCaptcha").mock(
+        return_value=Response(200, json={
+            "errorId": 1,
+            "errorCode": "ERROR_NO_SUCH_CAPCHA_ID",
+            "errorDescription": "Task not found"
+        })
+    )
+    client = CapmonsterClient("test_key")
+    with pytest.raises(CapmonsterAPIException) as exc_info:
+        client.report_incorrect_token(99999)
+    assert exc_info.value.error_code == "ERROR_NO_SUCH_CAPCHA_ID"
+
+
+@respx.mock
+@pytest.mark.asyncio
+async def test_report_incorrect_image_api_error_async():
+    respx.post(f"{BASE_URL}/reportIncorrectImageCaptcha").mock(
+        return_value=Response(200, json={
+            "errorId": 1,
+            "errorCode": "ERROR_NO_SUCH_CAPCHA_ID",
+            "errorDescription": "Task not found"
+        })
+    )
+    client = CapmonsterClient("test_key")
+    with pytest.raises(CapmonsterAPIException) as exc_info:
+        await client.report_incorrect_image_async(99999)
+    assert exc_info.value.error_code == "ERROR_NO_SUCH_CAPCHA_ID"
+
+
+@respx.mock
+@pytest.mark.asyncio
+async def test_report_incorrect_token_api_error_async():
+    respx.post(f"{BASE_URL}/reportIncorrectTokenCaptcha").mock(
+        return_value=Response(200, json={
+            "errorId": 1,
+            "errorCode": "ERROR_NO_SUCH_CAPCHA_ID",
+            "errorDescription": "Task not found"
+        })
+    )
+    client = CapmonsterClient("test_key")
+    with pytest.raises(CapmonsterAPIException) as exc_info:
+        await client.report_incorrect_token_async(99999)
+    assert exc_info.value.error_code == "ERROR_NO_SUCH_CAPCHA_ID"
+
+
+# --- get_user_agent: error path ---
+
+@respx.mock
+def test_get_user_agent_network_error():
+    respx.get("https://capmonster.cloud/api/useragent/actual").mock(
+        side_effect=ConnectionError("Connection refused")
+    )
+    client = CapmonsterClient("test_key")
+    with pytest.raises(CapmonsterException):
+        client.get_user_agent()
+
+
+@respx.mock
+@pytest.mark.asyncio
+async def test_get_user_agent_network_error_async():
+    respx.get("https://capmonster.cloud/api/useragent/actual").mock(
+        side_effect=ConnectionError("Connection refused")
+    )
+    client = CapmonsterClient("test_key")
+    with pytest.raises(CapmonsterException):
+        await client.get_user_agent_async()
+
+
+# --- nocache: V2Enterprise and V3Enterprise ---
+
+def test_nocache_recaptcha_v2_enterprise():
+    task = RecaptchaV2EnterpriseTask(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        nocache=True
+    )
+    result = task.to_request()
+    assert result["nocache"] is True
+
+
+def test_nocache_recaptcha_v2_enterprise_excluded_when_none():
+    task = RecaptchaV2EnterpriseTask(
+        websiteURL="https://example.com",
+        websiteKey="key123"
+    )
+    result = task.to_request()
+    assert "nocache" not in result
+
+
+def test_nocache_recaptcha_v3_enterprise():
+    task = RecaptchaV3EnterpriseTask(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        nocache=True
+    )
+    result = task.to_request()
+    assert result["nocache"] is True
+
+
+def test_nocache_recaptcha_v3_enterprise_excluded_when_none():
+    task = RecaptchaV3EnterpriseTask(
+        websiteURL="https://example.com",
+        websiteKey="key123"
+    )
+    result = task.to_request()
+    assert "nocache" not in result
+
+
+# --- RecaptchaV2: cookies + proxy together ---
+
+def test_recaptcha_v2_cookies_and_proxy_together():
+    task = RecaptchaV2Task(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        cookies="session=abc; token=xyz",
+        proxy=ProxyPayload(
+            proxyType="http",
+            proxyAddress="1.2.3.4",
+            proxyPort=8080
+        )
+    )
+    result = task.to_request()
+    assert result["cookies"] == "session=abc; token=xyz"
+    assert result["proxyType"] == "http"
+    assert result["proxyAddress"] == "1.2.3.4"
+    assert result["proxyPort"] == 8080
+    assert "proxy" not in result
+
+
+# --- isEnterprise explicit False ---
+
+def test_recaptcha_v3_is_enterprise_false():
+    task = RecaptchaV3Task(
+        websiteURL="https://example.com",
+        websiteKey="key123",
+        isEnterprise=False
+    )
+    result = task.to_request()
+    assert result["isEnterprise"] is False
