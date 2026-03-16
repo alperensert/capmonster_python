@@ -1,6 +1,6 @@
 [project]
 name = "capmonster_python"
-version = "5.0.0"
+version = "5.0.1"
 description = "capmonster.cloud library/package for Python"
 readme = "README.md"
 requires-python = ">=3.9"
