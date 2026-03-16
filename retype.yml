@@ -3,7 +3,7 @@ output: .retype
 
 branding:
   title: capmonster_python
-  label: v4
+  label: v5
 
 links:
   - text: GitHub
