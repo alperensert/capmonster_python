@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826900150189">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957349559">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.2.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Changelog</title>
     <meta name="title" content="Changelog">
-    <meta name="description" content="API usage has completely changed from v3.2 to v4.0. All task creation methods now rely on structured payloads and typed clients.">
+    <meta name="description" content="default retry_delay changed from 1.0 to 2.0 seconds.">
 
     <!-- Canonical -->
     <link rel="canonical" href="/changelog/">
@@ -21,17 +21,17 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="/changelog/">
     <meta property="og:title" content="Changelog">
-    <meta property="og:description" content="API usage has completely changed from v3.2 to v4.0. All task creation methods now rely on structured payloads and typed clients.">
+    <meta property="og:description" content="default retry_delay changed from 1.0 to 2.0 seconds.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.2.0.826900150189" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.2.0.826957349559" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.2.0.826900150189" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.2.0.826957349559" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.2.0.826900150189" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.2.0.826957349559" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -141,10 +141,10 @@
         <span>Changelog</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="v400-2025-04-30">
+<doc-anchor-target id="v500-2026-03-16">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#v400-2025-04-30">#</doc-anchor-trigger>
-        <span>v4.0.0 (2025-04-30) <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-primary-text bg-badge-primary border border-badge-primary-border h-6 px-2 text-xs rounded-md">
+        <doc-anchor-trigger class="header-anchor-trigger" to="#v500-2026-03-16">#</doc-anchor-trigger>
+        <span>v5.0.0 (2026-03-16) <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-primary-text bg-badge-primary border border-badge-primary-border h-6 px-2 text-xs rounded-md">
             <span>Latest</span>
         </span></span>
     </h2>
@@ -156,7 +156,7 @@
     </h3>
 </doc-anchor-target>
 <ul>
-<li>API usage has completely changed from v3.2 to v4.0. All task creation methods now rely on structured payloads and typed clients.</li>
+<li>default retry_delay changed from 1.0 to 2.0 seconds.</li>
 </ul>
 <doc-anchor-target id="features">
     <h3>
@@ -165,11 +165,60 @@
     </h3>
 </doc-anchor-target>
 <ul>
-<li>full rewrite with async support, pydantic v2 and modern architecture (<a href="https://github.com/alperensert/capmonster_python/issues/72">#72</a>) (<a href="https://github.com/alperensert/capmonster_python/commit/bd9e40dd4ca22d757ed248d2f6903d5b38e0c960">bd9e40d</a>)</li>
+<li>add context manager, solve() convenience, configurable polling, multi-Python CI (<a href="https://github.com/alperensert/capmonster_python/commit/5399fbb5fcd34489d00b441555426825a0a95ce2">5399fbb</a>)</li>
+<li>add FunCaptcha, Amazon WAF, reCAPTCHA v3 Enterprise, and Cloudflare Waiting Room (<a href="https://github.com/alperensert/capmonster_python/commit/b939c7bfa0b8e32a7f71ae89ad53f2fae257773f">b939c7b</a>)</li>
+<li>add MTCaptcha, Yidun, Altcha, Castle, and TSPD task types (<a href="https://github.com/alperensert/capmonster_python/commit/221aa0e9912b943b8daa99774259be4458eefd03">221aa0e</a>)</li>
+<li>add RecaptchaClickTask, HuntTask, and missing API fields (<a href="https://github.com/alperensert/capmonster_python/commit/eb38897fac930f89c79bd322ce9320687f424e1c">eb38897</a>)</li>
+<li>add reportIncorrect and getUserAgent client methods (<a href="https://github.com/alperensert/capmonster_python/commit/152dc978537bc774be99d0bfc4f75262d8a27202">152dc97</a>)</li>
+</ul>
+<doc-anchor-target id="bug-fixes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#bug-fixes">#</doc-anchor-trigger>
+        <span>Bug Fixes</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>ci:</strong> add respx to test dependencies (<a href="https://github.com/alperensert/capmonster_python/commit/1976b6fc2da0c98e6fdfbd78cf500e37095fa191">1976b6f</a>)</li>
+<li><strong>ci:</strong> specify release-please config and manifest paths (<a href="https://github.com/alperensert/capmonster_python/commit/5fb508af7a2cfa938dcc819a357a40a22e9fe3b0">5fb508a</a>)</li>
+<li>resolve test function shadowing, remove dead code, and cleanup (<a href="https://github.com/alperensert/capmonster_python/commit/4fcf3119eb9b3deb85b852d8ac8fc589e9574fa2">4fcf311</a>)</li>
 </ul>
 <doc-anchor-target id="documentation">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#documentation">#</doc-anchor-trigger>
+        <span>Documentation</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>update README and API reference for new features (<a href="https://github.com/alperensert/capmonster_python/commit/c8793f66e3a844aca78b6f113e4ed99b72004a67">c8793f6</a>)</li>
+</ul>
+<hr>
+<doc-anchor-target id="v400-2025-04-30">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#v400-2025-04-30">#</doc-anchor-trigger>
+        <span>v4.0.0 (2025-04-30)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="-breaking-changes-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-breaking-changes-1">#</doc-anchor-trigger>
+        <span>⚠ BREAKING CHANGES</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>API usage has completely changed from v3.2 to v4.0. All task creation methods now rely on structured payloads and typed clients.</li>
+</ul>
+<doc-anchor-target id="features-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#features-1">#</doc-anchor-trigger>
+        <span>Features</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>full rewrite with async support, pydantic v2 and modern architecture (<a href="https://github.com/alperensert/capmonster_python/issues/72">#72</a>) (<a href="https://github.com/alperensert/capmonster_python/commit/bd9e40dd4ca22d757ed248d2f6903d5b38e0c960">bd9e40d</a>)</li>
+</ul>
+<doc-anchor-target id="documentation-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#documentation-1">#</doc-anchor-trigger>
         <span>Documentation</span>
     </h3>
 </doc-anchor-target>
@@ -183,22 +232,6 @@
         <span>v3.2.0 (2024-04-27)</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="features-1">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#features-1">#</doc-anchor-trigger>
-        <span>Features</span>
-    </h3>
-</doc-anchor-target>
-<ul>
-<li>add amazon waf task support (<a href="https://github.com/alperensert/capmonster_python/commit/c78ff5654b7ded310e5e647e7052712d7870e5f7">c78ff56</a>)</li>
-</ul>
-<hr>
-<doc-anchor-target id="v310-2024-04-17">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#v310-2024-04-17">#</doc-anchor-trigger>
-        <span>v3.1.0 (2024-04-17)</span>
-    </h2>
-</doc-anchor-target>
 <doc-anchor-target id="features-2">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#features-2">#</doc-anchor-trigger>
@@ -206,7 +239,7 @@
     </h3>
 </doc-anchor-target>
 <ul>
-<li>TenDI task (<a href="https://github.com/alperensert/capmonster_python/issues/66">#66</a>) (<a href="https://github.com/alperensert/capmonster_python/commit/261638d2f73c4a95840f1febc697e7162906a109">261638d</a>)</li>
+<li>add amazon waf task support (<a href="https://github.com/alperensert/capmonster_python/commit/c78ff5654b7ded310e5e647e7052712d7870e5f7">c78ff56</a>)</li>
 </ul>
 <hr>
 <p>You can find other version changelogs <a href="https://github.com/alperensert/capmonster_python/releases">here</a>.</p>
