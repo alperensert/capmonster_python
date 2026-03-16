@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/alperensert/capmonster_python/compare/v5.0.0...v5.0.1) (2026-03-16)
+
+
+### Bug Fixes
+
+* **ci:** use PAT for release-please and simplify test matrix ([7db062b](https://github.com/alperensert/capmonster_python/commit/7db062b08b6618074b106740107ca4bee481a02a))
+
 ## [5.0.0](https://github.com/alperensert/capmonster_python/compare/v4.0.0...v5.0.0) (2026-03-15)
 
 
