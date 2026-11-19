@@ -3,6 +3,7 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .task import TaskPayload, ProxyPayload, UserAgentPayload
+from .._deprecation import warn_proxy_required
 
 
 class FunCaptchaTask(TaskPayload, UserAgentPayload):
@@ -31,6 +32,10 @@ class FunCaptchaTask(TaskPayload, UserAgentPayload):
         default=None,
         description='Additional cookies in the format: cookieName1=value1; cookieName2=value2.')
     proxy: Optional[ProxyPayload] = Field(default=None, description='Proxy settings.')
+
+    def model_post_init(self, __context: Any) -> None:
+        if self.proxy is None:
+            warn_proxy_required("FunCaptchaTask", stacklevel=4)
 
     def to_request(self) -> dict[str, Any]:
         base = self.model_dump(exclude_none=True)

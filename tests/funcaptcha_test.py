@@ -40,3 +40,9 @@ def test_to_request_minimal():
     assert "funcaptchaApiJSSubdomain" not in result
     assert "data" not in result
     assert "cookies" not in result
+
+
+def test_missing_proxy_warns():
+    import pytest
+    with pytest.warns(UserWarning, match="proxy"):
+        FunCaptchaTask(websiteURL="https://example.com", websitePublicKey="key")

@@ -3,6 +3,7 @@ from typing import Optional, Any
 from pydantic import Field, BaseModel, model_validator
 
 from .task import TaskPayload, UserAgentPayload, ProxyPayload
+from .._deprecation import warn_proxy_required
 from ..exceptions import CapmonsterValidationException
 
 
@@ -17,6 +18,7 @@ class DataDomeMetadata(BaseModel):
             like: "https://geo.captcha-delivery.com/captcha/?initialCid=...".
         datadomeCookie: Mandatory; Stores the DataDome cookies, retrievable on
             the page using `document.cookie`.
+        datadomeVersion: Optional; DataDome script version, if the site requires it.
 
     Raises:
         CapmonsterValidationException: If neither `htmlPageBase64` nor `captchaUrl` is provided,
@@ -28,6 +30,8 @@ class DataDomeMetadata(BaseModel):
                                       description="\"captchaUrl\" - link to the captcha. Usually it looks like this: \"https://geo.captcha-delivery.com/captcha/?initialCid=...\"")
     datadomeCookie: str = Field(...,
                                 description="Your cookies from datadome. You can get it on the page using document.cookie")
+    datadomeVersion: Optional[str] = Field(default=None,
+                                           description="DataDome script version, if the site requires it.")
 
     @model_validator(mode="after")
     def validate_fields(self) -> "DataDomeMetadata":
@@ -53,6 +57,10 @@ class DataDomeTask(TaskPayload, UserAgentPayload):
     websiteURL: str = Field(..., description="Address of the page on which the captcha is solved.")
     proxy: Optional[ProxyPayload] = Field(default=None, description="Proxy settings.")
     metadata: DataDomeMetadata = Field(default=None, description="Additional data about the captcha.")
+
+    def model_post_init(self, __context: Any) -> None:
+        if self.proxy is None:
+            warn_proxy_required("DataDomeTask", stacklevel=4)
 
     def to_request(self) -> dict[str, Any]:
         base = self.model_dump(exclude_none=True, by_alias=True)

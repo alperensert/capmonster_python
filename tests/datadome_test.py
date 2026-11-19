@@ -41,3 +41,18 @@ async def test_create_task_async():
     client = CapmonsterClient(API_KEY, timeout=30.0)
     task_id = await client.create_task_async(task=DataDomeTask(websiteURL=WEBSITE_URL, metadata=METADATA))
     assert task_id != 0
+
+
+def test_datadome_version():
+    task = DataDomeTask(
+        websiteURL="https://example.com",
+        metadata=DataDomeMetadata(captchaUrl="https://geo.captcha-delivery.com/captcha/?x=1",
+                                  datadomeCookie="datadome=abc", datadomeVersion="5.1.2")
+    )
+    assert task.to_request()["metadata"]["datadomeVersion"] == "5.1.2"
+
+
+def test_missing_proxy_warns():
+    with pytest.warns(UserWarning, match="proxy"):
+        DataDomeTask(websiteURL="https://example.com",
+                     metadata=DataDomeMetadata(captchaUrl="https://c", datadomeCookie="d"))
