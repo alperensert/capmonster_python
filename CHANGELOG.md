@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.1.0](https://github.com/alperensert/capmonster_python/compare/v5.0.0...v5.1.0) (2026-11-19)
+
+
+### Features
+
+* sync with the current CapMonster Cloud API (5.1, no breaking changes) ([#78](https://github.com/alperensert/capmonster_python/issues/78)) ([8b671ce](https://github.com/alperensert/capmonster_python/commit/8b671ce67f397c695c561c6c3991a346141182c3))
+
+
+### Bug Fixes
+
+* **ci:** use PAT for release-please and simplify test matrix ([7db062b](https://github.com/alperensert/capmonster_python/commit/7db062b08b6618074b106740107ca4bee481a02a))
+* **docs:** set the site url that Retype 4.6 requires ([#79](https://github.com/alperensert/capmonster_python/issues/79)) ([ea050f7](https://github.com/alperensert/capmonster_python/commit/ea050f72347970cfc2809d71152ddde43fa6464f))
+
 ## [5.0.0](https://github.com/alperensert/capmonster_python/compare/v4.0.0...v5.0.0) (2026-03-15)
 
 
