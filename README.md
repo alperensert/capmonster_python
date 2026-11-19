@@ -87,6 +87,8 @@ CapmonsterClient(api_key, timeout=30.0, max_retries=120, retry_delay=2.0)
 | `create_task(task)` | Create a task, returns `task_id` |
 | `join_task_result(task_id)` | Poll until result is ready |
 | `get_task_result(task_id)` | Single poll (no waiting) |
+| `solve_detailed(task)` | Like `solve`, but returns a `TaskResult` with `solution` and `cost` |
+| `join_task_result_detailed(task_id)` / `get_task_result_detailed(task_id)` | Same, for polling |
 | `get_balance()` | Get account balance |
 | `get_user_agent()` | Get current valid User-Agent string |
 | `report_incorrect_image(task_id)` | Report bad image captcha solution |
@@ -106,14 +108,14 @@ Both sync and async context managers are supported for proper connection cleanup
 | reCAPTCHA v2 Enterprise | `RecaptchaV2EnterpriseTask` | Optional |
 | reCAPTCHA v3 | `RecaptchaV3Task` | No |
 | reCAPTCHA v3 Enterprise | `RecaptchaV3EnterpriseTask` | No |
-| reCAPTCHA Click | `RecaptchaClickTask` | Optional |
+| reCAPTCHA Click | `RecaptchaClickTask` (deprecated, use `ComplexImageRecaptchaTask`) | Optional |
 
 ### Cloudflare
 
 | CAPTCHA Type | Class | Proxy |
 |---|---|---|
 | Turnstile | `TurnstileTask` | No |
-| Turnstile Challenge (cf_clearance) | `TurnstileCloudFlareTask` | Required |
+| Turnstile Challenge (token / cf_clearance) | `TurnstileCloudFlareTask` | Optional / Required |
 | Turnstile Waiting Room | `TurnstileWaitingRoomTask` | Required |
 
 ### Image-Based
@@ -121,7 +123,7 @@ Both sync and async context managers are supported for proper connection cleanup
 | CAPTCHA Type | Class | Proxy |
 |---|---|---|
 | Image-to-Text OCR | `ImageToTextTask` | No |
-| Complex Image (reCAPTCHA grid) | `ComplexImageRecaptchaTask` | No |
+| Complex Image (reCAPTCHA click/grid) | `ComplexImageRecaptchaTask` | No |
 | Complex Image Recognition | `ComplexImageRecognitionTask` | No |
 
 ### Behavioral / Interactive
@@ -130,8 +132,11 @@ Both sync and async context managers are supported for proper connection cleanup
 |---|---|---|
 | GeeTest v3 | `GeeTestV3Task` | Optional |
 | GeeTest v4 | `GeeTestV4Task` | Optional |
-| FunCaptcha (Arkose Labs) | `FunCaptchaTask` | Optional |
-| Hunt | `HuntTask` | Optional |
+| FunCaptcha (Arkose Labs) | `FunCaptchaTask` | Required |
+| Hunt | `HuntTask` | Required |
+| Alibaba | `AlibabaTask` | Optional |
+| Friendly Captcha | `FriendlyTask` | Optional |
+| ARCaptcha | `ARCaptchaTask` | No |
 
 ### Enterprise Protection
 
@@ -147,8 +152,11 @@ Both sync and async context managers are supported for proper connection cleanup
 | CAPTCHA Type | Class | Proxy |
 |---|---|---|
 | Binance | `BinanceTask` | Required |
-| Temu | `TemuTask` | No |
-| TenDI | `TenDITask` | Required |
+| Temu | `TemuTask` (deprecated) | No |
+| TenDI | `TenDITask` | Optional |
+| FengkongCloud | `FengkongCloudTask` | No |
+| HeyTap | `HeyTapTask` | No |
+| Proton | `ProtonTask` | Required |
 
 ### Other
 
@@ -156,7 +164,7 @@ Both sync and async context managers are supported for proper connection cleanup
 |---|---|---|
 | Altcha | `AltchaTask` | No |
 | Basilisk | `BasiliskTask` | No |
-| Castle | `CastleTask` | No |
+| Castle | `CastleTask` (deprecated) | No |
 | MTCaptcha | `MTCaptchaTask` | Optional |
 | Prosopo | `ProsopoTask` | Optional |
 | Yidun | `YidunTask` | Optional |

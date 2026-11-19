@@ -42,10 +42,11 @@ Image-to-Text, and more — with both sync and async support out of the box.
 | **reCAPTCHA** | V2, V2 Enterprise, V3, V3 Enterprise [!badge text="NEW" variant="success"] |
 | **Turnstile** | Token, CloudFlare (cf_clearance), Waiting Room [!badge text="NEW" variant="success"] |
 | **GeeTest** | V3, V4 |
-| **Image-Based** | ImageToText, ComplexImageRecaptcha, ComplexImageRecognition |
+| **Image-Based** | ImageToText, ComplexImageRecaptcha (reCAPTCHA click), ComplexImageRecognition |
 | **Enterprise** | DataDome, Imperva, Amazon WAF [!badge text="NEW" variant="success"] |
-| **Platform** | Binance, Temu, TenDI |
-| **Other** | Prosopo, Basilisk, FunCaptcha [!badge text="NEW" variant="success"], MTCaptcha [!badge text="NEW" variant="success"], Yidun [!badge text="NEW" variant="success"], Altcha [!badge text="NEW" variant="success"], Castle [!badge text="NEW" variant="success"], TSPD [!badge text="NEW" variant="success"] |
+| **Platform** | Binance, TenDI, Alibaba [!badge text="NEW" variant="success"], HeyTap [!badge text="NEW" variant="success"], Proton [!badge text="NEW" variant="success"], FengkongCloud [!badge text="NEW" variant="success"] |
+| **Other** | Prosopo, Basilisk, FunCaptcha [!badge text="NEW" variant="success"], MTCaptcha [!badge text="NEW" variant="success"], Yidun [!badge text="NEW" variant="success"], Altcha [!badge text="NEW" variant="success"], TSPD [!badge text="NEW" variant="success"], Hunt, Friendly Captcha [!badge text="NEW" variant="success"], ARCaptcha [!badge text="NEW" variant="success"] |
+| **Deprecated** | Temu, Castle, RecaptchaClickTask (removed in 6.0) |
 
 ---
 

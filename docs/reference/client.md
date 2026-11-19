@@ -122,6 +122,36 @@ async def solve_async(self, task: TaskPayload, callback_url: str | None = None) 
 
 ---
 
+### `get_task_result_detailed` / `join_task_result_detailed` / `solve_detailed` [!badge text="NEW" variant="success"]
+
+Same as `get_task_result`, `join_task_result` and `solve`, but return a `TaskResult` with the task's status and cost
+as well as its solution. The methods above keep returning only the solution dictionary.
+
+```python
+def get_task_result_detailed(self, task_id: int) -> TaskResult
+def join_task_result_detailed(self, task_id: int) -> TaskResult
+def solve_detailed(self, task: TaskPayload, callback_url: str | None = None) -> TaskResult
+# async variants: get_task_result_detailed_async, join_task_result_detailed_async, solve_detailed_async
+```
+
+**Returns:** `TaskResult`
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `status` | `str` | `"processing"` or `"ready"`. |
+| `solution` | `dict` | The solution; `{}` while the task is processing. |
+| `cost` | `float \| None` | Cost of the task in USD; only set when the task is ready. |
+
+```python
+from capmonster_python import CapmonsterClient, TurnstileTask
+
+with CapmonsterClient(api_key="YOUR_API_KEY") as client:
+    result = client.solve_detailed(TurnstileTask(websiteURL="https://example.com", websiteKey="0x4AAAAAAA"))
+    print(result.solution["token"], result.cost)
+```
+
+---
+
 ### `report_incorrect_image`
 
 Reports an incorrect image captcha solution.

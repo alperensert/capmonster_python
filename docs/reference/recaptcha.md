@@ -34,6 +34,7 @@ Solves Google reCAPTCHA V2 Enterprise challenges.
 | `pageAction` | `str \| None` | `None` | Action parameter if different from default `"verify"`. |
 | `enterprisePayload` | `str \| None` | `None` | Additional parameters passed to `grecaptcha.enterprise.render`. |
 | `apiDomain` | `str \| None` | `None` | Custom domain for loading reCAPTCHA Enterprise. |
+| `minScore` | `float \| None` | `None` | Minimum acceptable score, from `0.1` to `0.9`. |
 | `cookies` | `str \| None` | `None` | Cookies to send with the request. |
 | `nocache` | `bool \| None` | `None` | Set to `True` to force fresh token generation (prevents reuse of cached tokens). |
 | `userAgent` | `str \| None` | `None` | Browser User-Agent string. |
