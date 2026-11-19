@@ -40,10 +40,11 @@ class TurnstileCloudFlareTask(TurnstileTask):
             values are "token" or "cf_clearance".
         userAgent: Browser User-Agent string, must originate from a Windows OS.
         apiJsUrl: Optional captcha script URL, applicable only for "token" type tasks.
+        pageData: Optional "chlPageData" value of the challenge, applicable only for "token" type tasks.
         htmlPageBase64: Base64-encoded HTML page content, required for tasks
             with "cf_clearance" type.
         proxy: Optional proxy settings; mandatory for the "cf_clearance" type and
-            omitted for the "token" type.
+            optional for the "token" type.
 
     Raises:
         CapmonsterValidationException: When field requirements specific to the `cloudflareTaskType`
@@ -54,6 +55,8 @@ class TurnstileCloudFlareTask(TurnstileTask):
                                                                  description="Type of Cloudflare challenge")
     userAgent: str = Field(..., description="Browser User-Agent string (must be from Windows OS)")
     apiJsUrl: Optional[str] = Field(default=None, description="Captcha script URL (only for token-based tasks)")
+    pageData: Optional[str] = Field(default=None,
+                                    description="chlPageData value of the challenge (only for token-based tasks)")
     htmlPageBase64: Optional[str] = Field(default=None,
                                           description="Base64-encoded HTML page content, required for cf_clearance type")
     proxy: Optional[ProxyPayload] = Field(
@@ -62,12 +65,7 @@ class TurnstileCloudFlareTask(TurnstileTask):
 
     @model_validator(mode="after")
     def check_fields_match_type(self) -> "TurnstileCloudFlareTask":
-        if self.cloudflareTaskType == "token":
-            if not self.apiJsUrl:
-                raise CapmonsterValidationException("apiJsUrl is required for cloudflareTaskType='token'")
-            if self.proxy is not None:
-                raise CapmonsterValidationException("proxy must be omitted for cloudflareTaskType='token'")
-        elif self.cloudflareTaskType == "cf_clearance":
+        if self.cloudflareTaskType == "cf_clearance":
             if not self.htmlPageBase64:
                 raise CapmonsterValidationException("htmlPageBase64 is required for cloudflareTaskType='cf_clearance'")
             if self.proxy is None:

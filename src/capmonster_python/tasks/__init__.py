@@ -8,7 +8,7 @@ from .complex_image_recognition import ComplexImageRecognitionTask
 from .datadome import DataDomeTask, DataDomeMetadata
 from .funcaptcha import FunCaptchaTask
 from .geetest import GeeTestV4Task, GeeTestV3Task
-from .hunt import HuntTask
+from .hunt import HuntTask, HuntMetadata
 from .image_to_text import ImageToTextTask
 from .imperva import ImpervaTask, ImpervaTaskMetadata
 from .mtcaptcha import MTCaptchaTask
@@ -20,7 +20,7 @@ from .recaptcha_v3 import RecaptchaV3Task
 from .recaptcha_v3_enterprise import RecaptchaV3EnterpriseTask
 from .task import VanillaTaskPayload, ProxyPayload, UserAgentPayload
 from .temu import TemuTask
-from .tendi import TenDITask
+from .tendi import TenDITask, TenDIMetadata
 from .tspd import TSPDTask, TSPDMetadata
 from .turnstile import TurnstileTask, TurnstileCloudFlareTask, TurnstileWaitingRoomTask
 from .yidun import YidunTask
@@ -45,6 +45,7 @@ __all__ = [
     "GeeTestV3Task",
     "GeeTestV4Task",
     "HuntTask",
+    "HuntMetadata",
     "ImageToTextTask",
     "ImpervaTask",
     "ImpervaTaskMetadata",
@@ -57,6 +58,7 @@ __all__ = [
     "RecaptchaV3EnterpriseTask",
     "TemuTask",
     "TenDITask",
+    "TenDIMetadata",
     "TSPDTask",
     "TSPDMetadata",
     "TurnstileTask",
