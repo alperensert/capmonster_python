@@ -1,5 +1,9 @@
 # Castle
 
+!!!warning Deprecated
+`CastleTask` emits a `DeprecationWarning` and will be removed in 6.0: Castle is no longer in the CapMonster Cloud docs.
+!!!
+
 Solves Castle challenges.
 
 **API type:** `CustomTask` (with `class: "Castle"`)

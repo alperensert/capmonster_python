@@ -56,4 +56,11 @@ Solves complex image recognition tasks (rotate, match, etc.).
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `imagesBase64` | `list[str]` | **required** | List of base64-encoded images. |
-| `task` | `Literal["oocl_rotate_new", "oocl_rotate_double_new", "betpunch_3x3_rotate", "bls", "shein"]` | **required** | Type of recognition task. |
+| `task` | `str` | **required** | One of `oocl_rotate_new`, `oocl_rotate_double_new`, `betpunch_3x3_rotate`, `baidu`, `bls_3x3`, `shein`, `bills_audio`, `dli`, `MathSum`, `portugal_text_find_icon`. |
+| `taskArgument` | `str \| None` | `None` | Sent as `TaskArgument`. **Required** for `bls_3x3` (the number to find) and `portugal_text_find_icon` (the instruction text). |
+
+`bills_audio` sends `PayloadType: "Audio"` automatically; pass the audio as base64 in `imagesBase64`.
+
+!!!warning
+`task="bls"` is deprecated: it is still sent as `bls`, with a `DeprecationWarning`, and will be removed in 6.0. Use `bls_3x3` with `taskArgument`.
+!!!

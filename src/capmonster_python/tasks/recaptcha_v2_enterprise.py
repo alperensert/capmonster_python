@@ -17,6 +17,7 @@ class RecaptchaV2EnterpriseTask(TaskPayload, UserAgentPayload):
         apiDomain: An optional domain address from which to load reCAPTCHA Enterprise.
             This parameter should only be set if explicitly needed.
         cookies: Optional cookies to be sent with the request.
+        minScore: Optional minimum acceptable score, from 0.1 to 0.9.
         proxy: Optional proxy settings for handling the task.
     """
     type: str = Field(default="RecaptchaV2EnterpriseTask", frozen=True)
@@ -31,6 +32,7 @@ class RecaptchaV2EnterpriseTask(TaskPayload, UserAgentPayload):
     apiDomain: Optional[str] = Field(default=None,
                                      description='Domain address from which to load reCAPTCHA Enterprise. '
                                                  'Don\'t use a parameter if you don\'t know why it\'s needed.')
+    minScore: Optional[float] = Field(default=None, description='Minimum score of a captcha.', ge=0.1, le=0.9)
     cookies: Optional[str] = Field(default=None, description='Cookies to be sent with the request.')
     nocache: Optional[bool] = Field(default=None,
                                     description='Set to true to force fresh token generation (prevents reuse of cached tokens).')

@@ -29,15 +29,16 @@ Solves Cloudflare challenges that return either a token or a `cf_clearance` cook
 | `websiteKey` | `str` | **required** | Turnstile site key. |
 | `cloudflareTaskType` | `Literal["token", "cf_clearance"]` | `"token"` | Cloudflare challenge type. |
 | `userAgent` | `str` | **required** | Browser User-Agent string (must be from Windows OS). |
-| `apiJsUrl` | `str \| None` | `None` | Captcha script URL. **Required** for `token` type. |
+| `apiJsUrl` | `str \| None` | `None` | Captcha script URL (`token` type only). |
+| `pageData` | `str \| None` | `None` | Value of `chlPageData` (`token` type only). |
 | `htmlPageBase64` | `str \| None` | `None` | Base64-encoded HTML page. **Required** for `cf_clearance` type. |
-| `proxy` | `ProxyPayload \| None` | `None` | Proxy settings. **Required** for `cf_clearance`, must be omitted for `token`. |
+| `proxy` | `ProxyPayload \| None` | `None` | Proxy settings. **Required** for `cf_clearance`, optional for `token`. |
 | `pageAction` | `str \| None` | `None` | Action field from the captcha callback function. |
 | `data` | `str \| None` | `None` | Value of the `cData` parameter. |
 
 ### Validation rules
 
-- **`token` type:** `apiJsUrl` is required; `proxy` must be omitted.
+- **`token` type:** no extra requirement; pass `pageAction`, `data` and `pageData` from the challenge page.
 - **`cf_clearance` type:** `htmlPageBase64` and `proxy` are both required.
 
 ---

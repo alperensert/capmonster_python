@@ -5,7 +5,8 @@ from typing import Optional
 from httpx import Response, AsyncClient, Client
 
 from .exceptions import CapmonsterAPIException, CapmonsterException
-from .methods import GetBalancePayload, GetTaskResultPayload, CreateTaskPayload, ReportIncorrectCaptchaPayload
+from .methods import GetBalancePayload, GetTaskResultPayload, CreateTaskPayload, ReportIncorrectCaptchaPayload, \
+    TaskResult
 from .tasks.task import TaskPayload
 
 
@@ -140,9 +141,22 @@ class CapmonsterClient:
             result API endpoint. If the solution is not found in the response, an empty
             dictionary is returned.
         """
+        return self.get_task_result_detailed(task_id).solution
+
+    def get_task_result_detailed(self, task_id: int) -> TaskResult:
+        """
+        Fetches the full result of a specific task by its identifier, including its status and cost.
+
+        Args:
+            task_id (int): An integer representing the unique identifier of the task.
+
+        Returns:
+            TaskResult: The status, solution and cost of the task. The solution is an empty
+            dictionary and the cost is None while the task is processing.
+        """
         payload = GetTaskResultPayload(clientKey=self.api_key, taskId=task_id).model_dump()
         response = self.__make_sync_request(self.__TASK_RESULT_URL, payload).json()
-        return response.get("solution", {})
+        return TaskResult.from_response(response)
 
     async def get_task_result_async(self, task_id: int) -> dict:
         """
@@ -162,10 +176,22 @@ class CapmonsterClient:
             result API endpoint. If the solution is not found in the response, an empty
             dictionary is returned.
         """
+        return (await self.get_task_result_detailed_async(task_id)).solution
+
+    async def get_task_result_detailed_async(self, task_id: int) -> TaskResult:
+        """
+        Asynchronously fetches the full result of a specific task by its identifier, including its status and cost.
+
+        Args:
+            task_id (int): An integer representing the unique identifier of the task.
+
+        Returns:
+            TaskResult: The status, solution and cost of the task. The solution is an empty
+            dictionary and the cost is None while the task is processing.
+        """
         payload = GetTaskResultPayload(clientKey=self.api_key, taskId=task_id).model_dump()
         request = await self.__make_async_request(self.__TASK_RESULT_URL, payload)
-        response = request.json()
-        return response.get("solution", {})
+        return TaskResult.from_response(request.json())
 
     def join_task_result(self, task_id: int) -> dict:
         """
@@ -183,12 +209,27 @@ class CapmonsterClient:
             CapmonsterException:
                 If the maximum retry limit is exceeded without obtaining the task result.
         """
+        return self.join_task_result_detailed(task_id).solution
+
+    def join_task_result_detailed(self, task_id: int) -> TaskResult:
+        """
+        Polls the result of a task like `join_task_result`, but returns its status and cost too.
+
+        Args:
+            task_id: The identifier of the task for which the result needs to be retrieved.
+
+        Returns:
+            TaskResult: The status, solution and cost of the completed task.
+
+        Raises:
+            CapmonsterException:
+                If the maximum retry limit is exceeded without obtaining the task result.
+        """
         for _ in range(0, self.__max_retries + 1):
-            result = self.get_task_result(task_id)
-            if result:
+            result = self.get_task_result_detailed(task_id)
+            if result.solution:
                 return result
-            elif not result:
-                sleep(self.__retry_delay)
+            sleep(self.__retry_delay)
         raise CapmonsterAPIException(
             61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
 
@@ -208,12 +249,27 @@ class CapmonsterClient:
             CapmonsterException:
                 If the maximum retry limit is exceeded without obtaining the task result.
         """
+        return (await self.join_task_result_detailed_async(task_id)).solution
+
+    async def join_task_result_detailed_async(self, task_id: int) -> TaskResult:
+        """
+        Asynchronously polls the result of a task like `join_task_result_async`, but returns its status and cost too.
+
+        Args:
+            task_id: The identifier of the task for which the result needs to be retrieved.
+
+        Returns:
+            TaskResult: The status, solution and cost of the completed task.
+
+        Raises:
+            CapmonsterException:
+                If the maximum retry limit is exceeded without obtaining the task result.
+        """
         for _ in range(0, self.__max_retries + 1):
-            result = await self.get_task_result_async(task_id)
-            if result:
+            result = await self.get_task_result_detailed_async(task_id)
+            if result.solution:
                 return result
-            elif not result:
-                await asyncio.sleep(self.__retry_delay)
+            await asyncio.sleep(self.__retry_delay)
         raise CapmonsterAPIException(
             61, "ERROR_MAXIMUM_TIME_EXCEED", "Maximum time is exceed.")
 
@@ -230,8 +286,21 @@ class CapmonsterClient:
         Returns:
             dict: The solution dictionary from the completed task.
         """
+        return self.solve_detailed(task, callback_url).solution
+
+    def solve_detailed(self, task: TaskPayload, callback_url: Optional[str] = None) -> TaskResult:
+        """
+        Creates a task and polls for its result like `solve`, but returns its status and cost too.
+
+        Args:
+            task: The task configuration payload.
+            callback_url: An optional callback URL for task completion.
+
+        Returns:
+            TaskResult: The status, solution and cost of the completed task.
+        """
         task_id = self.create_task(task, callback_url)
-        return self.join_task_result(task_id)
+        return self.join_task_result_detailed(task_id)
 
     async def solve_async(self, task: TaskPayload, callback_url: Optional[str] = None) -> dict:
         """
@@ -246,8 +315,21 @@ class CapmonsterClient:
         Returns:
             dict: The solution dictionary from the completed task.
         """
+        return (await self.solve_detailed_async(task, callback_url)).solution
+
+    async def solve_detailed_async(self, task: TaskPayload, callback_url: Optional[str] = None) -> TaskResult:
+        """
+        Async version of `solve_detailed`: creates a task and polls for its result, including its status and cost.
+
+        Args:
+            task: The task configuration payload.
+            callback_url: An optional callback URL for task completion.
+
+        Returns:
+            TaskResult: The status, solution and cost of the completed task.
+        """
         task_id = await self.create_task_async(task, callback_url)
-        return await self.join_task_result_async(task_id)
+        return await self.join_task_result_detailed_async(task_id)
 
     def report_incorrect_image(self, task_id: int) -> None:
         """

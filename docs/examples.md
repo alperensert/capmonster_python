@@ -628,7 +628,7 @@ async def main():
         websiteURL="https://example.com",
         metadata=ImpervaTaskMetadata(
             incapsulaScriptUrl="https://example.com/js.inc",
-            incapsulaCookie="visid_incap_12345=...",
+            incapsulaCookies="visid_incap_12345=...",
         )
     )
     task_id = await client.create_task_async(task)
@@ -646,7 +646,7 @@ task_id = client.create_task(ImpervaTask(
     websiteURL="https://example.com",
     metadata=ImpervaTaskMetadata(
         incapsulaScriptUrl="https://example.com/js.inc",
-        incapsulaCookie="visid_incap_12345=...",
+        incapsulaCookies="visid_incap_12345=...",
     )
 ))
 result = client.get_task_result(task_id)
@@ -814,6 +814,10 @@ print(result)
 ---
 
 ## Temu
+
+!!!warning Deprecated
+`TemuTask` emits a `DeprecationWarning` and will be removed in 6.0: Temu is no longer in the CapMonster Cloud docs.
+!!!
 
 Used to bypass CAPTCHA challenges on Temu using extracted cookies.
 
@@ -1023,7 +1027,11 @@ print(result)
 
 ---
 
-## Castle [!badge text="NEW" variant="success"]
+## Castle
+
+!!!warning Deprecated
+`CastleTask` emits a `DeprecationWarning` and will be removed in 6.0: Castle is no longer in the CapMonster Cloud docs.
+!!!
 
 Used for solving Castle challenges.
 
@@ -1116,5 +1124,267 @@ task_id = client.create_task(TSPDTask(
 ))
 result = client.get_task_result(task_id)
 print(result)
+```
++++
+
+---
+
+## Hunt [!badge text="NEW" variant="success"]
+
+Solves Hunt captcha through `widgetUrl` (or `data` with the site's `meta.token`). Proxy is required.
+
+!!!
+The old `HuntTask(websiteKey=...)` form is deprecated; it still works but emits a `DeprecationWarning`.
+!!!
+
++++ Async
+```python
+import asyncio
+from capmonster_python import CapmonsterClient, HuntTask, HuntMetadata, ProxyPayload
+
+async def main():
+    async with CapmonsterClient(api_key="<API_KEY>") as client:
+        task = HuntTask(
+            websiteURL="https://example.com/page-with-hunt",
+            metadata=HuntMetadata(
+                apiGetLib="https://example.com/hd-api/external/apps/<app-hash>/api.js",
+                widgetUrl="https://captcha.example.com/widget?hash=<widget-hash>"
+            ),
+            proxy=ProxyPayload(proxyType="http", proxyAddress="1.2.3.4", proxyPort=8080,
+                               proxyLogin="<login>", proxyPassword="<password>")
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())
+```
++++ Sync
+```python
+from capmonster_python import CapmonsterClient, HuntTask, HuntMetadata, ProxyPayload
+
+with CapmonsterClient(api_key="<API_KEY>") as client:
+    task = HuntTask(
+        websiteURL="https://example.com/page-with-hunt",
+        metadata=HuntMetadata(
+            apiGetLib="https://example.com/hd-api/external/apps/<app-hash>/api.js",
+            widgetUrl="https://captcha.example.com/widget?hash=<widget-hash>"
+        ),
+        proxy=ProxyPayload(proxyType="http", proxyAddress="1.2.3.4", proxyPort=8080,
+                           proxyLogin="<login>", proxyPassword="<password>")
+    )
+    result = client.solve(task)
+    print(result)
+```
++++
+
+---
+
+## Alibaba [!badge text="NEW" variant="success"]
+
+Solves Alibaba captcha. Use `punishUrl` instead of `sceneId`/`prefix` for sites that return a `/punish` URL.
+
++++ Async
+```python
+import asyncio
+from capmonster_python import CapmonsterClient, AlibabaTask, AlibabaMetadata
+
+async def main():
+    async with CapmonsterClient(api_key="<API_KEY>") as client:
+        task = AlibabaTask(
+            websiteURL="https://www.example.com",
+            metadata=AlibabaMetadata(sceneId="<scene_id>", prefix="<prefix>")
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())
+```
++++ Sync
+```python
+from capmonster_python import CapmonsterClient, AlibabaTask, AlibabaMetadata
+
+with CapmonsterClient(api_key="<API_KEY>") as client:
+    task = AlibabaTask(
+        websiteURL="https://www.example.com",
+        metadata=AlibabaMetadata(sceneId="<scene_id>", prefix="<prefix>")
+    )
+    result = client.solve(task)
+    print(result)
+```
++++
+
+---
+
+## Friendly Captcha [!badge text="NEW" variant="success"]
+
+Solves Friendly Captcha V1 and V2.
+
++++ Async
+```python
+import asyncio
+from capmonster_python import CapmonsterClient, FriendlyTask, FriendlyMetadata
+
+async def main():
+    async with CapmonsterClient(api_key="<API_KEY>") as client:
+        task = FriendlyTask(
+            websiteURL="https://example.com",
+            websiteKey="<site_key>",
+            metadata=FriendlyMetadata(apiGetLib="https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@X.Y.Z/site.min.js")
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())
+```
++++ Sync
+```python
+from capmonster_python import CapmonsterClient, FriendlyTask, FriendlyMetadata
+
+with CapmonsterClient(api_key="<API_KEY>") as client:
+    task = FriendlyTask(
+        websiteURL="https://example.com",
+        websiteKey="<site_key>",
+        metadata=FriendlyMetadata(apiGetLib="https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@X.Y.Z/site.min.js")
+    )
+    result = client.solve(task)
+    print(result)
+```
++++
+
+---
+
+## FengkongCloud [!badge text="NEW" variant="success"]
+
+Solves FengkongCloud captcha. No proxy.
+
++++ Async
+```python
+import asyncio
+from capmonster_python import CapmonsterClient, FengkongCloudTask, FengkongCloudMetadata
+
+async def main():
+    async with CapmonsterClient(api_key="<API_KEY>") as client:
+        task = FengkongCloudTask(
+            websiteURL="https://example.com",
+            websiteKey="<site_key>",
+            metadata=FengkongCloudMetadata(apiJsUrl="https://castatic.fengkongcloud.com/pr/vX.X.X/smcp.min.js")
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())
+```
++++ Sync
+```python
+from capmonster_python import CapmonsterClient, FengkongCloudTask, FengkongCloudMetadata
+
+with CapmonsterClient(api_key="<API_KEY>") as client:
+    task = FengkongCloudTask(
+        websiteURL="https://example.com",
+        websiteKey="<site_key>",
+        metadata=FengkongCloudMetadata(apiJsUrl="https://castatic.fengkongcloud.com/pr/vX.X.X/smcp.min.js")
+    )
+    result = client.solve(task)
+    print(result)
+```
++++
+
+---
+
+## ARCaptcha [!badge text="NEW" variant="success"]
+
+Solves ARCaptcha. No proxy.
+
++++ Async
+```python
+import asyncio
+from capmonster_python import CapmonsterClient, ARCaptchaTask
+
+async def main():
+    async with CapmonsterClient(api_key="<API_KEY>") as client:
+        task = ARCaptchaTask(websiteURL="https://example.com", websiteKey="<site_key>")
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())
+```
++++ Sync
+```python
+from capmonster_python import CapmonsterClient, ARCaptchaTask
+
+with CapmonsterClient(api_key="<API_KEY>") as client:
+    task = ARCaptchaTask(websiteURL="https://example.com", websiteKey="<site_key>")
+    result = client.solve(task)
+    print(result)
+```
++++
+
+---
+
+## HeyTap [!badge text="NEW" variant="success"]
+
+Solves HeyTap captcha. No proxy.
+
++++ Async
+```python
+import asyncio
+from capmonster_python import CapmonsterClient, HeyTapTask
+
+async def main():
+    async with CapmonsterClient(api_key="<API_KEY>") as client:
+        task = HeyTapTask(websiteURL="https://example.com", websiteKey="<site_key>")
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())
+```
++++ Sync
+```python
+from capmonster_python import CapmonsterClient, HeyTapTask
+
+with CapmonsterClient(api_key="<API_KEY>") as client:
+    task = HeyTapTask(websiteURL="https://example.com", websiteKey="<site_key>")
+    result = client.solve(task)
+    print(result)
+```
++++
+
+---
+
+## Proton Captcha [!badge text="NEW" variant="success"]
+
+Solves Proton Captcha. Proxy is required.
+
++++ Async
+```python
+import asyncio
+from capmonster_python import CapmonsterClient, ProtonTask, ProtonMetadata, ProxyPayload
+
+async def main():
+    async with CapmonsterClient(api_key="<API_KEY>") as client:
+        task = ProtonTask(
+            websiteURL="https://example.com/",
+            metadata=ProtonMetadata(HumanVerificationToken="<token>", pageAction="login"),
+            proxy=ProxyPayload(proxyType="http", proxyAddress="1.2.3.4", proxyPort=8080,
+                               proxyLogin="<login>", proxyPassword="<password>")
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())
+```
++++ Sync
+```python
+from capmonster_python import CapmonsterClient, ProtonTask, ProtonMetadata, ProxyPayload
+
+with CapmonsterClient(api_key="<API_KEY>") as client:
+    task = ProtonTask(
+        websiteURL="https://example.com/",
+        metadata=ProtonMetadata(HumanVerificationToken="<token>", pageAction="login"),
+        proxy=ProxyPayload(proxyType="http", proxyAddress="1.2.3.4", proxyPort=8080,
+                           proxyLogin="<login>", proxyPassword="<password>")
+    )
+    result = client.solve(task)
+    print(result)
 ```
 +++

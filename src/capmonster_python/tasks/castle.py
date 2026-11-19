@@ -3,6 +3,7 @@ from typing import Any, Optional
 from pydantic import Field, BaseModel
 
 from .task import TaskPayload, ProxyPayload, UserAgentPayload
+from .._deprecation import warn_deprecated
 
 
 class CastleMetadata(BaseModel):
@@ -21,6 +22,8 @@ class CastleMetadata(BaseModel):
 
 class CastleTask(TaskPayload, UserAgentPayload):
     """
+    Deprecated: will be removed in 6.0.
+
     Represents a task for solving Castle challenges.
 
     Uses CustomTask type with class "Castle".
@@ -37,6 +40,10 @@ class CastleTask(TaskPayload, UserAgentPayload):
     websiteKey: str = Field(..., description='Castle publishable key.')
     metadata: CastleMetadata = Field(..., description='Castle-specific metadata.')
     proxy: Optional[ProxyPayload] = Field(default=None, description='Proxy settings.')
+
+    def model_post_init(self, __context: Any) -> None:
+        warn_deprecated("CastleTask is deprecated and will be removed in 6.0: "
+                        "Castle is no longer in the CapMonster Cloud docs.", stacklevel=4)
 
     def to_request(self) -> dict[str, Any]:
         base = self.model_dump(exclude_none=True, by_alias=True)

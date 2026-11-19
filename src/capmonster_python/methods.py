@@ -35,3 +35,23 @@ class CreateTaskPayload(BaseModel):
     @field_serializer("task")
     def serialize_task(self, task: TaskPayload, _info) -> dict:
         return task.to_request()
+
+
+class TaskResult(BaseModel):
+    """
+    Represents the full result of a task returned by getTaskResult.
+
+    Attributes:
+        status (str): "processing" while the task is being solved, "ready" when it is done.
+        solution (dict): The solution of the task; empty while the task is processing.
+        cost (Optional[float]): Cost of the task in USD; only returned when the task is ready.
+    """
+    status: str = Field(default="processing", description="Task status: processing or ready.")
+    solution: dict = Field(default_factory=dict, description="Task solution.")
+    cost: Optional[float] = Field(default=None, description="Cost of the task in USD.")
+
+    @classmethod
+    def from_response(cls, response: dict) -> "TaskResult":
+        return cls(status=response.get("status") or "processing",
+                   solution=response.get("solution") or {},
+                   cost=response.get("cost"))
