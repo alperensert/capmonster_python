@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Changelog</title>
@@ -15,23 +16,33 @@
     <meta name="description" content="default retry_delay changed from 1.0 to 2.0 seconds.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/changelog/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/changelog/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/changelog/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/changelog/">
     <meta property="og:title" content="Changelog">
     <meta property="og:description" content="default retry_delay changed from 1.0 to 2.0 seconds.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/changelog/">
+    <meta name="twitter:title" content="Changelog">
+    <meta name="twitter:description" content="default retry_delay changed from 1.0 to 2.0 seconds.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/changelog.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -46,7 +57,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -131,39 +142,21 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="changelog" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changelog">#</doc-anchor-trigger>
-        <span>Changelog</span>
-    </h1>
-</doc-anchor-target>
-<doc-anchor-target id="v500-2026-03-16">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#v500-2026-03-16">#</doc-anchor-trigger>
-        <span>v5.0.0 (2026-03-16) <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-primary-text bg-badge-primary border border-badge-primary-border h-6 px-2 text-xs rounded-md">
-            <span>Latest</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="-breaking-changes">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#-breaking-changes">#</doc-anchor-trigger>
-        <span>⚠ BREAKING CHANGES</span>
-    </h3>
-</doc-anchor-target>
+<h1 id="changelog">Changelog</h1>
+<h2 id="v500-2026-03-16">v5.0.0 (2026-03-16) <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-primary-text bg-badge-primary border border-badge-primary-border h-6 px-2 text-xs rounded-md">
+    <span>Latest</span>
+</span></h2>
+<h3 id="-breaking-changes">⚠ BREAKING CHANGES</h3>
 <ul>
 <li>default retry_delay changed from 1.0 to 2.0 seconds.</li>
 </ul>
-<doc-anchor-target id="features">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#features">#</doc-anchor-trigger>
-        <span>Features</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="features">Features</h3>
 <ul>
 <li>add context manager, solve() convenience, configurable polling, multi-Python CI (<a href="https://github.com/alperensert/capmonster_python/commit/5399fbb5fcd34489d00b441555426825a0a95ce2">5399fbb</a>)</li>
 <li>add FunCaptcha, Amazon WAF, reCAPTCHA v3 Enterprise, and Cloudflare Waiting Room (<a href="https://github.com/alperensert/capmonster_python/commit/b939c7bfa0b8e32a7f71ae89ad53f2fae257773f">b939c7b</a>)</li>
@@ -171,73 +164,33 @@
 <li>add RecaptchaClickTask, HuntTask, and missing API fields (<a href="https://github.com/alperensert/capmonster_python/commit/eb38897fac930f89c79bd322ce9320687f424e1c">eb38897</a>)</li>
 <li>add reportIncorrect and getUserAgent client methods (<a href="https://github.com/alperensert/capmonster_python/commit/152dc978537bc774be99d0bfc4f75262d8a27202">152dc97</a>)</li>
 </ul>
-<doc-anchor-target id="bug-fixes">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#bug-fixes">#</doc-anchor-trigger>
-        <span>Bug Fixes</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="bug-fixes">Bug Fixes</h3>
 <ul>
 <li><strong>ci:</strong> add respx to test dependencies (<a href="https://github.com/alperensert/capmonster_python/commit/1976b6fc2da0c98e6fdfbd78cf500e37095fa191">1976b6f</a>)</li>
 <li><strong>ci:</strong> specify release-please config and manifest paths (<a href="https://github.com/alperensert/capmonster_python/commit/5fb508af7a2cfa938dcc819a357a40a22e9fe3b0">5fb508a</a>)</li>
 <li>resolve test function shadowing, remove dead code, and cleanup (<a href="https://github.com/alperensert/capmonster_python/commit/4fcf3119eb9b3deb85b852d8ac8fc589e9574fa2">4fcf311</a>)</li>
 </ul>
-<doc-anchor-target id="documentation">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#documentation">#</doc-anchor-trigger>
-        <span>Documentation</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="documentation">Documentation</h3>
 <ul>
 <li>update README and API reference for new features (<a href="https://github.com/alperensert/capmonster_python/commit/c8793f66e3a844aca78b6f113e4ed99b72004a67">c8793f6</a>)</li>
 </ul>
 <hr>
-<doc-anchor-target id="v400-2025-04-30">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#v400-2025-04-30">#</doc-anchor-trigger>
-        <span>v4.0.0 (2025-04-30)</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="-breaking-changes-1">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#-breaking-changes-1">#</doc-anchor-trigger>
-        <span>⚠ BREAKING CHANGES</span>
-    </h3>
-</doc-anchor-target>
+<h2 id="v400-2025-04-30">v4.0.0 (2025-04-30)</h2>
+<h3 id="-breaking-changes-1">⚠ BREAKING CHANGES</h3>
 <ul>
 <li>API usage has completely changed from v3.2 to v4.0. All task creation methods now rely on structured payloads and typed clients.</li>
 </ul>
-<doc-anchor-target id="features-1">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#features-1">#</doc-anchor-trigger>
-        <span>Features</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="features-1">Features</h3>
 <ul>
 <li>full rewrite with async support, pydantic v2 and modern architecture (<a href="https://github.com/alperensert/capmonster_python/issues/72">#72</a>) (<a href="https://github.com/alperensert/capmonster_python/commit/bd9e40dd4ca22d757ed248d2f6903d5b38e0c960">bd9e40d</a>)</li>
 </ul>
-<doc-anchor-target id="documentation-1">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#documentation-1">#</doc-anchor-trigger>
-        <span>Documentation</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="documentation-1">Documentation</h3>
 <ul>
 <li>add features section to documentation index (<a href="https://github.com/alperensert/capmonster_python/commit/17efb361da78aebd1e2395fb2d09aeea4fc36242">17efb36</a>)</li>
 </ul>
 <hr>
-<doc-anchor-target id="v320-2024-04-27">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#v320-2024-04-27">#</doc-anchor-trigger>
-        <span>v3.2.0 (2024-04-27)</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="features-2">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#features-2">#</doc-anchor-trigger>
-        <span>Features</span>
-    </h3>
-</doc-anchor-target>
+<h2 id="v320-2024-04-27">v3.2.0 (2024-04-27)</h2>
+<h3 id="features-2">Features</h3>
 <ul>
 <li>add amazon waf task support (<a href="https://github.com/alperensert/capmonster_python/commit/c78ff5654b7ded310e5e647e7052712d7870e5f7">c78ff56</a>)</li>
 </ul>
@@ -302,6 +255,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Changelog", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Changelog", level: 1, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/changelog.md" }</script>
 </body>
 </html>

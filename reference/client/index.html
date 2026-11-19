@@ -4,35 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>CapmonsterClient</title>
     <meta name="title" content="CapmonsterClient">
-    <meta name="description" content="The main client for interacting with the Capmonster Cloud API. Supports both synchronous and asynchronous usage, context manager protocol, and configurable">
+    <meta name="description" content="The main client for interacting with the Capmonster Cloud API. Supports both synchronous and asynchronous usage, context manager protocol, and configurable polling.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/reference/client/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/reference/client/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/reference/client/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/reference/client/">
     <meta property="og:title" content="CapmonsterClient">
-    <meta property="og:description" content="The main client for interacting with the Capmonster Cloud API. Supports both synchronous and asynchronous usage, context manager protocol, and configurable">
+    <meta property="og:description" content="The main client for interacting with the Capmonster Cloud API. Supports both synchronous and asynchronous usage, context manager protocol, and configurable polling.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/reference/client/">
+    <meta name="twitter:title" content="CapmonsterClient">
+    <meta name="twitter:description" content="The main client for interacting with the Capmonster Cloud API. Supports both synchronous and asynchronous usage, context manager protocol, and configurable polling.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/reference/client.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826957987702" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.848410627610" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -47,7 +58,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -132,26 +143,24 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="capmonsterclient" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#capmonsterclient">#</doc-anchor-trigger>
-        <span>CapmonsterClient</span>
-    </h1>
-</doc-anchor-target>
+<h1 id="capmonsterclient">CapmonsterClient</h1>
 <p>The main client for interacting with the Capmonster Cloud API. Supports both synchronous and asynchronous usage, context manager protocol, and configurable polling.</p>
-<doc-anchor-target id="constructor">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#constructor">#</doc-anchor-trigger>
-        <span>Constructor</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="constructor">Constructor</h2>
 <div id="constructor-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">CapmonsterClient(api_key: str, timeout: float = 30.0, max_retries: int = 120, retry_delay: float = 2.0)</code></pre>
 </doc-codeblock></div>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `api_key` | `str` | **required** | Your Capmonster Cloud API key. |
+| `timeout` | `float` | `30.0` | HTTP request timeout in seconds. |
+| `max_retries` | `int` | `120` | Maximum number of polling attempts in `join_task_result` / `solve`. |
+| `retry_delay` | `float` | `2.0` | Delay in seconds between polling attempts. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -190,12 +199,8 @@
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="context-manager">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#context-manager">#</doc-anchor-trigger>
-        <span>Context Manager</span>
-    </h2>
-</doc-anchor-target>
+</retype-table>
+<h2 id="context-manager">Context Manager</h2>
 <p><code translate="no" v-pre>CapmonsterClient</code> supports both sync and async context managers to ensure HTTP connections are properly closed.</p>
 <doc-tabs>
 <doc-tab v-cloak id="sync">
@@ -214,18 +219,8 @@
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="methods">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
-        <span>Methods</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="get_balance">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#get_balance">#</doc-anchor-trigger>
-        <span><code translate="no" v-pre>get_balance</code></span>
-    </h3>
-</doc-anchor-target>
+<h2 id="methods">Methods</h2>
+<h3 id="get_balance"><code translate="no" v-pre>get_balance</code></h3>
 <p>Fetches the current account balance.</p>
 <div id="get_balance-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def get_balance(self) -&gt; float
@@ -233,17 +228,16 @@ async def get_balance_async(self) -&gt; float</code></pre>
 </doc-codeblock></div>
 <p><strong>Returns:</strong> <code translate="no" v-pre>float</code> — The account balance. Defaults to <code translate="no" v-pre>0.0</code> if not found.</p>
 <hr>
-<doc-anchor-target id="create_task">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#create_task">#</doc-anchor-trigger>
-        <span><code translate="no" v-pre>create_task</code></span>
-    </h3>
-</doc-anchor-target>
+<h3 id="create_task"><code translate="no" v-pre>create_task</code></h3>
 <p>Creates a captcha-solving task and returns the task ID.</p>
 <div id="create_task-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def create_task(self, task: TaskPayload, callback_url: str | None = None) -&gt; int
 async def create_task_async(self, task: TaskPayload, callback_url: str | None = None) -&gt; int</code></pre>
 </doc-codeblock></div>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `task` | `TaskPayload` | **required** | The task configuration payload. |
+| `callback_url` | `str \| None` | `None` | Optional URL to be called on task completion. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -270,20 +264,19 @@ async def create_task_async(self, task: TaskPayload, callback_url: str | None = 
 </tbody>
 </table>
 </div>
+</retype-table>
 <p><strong>Returns:</strong> <code translate="no" v-pre>int</code> — The unique task identifier.</p>
 <p><strong>Raises:</strong> <code translate="no" v-pre>CapmonsterException</code> if the request fails or the response contains no valid task ID.</p>
 <hr>
-<doc-anchor-target id="get_task_result">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#get_task_result">#</doc-anchor-trigger>
-        <span><code translate="no" v-pre>get_task_result</code></span>
-    </h3>
-</doc-anchor-target>
+<h3 id="get_task_result"><code translate="no" v-pre>get_task_result</code></h3>
 <p>Fetches the result of a completed task (single poll, no waiting).</p>
 <div id="get_task_result-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def get_task_result(self, task_id: int) -&gt; dict
 async def get_task_result_async(self, task_id: int) -&gt; dict</code></pre>
 </doc-codeblock></div>
+<retype-table copy-text="| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier returned by `create_task`. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -302,19 +295,18 @@ async def get_task_result_async(self, task_id: int) -&gt; dict</code></pre>
 </tbody>
 </table>
 </div>
+</retype-table>
 <p><strong>Returns:</strong> <code translate="no" v-pre>dict</code> — The solution dictionary, or <code translate="no" v-pre>{}</code> if the task is not yet ready.</p>
 <hr>
-<doc-anchor-target id="join_task_result">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#join_task_result">#</doc-anchor-trigger>
-        <span><code translate="no" v-pre>join_task_result</code></span>
-    </h3>
-</doc-anchor-target>
+<h3 id="join_task_result"><code translate="no" v-pre>join_task_result</code></h3>
 <p>Polls for the task result until it is ready, up to <code translate="no" v-pre>max_retries</code> attempts with <code translate="no" v-pre>retry_delay</code> between each.</p>
 <div id="join_task_result-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def join_task_result(self, task_id: int) -&gt; dict
 async def join_task_result_async(self, task_id: int) -&gt; dict</code></pre>
 </doc-codeblock></div>
+<retype-table copy-text="| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier returned by `create_task`. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -333,20 +325,20 @@ async def join_task_result_async(self, task_id: int) -&gt; dict</code></pre>
 </tbody>
 </table>
 </div>
+</retype-table>
 <p><strong>Returns:</strong> <code translate="no" v-pre>dict</code> — The solution dictionary from the completed task.</p>
 <p><strong>Raises:</strong> <code translate="no" v-pre>CapmonsterAPIException</code> with code <code translate="no" v-pre>ERROR_MAXIMUM_TIME_EXCEED</code> if polling exhausts all retries.</p>
 <hr>
-<doc-anchor-target id="solve">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#solve">#</doc-anchor-trigger>
-        <span><code translate="no" v-pre>solve</code></span>
-    </h3>
-</doc-anchor-target>
+<h3 id="solve"><code translate="no" v-pre>solve</code></h3>
 <p>Convenience method that creates a task and polls for its result in one call. Equivalent to <code translate="no" v-pre>create_task()</code> followed by <code translate="no" v-pre>join_task_result()</code>.</p>
 <div id="solve-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def solve(self, task: TaskPayload, callback_url: str | None = None) -&gt; dict
 async def solve_async(self, task: TaskPayload, callback_url: str | None = None) -&gt; dict</code></pre>
 </doc-codeblock></div>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `task` | `TaskPayload` | **required** | The task configuration payload. |
+| `callback_url` | `str \| None` | `None` | Optional callback URL for task completion. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -373,19 +365,72 @@ async def solve_async(self, task: TaskPayload, callback_url: str | None = None) 
 </tbody>
 </table>
 </div>
+</retype-table>
 <p><strong>Returns:</strong> <code translate="no" v-pre>dict</code> — The solution dictionary from the completed task.</p>
 <hr>
-<doc-anchor-target id="report_incorrect_image">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#report_incorrect_image">#</doc-anchor-trigger>
-        <span><code translate="no" v-pre>report_incorrect_image</code></span>
-    </h3>
-</doc-anchor-target>
+<h3 id="get_task_result_detailed--join_task_result_detailed--solve_detailed"><code translate="no" v-pre>get_task_result_detailed</code> / <code translate="no" v-pre>join_task_result_detailed</code> / <code translate="no" v-pre>solve_detailed</code> <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h3>
+<p>Same as <code translate="no" v-pre>get_task_result</code>, <code translate="no" v-pre>join_task_result</code> and <code translate="no" v-pre>solve</code>, but return a <code translate="no" v-pre>TaskResult</code> with the task&#x27;s status and cost
+as well as its solution. The methods above keep returning only the solution dictionary.</p>
+<div id="get_task_result_detailed--join_task_result_detailed--solve_detailed-code-1" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">def get_task_result_detailed(self, task_id: int) -&gt; TaskResult
+def join_task_result_detailed(self, task_id: int) -&gt; TaskResult
+def solve_detailed(self, task: TaskPayload, callback_url: str | None = None) -&gt; TaskResult
+# async variants: get_task_result_detailed_async, join_task_result_detailed_async, solve_detailed_async</code></pre>
+</doc-codeblock></div>
+<p><strong>Returns:</strong> <code translate="no" v-pre>TaskResult</code></p>
+<retype-table copy-text="| Attribute | Type | Description |
+|-----------|------|-------------|
+| `status` | `str` | `&quot;processing&quot;` or `&quot;ready&quot;`. |
+| `solution` | `dict` | The solution; `{}` while the task is processing. |
+| `cost` | `float \| None` | Cost of the task in USD; only set when the task is ready. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>status</code></td>
+<td><code translate="no" v-pre>str</code></td>
+<td><code translate="no" v-pre>&quot;processing&quot;</code> or <code translate="no" v-pre>&quot;ready&quot;</code>.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>solution</code></td>
+<td><code translate="no" v-pre>dict</code></td>
+<td>The solution; <code translate="no" v-pre>{}</code> while the task is processing.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>cost</code></td>
+<td><code translate="no" v-pre>float \| None</code></td>
+<td>Cost of the task in USD; only set when the task is ready.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
+<div id="get_task_result_detailed--join_task_result_detailed--solve_detailed-code-2" class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, TurnstileTask
+
+with CapmonsterClient(api_key=&quot;YOUR_API_KEY&quot;) as client:
+    result = client.solve_detailed(TurnstileTask(websiteURL=&quot;https://example.com&quot;, websiteKey=&quot;0x4AAAAAAA&quot;))
+    print(result.solution[&quot;token&quot;], result.cost)</code></pre>
+</doc-codeblock></div>
+<hr>
+<h3 id="report_incorrect_image"><code translate="no" v-pre>report_incorrect_image</code></h3>
 <p>Reports an incorrect image captcha solution.</p>
 <div id="report_incorrect_image-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def report_incorrect_image(self, task_id: int) -&gt; None
 async def report_incorrect_image_async(self, task_id: int) -&gt; None</code></pre>
 </doc-codeblock></div>
+<retype-table copy-text="| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier to report. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -404,19 +449,18 @@ async def report_incorrect_image_async(self, task_id: int) -&gt; None</code></pr
 </tbody>
 </table>
 </div>
+</retype-table>
 <p><strong>Raises:</strong> <code translate="no" v-pre>CapmonsterAPIException</code> if the API returns an error.</p>
 <hr>
-<doc-anchor-target id="report_incorrect_token">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#report_incorrect_token">#</doc-anchor-trigger>
-        <span><code translate="no" v-pre>report_incorrect_token</code></span>
-    </h3>
-</doc-anchor-target>
+<h3 id="report_incorrect_token"><code translate="no" v-pre>report_incorrect_token</code></h3>
 <p>Reports an incorrect token captcha solution (reCAPTCHA, GeeTest, Turnstile, etc.).</p>
 <div id="report_incorrect_token-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def report_incorrect_token(self, task_id: int) -&gt; None
 async def report_incorrect_token_async(self, task_id: int) -&gt; None</code></pre>
 </doc-codeblock></div>
+<retype-table copy-text="| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier to report. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -435,14 +479,10 @@ async def report_incorrect_token_async(self, task_id: int) -&gt; None</code></pr
 </tbody>
 </table>
 </div>
+</retype-table>
 <p><strong>Raises:</strong> <code translate="no" v-pre>CapmonsterAPIException</code> if the API returns an error.</p>
 <hr>
-<doc-anchor-target id="get_user_agent">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#get_user_agent">#</doc-anchor-trigger>
-        <span><code translate="no" v-pre>get_user_agent</code></span>
-    </h3>
-</doc-anchor-target>
+<h3 id="get_user_agent"><code translate="no" v-pre>get_user_agent</code></h3>
 <p>Fetches the current valid Windows User-Agent string from CapMonster Cloud.</p>
 <div id="get_user_agent-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">def get_user_agent(self) -&gt; str
@@ -515,6 +555,6 @@ async def get_user_agent_async(self) -&gt; str</code></pre>
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "CapmonsterClient", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "CapmonsterClient", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/reference/client.md" }</script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+﻿# Capmonster Python
+
+> Welcome to the documentation for capmonster_python — a modern, fully typed, async-ready Python SDK for Capmonster.Cloud.
+
+- [Capmonster Python](https://alperensert.github.io/capmonster_python/index.md): Capmonster Python
+- [Installation](https://alperensert.github.io/capmonster_python/installation.md)
+- [Examples](https://alperensert.github.io/capmonster_python/examples.md): Below are example usages for various task types, shown in both async and sync format using CapmonsterClient.
+- [Error Codes](https://alperensert.github.io/capmonster_python/error_codes.md): This page documents common error codes returned by the CapMonster Cloud API along with their meanings and possible solutions.
+- [Changelog](https://alperensert.github.io/capmonster_python/changelog.md): default retry_delay changed from 1.0 to 2.0 seconds.
+
+## References
+
+- [API Reference](https://alperensert.github.io/capmonster_python/reference/overview.md): Welcome to the Capmonster Python API reference.
+- [Abstract Base Classes](https://alperensert.github.io/capmonster_python/reference/abstract.md): These are the base classes used internally to build all task payloads. You typically don't instantiate them directly, but they are useful for understanding the type hierarchy and for building custom tasks via VanillaTaskPayload.
+- [Alibaba ](https://alperensert.github.io/capmonster_python/reference/alibaba.md): Solves Alibaba captcha and Alibaba WAF challenges.
+- [Altcha](https://alperensert.github.io/capmonster_python/reference/altcha.md): Solves Altcha proof-of-work challenges.
+- [Amazon WAF](https://alperensert.github.io/capmonster_python/reference/amazon.md): Solves Amazon AWS WAF captcha and challenge pages.
+- [ARCaptcha ](https://alperensert.github.io/capmonster_python/reference/arcaptcha.md): Solves ARCaptcha challenges. No proxy.
+- [Basilisk](https://alperensert.github.io/capmonster_python/reference/basilisk.md): Solves Basilisk CAPTCHA challenges.
+- [Binance](https://alperensert.github.io/capmonster_python/reference/binance.md): Solves Binance CAPTCHA challenges. Use only for login flows.
+- [CapmonsterClient](https://alperensert.github.io/capmonster_python/reference/client.md): The main client for interacting with the Capmonster Cloud API. Supports both synchronous and asynchronous usage, context manager protocol, and configurable polling.
+- [Castle](https://alperensert.github.io/capmonster_python/reference/castle.md): CastleTask emits a DeprecationWarning and will be removed in 6.0: Castle is no longer in the CapMonster Cloud docs.
+- [DataDome](https://alperensert.github.io/capmonster_python/reference/datadome.md): Solves DataDome captcha challenges.
+- [Exceptions](https://alperensert.github.io/capmonster_python/reference/exceptions.md): All exceptions in capmonster_python inherit from CapmonsterException.
+- [FengkongCloud ](https://alperensert.github.io/capmonster_python/reference/fengkongcloud.md): Solves FengkongCloud captcha challenges. No proxy.
+- [Friendly Captcha ](https://alperensert.github.io/capmonster_python/reference/friendly.md): Solves Friendly Captcha (V1 and V2).
+- [FunCaptcha](https://alperensert.github.io/capmonster_python/reference/funcaptcha.md): Solves FunCaptcha (Arkose Labs) challenges.
+- [GeeTest](https://alperensert.github.io/capmonster_python/reference/geetest.md): Solves GeeTest V3 captcha challenges.
+- [HeyTap ](https://alperensert.github.io/capmonster_python/reference/heytap.md): Solves HeyTap captcha challenges. No proxy.
+- [Hunt](https://alperensert.github.io/capmonster_python/reference/hunt.md): Solves Hunt captcha challenges, or generates an X-HD value. Proxy is required.
+- [Image-Based](https://alperensert.github.io/capmonster_python/reference/image.md): Solves image-based captchas by recognizing text from a base64-encoded image.
+- [Imperva](https://alperensert.github.io/capmonster_python/reference/imperva.md): Solves Imperva (Incapsula) challenges.
+- [MTCaptcha](https://alperensert.github.io/capmonster_python/reference/mtcaptcha.md): Solves MTCaptcha challenges.
+- [Prosopo](https://alperensert.github.io/capmonster_python/reference/prosopo.md): Solves Prosopo CAPTCHA challenges.
+- [Proton Captcha ](https://alperensert.github.io/capmonster_python/reference/proton.md): Solves Proton Captcha challenges. Proxy is required.
+- [reCAPTCHA](https://alperensert.github.io/capmonster_python/reference/recaptcha.md): Solves reCAPTCHA v2 challenges (visible and invisible).
+- [Temu](https://alperensert.github.io/capmonster_python/reference/temu.md): TemuTask emits a DeprecationWarning and will be removed in 6.0: Temu is no longer in the CapMonster Cloud docs.
+- [TenDI](https://alperensert.github.io/capmonster_python/reference/tendi.md): Solves TenDI-based captcha challenges.
+- [TSPD](https://alperensert.github.io/capmonster_python/reference/tspd.md): Solves TSPD challenges. Proxy is required.
+- [Turnstile](https://alperensert.github.io/capmonster_python/reference/turnstile.md): Solves Cloudflare Turnstile captchas in token mode. No proxy required.
+- [Yidun (NECaptcha)](https://alperensert.github.io/capmonster_python/reference/yidun.md): Solves Yidun (NECaptcha) challenges. Supports standard and Enterprise versions.

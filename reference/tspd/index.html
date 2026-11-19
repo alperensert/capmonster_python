@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>TSPD</title>
@@ -15,23 +16,33 @@
     <meta name="description" content="Solves TSPD challenges. Proxy is required.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/reference/tspd/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/reference/tspd/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/reference/tspd/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/reference/tspd/">
     <meta property="og:title" content="TSPD">
     <meta property="og:description" content="Solves TSPD challenges. Proxy is required.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/reference/tspd/">
+    <meta name="twitter:title" content="TSPD">
+    <meta name="twitter:description" content="Solves TSPD challenges. Proxy is required.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/reference/tspd.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -46,7 +57,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -131,18 +142,21 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="tspd" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#tspd">#</doc-anchor-trigger>
-        <span>TSPD</span>
-    </h1>
-</doc-anchor-target>
+<h1 id="tspd">TSPD</h1>
 <p>Solves TSPD challenges. Proxy is required.</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>CustomTask</code> (with <code translate="no" v-pre>class: &quot;tspd&quot;</code>)</p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | URL of the page with the TSPD challenge. |
+| `metadata` | `TSPDMetadata` | **required** | TSPD-specific metadata. |
+| `userAgent` | `str` | **required** | Browser User-Agent string (must be from Windows OS). |
+| `proxy` | `ProxyPayload` | **required** | Proxy settings. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -181,12 +195,12 @@
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="tspdmetadata">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#tspdmetadata">#</doc-anchor-trigger>
-        <span>TSPDMetadata</span>
-    </h2>
-</doc-anchor-target>
+</retype-table>
+<h2 id="tspdmetadata">TSPDMetadata</h2>
+<retype-table copy-text="| Parameter | Type | Description |
+|-----------|------|-------------|
+| `tspdCookie` | `str` | Cookies obtained on the TSPD challenge page. |
+| `htmlPageBase64` | `str` | Entire TSPD page encoded in base64. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -210,6 +224,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 
                 
                 <!-- Required only on API pages -->
@@ -276,6 +291,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "TSPD", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "TSPD", level: 2, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/reference/tspd.md" }</script>
 </body>
 </html>

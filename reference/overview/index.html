@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>API Reference</title>
@@ -15,23 +16,33 @@
     <meta name="description" content="Welcome to the Capmonster Python API reference.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/reference/overview/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/reference/overview/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/reference/overview/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/reference/overview/">
     <meta property="og:title" content="API Reference">
     <meta property="og:description" content="Welcome to the Capmonster Python API reference.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/reference/overview/">
+    <meta name="twitter:title" content="API Reference">
+    <meta name="twitter:description" content="Welcome to the Capmonster Python API reference.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/reference/overview.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -46,7 +57,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -131,27 +142,19 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="api-reference" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#api-reference">#</doc-anchor-trigger>
-        <span>API Reference</span>
-    </h1>
-</doc-anchor-target>
+<h1 id="api-reference">API Reference</h1>
 <p>Welcome to the <strong>Capmonster Python</strong> API reference.</p>
 <p>This section provides detailed documentation for all available task types and core classes in the Capmonster ecosystem.
 Whether you&#x27;re solving reCAPTCHA, Turnstile, or advanced behavioral CAPTCHAs like DataDome or Imperva, this reference
 will guide you through the available models, parameters, and behaviors.</p>
 <hr>
-<doc-anchor-target id="overview">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#overview">#</doc-anchor-trigger>
-        <span>Overview</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="overview">Overview</h2>
 <p>Capmonster Python v4 is fully typed with <a href="https://docs.pydantic.dev/">Pydantic</a> and exposes task models via clear class
 structures. All classes include:</p>
 <ul>
@@ -161,12 +164,15 @@ structures. All classes include:</p>
 <li>Sync/Async-ready usage with <code translate="no" v-pre>CapmonsterClient</code></li>
 </ul>
 <hr>
-<doc-anchor-target id="whats-new">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#whats-new">#</doc-anchor-trigger>
-        <span>What&#x27;s New</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="whats-new-in-51">What&#x27;s New in 5.1</h2>
+<ul>
+<li><strong>6 new task types</strong> — Alibaba, Friendly Captcha, FengkongCloud, ARCaptcha, HeyTap, Proton</li>
+<li><strong>Task cost</strong> — <code translate="no" v-pre>solve_detailed()</code> and the other <code translate="no" v-pre>*_detailed</code> methods return a <code translate="no" v-pre>TaskResult</code> with the task&#x27;s <code translate="no" v-pre>cost</code></li>
+<li><strong>New fields</strong> — <code translate="no" v-pre>minScore</code> for reCAPTCHA v2 Enterprise, TenDI <code translate="no" v-pre>metadata</code>, DataDome <code translate="no" v-pre>datadomeVersion</code>, Turnstile <code translate="no" v-pre>pageData</code>, image recognition <code translate="no" v-pre>taskArgument</code> and new tasks</li>
+<li><strong>Fixes</strong> — <code translate="no" v-pre>HuntTask</code> uses the current <code translate="no" v-pre>CustomTask</code>/<code translate="no" v-pre>HUNT</code> request; Imperva sends <code translate="no" v-pre>incapsulaCookies</code>; image recognition adds <code translate="no" v-pre>bls_3x3</code> with <code translate="no" v-pre>taskArgument</code></li>
+<li><strong>Deprecated</strong> (warning now, removed in 6.0) — <code translate="no" v-pre>RecaptchaClickTask</code>, <code translate="no" v-pre>TemuTask</code>, <code translate="no" v-pre>CastleTask</code>, <code translate="no" v-pre>HuntTask(websiteKey=...)</code>, <code translate="no" v-pre>ImpervaTaskMetadata(incapsulaCookie=...)</code>, <code translate="no" v-pre>ComplexImageRecognitionTask(task=&quot;bls&quot;)</code></li>
+</ul>
+<h2 id="whats-new-in-50">What&#x27;s New in 5.0</h2>
 <ul>
 <li><strong>Context manager</strong> — use <code translate="no" v-pre>with</code> / <code translate="no" v-pre>async with</code> to auto-close HTTP connections</li>
 <li><strong><code translate="no" v-pre>solve()</code> / <code translate="no" v-pre>solve_async()</code></strong> — convenience method combining <code translate="no" v-pre>create_task</code> + <code translate="no" v-pre>join_task_result</code></li>
@@ -174,12 +180,7 @@ structures. All classes include:</p>
 <li><strong>9 new task types</strong> — FunCaptcha, Amazon WAF, reCAPTCHA v3 Enterprise, Cloudflare Waiting Room, MTCaptcha, Yidun, Altcha, Castle, TSPD</li>
 </ul>
 <hr>
-<doc-anchor-target id="usage-notes">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#usage-notes">#</doc-anchor-trigger>
-        <span>Usage Notes</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="usage-notes">Usage Notes</h2>
 <ul>
 <li>All tasks are <strong>instantiable Pydantic models</strong></li>
 <li>If you are solving proxy-based CAPTCHAs, configure <code translate="no" v-pre>proxy</code> and <code translate="no" v-pre>userAgent</code> attributes</li>
@@ -252,6 +253,6 @@ structures. All classes include:</p>
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Overview", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Overview", level: 2, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/reference/overview.md" }</script>
 </body>
 </html>

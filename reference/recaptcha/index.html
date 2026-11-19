@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>reCAPTCHA</title>
@@ -15,23 +16,33 @@
     <meta name="description" content="Solves reCAPTCHA v2 challenges (visible and invisible).">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/reference/recaptcha/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/reference/recaptcha/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/reference/recaptcha/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/reference/recaptcha/">
     <meta property="og:title" content="reCAPTCHA">
     <meta property="og:description" content="Solves reCAPTCHA v2 challenges (visible and invisible).">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/reference/recaptcha/">
+    <meta name="twitter:title" content="reCAPTCHA">
+    <meta name="twitter:description" content="Solves reCAPTCHA v2 challenges (visible and invisible).">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/reference/recaptcha.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -46,7 +57,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -131,25 +142,27 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="recaptcha" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recaptcha">#</doc-anchor-trigger>
-        <span>reCAPTCHA</span>
-    </h1>
-</doc-anchor-target>
+<h1 id="recaptcha">reCAPTCHA</h1>
 <hr>
-<doc-anchor-target id="recaptchav2task">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recaptchav2task">#</doc-anchor-trigger>
-        <span>RecaptchaV2Task</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="recaptchav2task">RecaptchaV2Task</h2>
 <p>Solves reCAPTCHA v2 challenges (visible and invisible).</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>RecaptchaV2Task</code></p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | Address of the webpage containing the captcha. |
+| `websiteKey` | `str` | **required** | reCAPTCHA site key. |
+| `recaptchaDataSValue` | `str \| None` | `None` | One-time `data-s` token for custom implementations. Must be fresh per attempt. |
+| `isInvisible` | `bool \| None` | `None` | Set to `True` for invisible reCAPTCHA. |
+| `cookies` | `str \| None` | `None` | Additional cookies in the format: `name1=val1; name2=val2`. |
+| `nocache` | `bool \| None` | `None` | Set to `True` to force fresh token generation (prevents reuse of cached tokens). |
+| `userAgent` | `str \| None` | `None` | Browser User-Agent string. |
+| `proxy` | `ProxyPayload \| None` | `None` | Proxy settings. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -212,15 +225,23 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <hr>
-<doc-anchor-target id="recaptchav2enterprisetask">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recaptchav2enterprisetask">#</doc-anchor-trigger>
-        <span>RecaptchaV2EnterpriseTask</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="recaptchav2enterprisetask">RecaptchaV2EnterpriseTask</h2>
 <p>Solves Google reCAPTCHA V2 Enterprise challenges.</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>RecaptchaV2EnterpriseTask</code></p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | Address of the webpage with reCAPTCHA Enterprise. |
+| `websiteKey` | `str` | **required** | reCAPTCHA site key. |
+| `pageAction` | `str \| None` | `None` | Action parameter if different from default `&quot;verify&quot;`. |
+| `enterprisePayload` | `str \| None` | `None` | Additional parameters passed to `grecaptcha.enterprise.render`. |
+| `apiDomain` | `str \| None` | `None` | Custom domain for loading reCAPTCHA Enterprise. |
+| `minScore` | `float \| None` | `None` | Minimum acceptable score, from `0.1` to `0.9`. |
+| `cookies` | `str \| None` | `None` | Cookies to send with the request. |
+| `nocache` | `bool \| None` | `None` | Set to `True` to force fresh token generation (prevents reuse of cached tokens). |
+| `userAgent` | `str \| None` | `None` | Browser User-Agent string. |
+| `proxy` | `ProxyPayload \| None` | `None` | Proxy settings. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -263,6 +284,12 @@
 <td>Custom domain for loading reCAPTCHA Enterprise.</td>
 </tr>
 <tr>
+<td><code translate="no" v-pre>minScore</code></td>
+<td><code translate="no" v-pre>float \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Minimum acceptable score, from <code translate="no" v-pre>0.1</code> to <code translate="no" v-pre>0.9</code>.</td>
+</tr>
+<tr>
 <td><code translate="no" v-pre>cookies</code></td>
 <td><code translate="no" v-pre>str \| None</code></td>
 <td><code translate="no" v-pre>None</code></td>
@@ -289,15 +316,19 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <hr>
-<doc-anchor-target id="recaptchav3task">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recaptchav3task">#</doc-anchor-trigger>
-        <span>RecaptchaV3Task</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="recaptchav3task">RecaptchaV3Task</h2>
 <p>Solves score-based reCAPTCHA v3 challenges. No proxy required.</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>RecaptchaV3TaskProxyless</code></p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | Address of the webpage with the captcha. |
+| `websiteKey` | `str` | **required** | reCAPTCHA site key. |
+| `minScore` | `float \| None` | `None` | Minimum acceptable score (0.1 – 0.9). |
+| `pageAction` | `str \| None` | `None` | Widget action value defined by the site owner. Default: `verify`. |
+| `isEnterprise` | `bool \| None` | `None` | Set to `True` to solve as Enterprise (equivalent to `RecaptchaV3EnterpriseTask`). |
+| `nocache` | `bool \| None` | `None` | Set to `True` to force fresh token generation (prevents reuse of cached tokens). |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -348,17 +379,20 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <hr>
-<doc-anchor-target id="recaptchav3enterprisetask">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recaptchav3enterprisetask">#</doc-anchor-trigger>
-        <span>RecaptchaV3EnterpriseTask <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="recaptchav3enterprisetask">RecaptchaV3EnterpriseTask <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Solves Google reCAPTCHA v3 Enterprise challenges.</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>RecaptchaV3EnterpriseTask</code></p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | Address of the webpage with reCAPTCHA Enterprise. |
+| `websiteKey` | `str` | **required** | reCAPTCHA site key. |
+| `minScore` | `float \| None` | `None` | Minimum acceptable score (0.1 – 0.9). |
+| `pageAction` | `str \| None` | `None` | Widget action value defined by the site owner. Default: `verify`. |
+| `nocache` | `bool \| None` | `None` | Set to `True` to force fresh token generation (prevents reuse of cached tokens). |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -403,6 +437,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 
                 
                 <!-- Required only on API pages -->
@@ -412,11 +447,11 @@
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../reference/prosopo/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../reference/proton/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Prosopo</span>
+                                <span class="block mt-1">Proton Captcha </span>
                             </span>
                         </a>
                     </div>
@@ -469,6 +504,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "reCAPTCHA", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "reCAPTCHA", level: 2, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/reference/recaptcha.md" }</script>
 </body>
 </html>

@@ -1,0 +1,198 @@
+# CapmonsterClient
+
+The main client for interacting with the Capmonster Cloud API. Supports both synchronous and asynchronous usage, context manager protocol, and configurable polling.
+
+## Constructor
+
+```python
+CapmonsterClient(api_key: str, timeout: float = 30.0, max_retries: int = 120, retry_delay: float = 2.0)
+```
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `api_key` | `str` | **required** | Your Capmonster Cloud API key. |
+| `timeout` | `float` | `30.0` | HTTP request timeout in seconds. |
+| `max_retries` | `int` | `120` | Maximum number of polling attempts in `join_task_result` / `solve`. |
+| `retry_delay` | `float` | `2.0` | Delay in seconds between polling attempts. |
+
+## Context Manager
+
+`CapmonsterClient` supports both sync and async context managers to ensure HTTP connections are properly closed.
+
++++ Sync
+```python
+with CapmonsterClient(api_key="YOUR_KEY") as client:
+    result = client.solve(task)
+```
++++ Async
+```python
+async with CapmonsterClient(api_key="YOUR_KEY") as client:
+    result = await client.solve_async(task)
+```
++++
+
+---
+
+## Methods
+
+### `get_balance`
+
+Fetches the current account balance.
+
+```python
+def get_balance(self) -> float
+async def get_balance_async(self) -> float
+```
+
+**Returns:** `float` — The account balance. Defaults to `0.0` if not found.
+
+---
+
+### `create_task`
+
+Creates a captcha-solving task and returns the task ID.
+
+```python
+def create_task(self, task: TaskPayload, callback_url: str | None = None) -> int
+async def create_task_async(self, task: TaskPayload, callback_url: str | None = None) -> int
+```
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `task` | `TaskPayload` | **required** | The task configuration payload. |
+| `callback_url` | `str \| None` | `None` | Optional URL to be called on task completion. |
+
+**Returns:** `int` — The unique task identifier.
+
+**Raises:** `CapmonsterException` if the request fails or the response contains no valid task ID.
+
+---
+
+### `get_task_result`
+
+Fetches the result of a completed task (single poll, no waiting).
+
+```python
+def get_task_result(self, task_id: int) -> dict
+async def get_task_result_async(self, task_id: int) -> dict
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier returned by `create_task`. |
+
+**Returns:** `dict` — The solution dictionary, or `{}` if the task is not yet ready.
+
+---
+
+### `join_task_result`
+
+Polls for the task result until it is ready, up to `max_retries` attempts with `retry_delay` between each.
+
+```python
+def join_task_result(self, task_id: int) -> dict
+async def join_task_result_async(self, task_id: int) -> dict
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier returned by `create_task`. |
+
+**Returns:** `dict` — The solution dictionary from the completed task.
+
+**Raises:** `CapmonsterAPIException` with code `ERROR_MAXIMUM_TIME_EXCEED` if polling exhausts all retries.
+
+---
+
+### `solve`
+
+Convenience method that creates a task and polls for its result in one call. Equivalent to `create_task()` followed by `join_task_result()`.
+
+```python
+def solve(self, task: TaskPayload, callback_url: str | None = None) -> dict
+async def solve_async(self, task: TaskPayload, callback_url: str | None = None) -> dict
+```
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `task` | `TaskPayload` | **required** | The task configuration payload. |
+| `callback_url` | `str \| None` | `None` | Optional callback URL for task completion. |
+
+**Returns:** `dict` — The solution dictionary from the completed task.
+
+---
+
+### `get_task_result_detailed` / `join_task_result_detailed` / `solve_detailed` [!badge text="NEW" variant="success"]
+
+Same as `get_task_result`, `join_task_result` and `solve`, but return a `TaskResult` with the task's status and cost
+as well as its solution. The methods above keep returning only the solution dictionary.
+
+```python
+def get_task_result_detailed(self, task_id: int) -> TaskResult
+def join_task_result_detailed(self, task_id: int) -> TaskResult
+def solve_detailed(self, task: TaskPayload, callback_url: str | None = None) -> TaskResult
+# async variants: get_task_result_detailed_async, join_task_result_detailed_async, solve_detailed_async
+```
+
+**Returns:** `TaskResult`
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `status` | `str` | `"processing"` or `"ready"`. |
+| `solution` | `dict` | The solution; `{}` while the task is processing. |
+| `cost` | `float \| None` | Cost of the task in USD; only set when the task is ready. |
+
+```python
+from capmonster_python import CapmonsterClient, TurnstileTask
+
+with CapmonsterClient(api_key="YOUR_API_KEY") as client:
+    result = client.solve_detailed(TurnstileTask(websiteURL="https://example.com", websiteKey="0x4AAAAAAA"))
+    print(result.solution["token"], result.cost)
+```
+
+---
+
+### `report_incorrect_image`
+
+Reports an incorrect image captcha solution.
+
+```python
+def report_incorrect_image(self, task_id: int) -> None
+async def report_incorrect_image_async(self, task_id: int) -> None
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier to report. |
+
+**Raises:** `CapmonsterAPIException` if the API returns an error.
+
+---
+
+### `report_incorrect_token`
+
+Reports an incorrect token captcha solution (reCAPTCHA, GeeTest, Turnstile, etc.).
+
+```python
+def report_incorrect_token(self, task_id: int) -> None
+async def report_incorrect_token_async(self, task_id: int) -> None
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `task_id` | `int` | The task identifier to report. |
+
+**Raises:** `CapmonsterAPIException` if the API returns an error.
+
+---
+
+### `get_user_agent`
+
+Fetches the current valid Windows User-Agent string from CapMonster Cloud.
+
+```python
+def get_user_agent(self) -> str
+async def get_user_agent_async(self) -> str
+```
+
+**Returns:** `str` — The current User-Agent string to use with captcha tasks.

@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Altcha</title>
@@ -15,23 +16,33 @@
     <meta name="description" content="Solves Altcha proof-of-work challenges.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/reference/altcha/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/reference/altcha/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/reference/altcha/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/reference/altcha/">
     <meta property="og:title" content="Altcha">
     <meta property="og:description" content="Solves Altcha proof-of-work challenges.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/reference/altcha/">
+    <meta name="twitter:title" content="Altcha">
+    <meta name="twitter:description" content="Solves Altcha proof-of-work challenges.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/reference/altcha.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -46,7 +57,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -131,18 +142,22 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="altcha" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#altcha">#</doc-anchor-trigger>
-        <span>Altcha</span>
-    </h1>
-</doc-anchor-target>
+<h1 id="altcha">Altcha</h1>
 <p>Solves Altcha proof-of-work challenges.</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>CustomTask</code> (with <code translate="no" v-pre>class: &quot;altcha&quot;</code>)</p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | Main page URL where Altcha is located. |
+| `websiteKey` | `str` | `&quot;&quot;` | For this task, sending an empty string is allowed. |
+| `metadata` | `AltchaMetadata` | **required** | Altcha-specific metadata. |
+| `userAgent` | `str \| None` | `None` | Browser User-Agent string. |
+| `proxy` | `ProxyPayload \| None` | `None` | Proxy settings. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -187,12 +202,14 @@
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="altchametadata">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#altchametadata">#</doc-anchor-trigger>
-        <span>AltchaMetadata</span>
-    </h2>
-</doc-anchor-target>
+</retype-table>
+<h2 id="altchametadata">AltchaMetadata</h2>
+<retype-table copy-text="| Parameter | Type | Description |
+|-----------|------|-------------|
+| `challenge` | `str` | Unique task identifier obtained from the website. |
+| `iterations` | `str` | Number of iterations (corresponds to `maxnumber` value). |
+| `salt` | `str` | Salt obtained from the site, used for hash generation. |
+| `signature` | `str` | Digital signature of the request. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -226,6 +243,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 
                 
                 <!-- Required only on API pages -->
@@ -235,11 +253,11 @@
             
                 <nav id="retype-nextprev" class="print:hidden flex mt-14">
                     <div class="w-1/2">
-                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../reference/abstract/">
+                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../reference/alibaba/">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                             <span>
                                 <span class="block text-xs font-normal text-base-text-muted">Previous</span>
-                                <span class="block mt-1">Abstract Base Classes</span>
+                                <span class="block mt-1">Alibaba </span>
                             </span>
                         </a>
                     </div>
@@ -292,6 +310,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Altcha", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Altcha", level: 2, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/reference/altcha.md" }</script>
 </body>
 </html>

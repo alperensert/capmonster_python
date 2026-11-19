@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Turnstile</title>
@@ -15,23 +16,33 @@
     <meta name="description" content="Solves Cloudflare Turnstile captchas in token mode. No proxy required.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/reference/turnstile/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/reference/turnstile/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/reference/turnstile/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/reference/turnstile/">
     <meta property="og:title" content="Turnstile">
     <meta property="og:description" content="Solves Cloudflare Turnstile captchas in token mode. No proxy required.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/reference/turnstile/">
+    <meta name="twitter:title" content="Turnstile">
+    <meta name="twitter:description" content="Solves Cloudflare Turnstile captchas in token mode. No proxy required.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/reference/turnstile.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -46,7 +57,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -131,25 +142,23 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="turnstile" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#turnstile">#</doc-anchor-trigger>
-        <span>Turnstile</span>
-    </h1>
-</doc-anchor-target>
+<h1 id="turnstile">Turnstile</h1>
 <hr>
-<doc-anchor-target id="turnstiletask">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#turnstiletask">#</doc-anchor-trigger>
-        <span>TurnstileTask</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="turnstiletask">TurnstileTask</h2>
 <p>Solves Cloudflare Turnstile captchas in token mode. No proxy required.</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>TurnstileTaskProxyless</code></p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | Page address where the captcha is solved. |
+| `websiteKey` | `str` | **required** | Turnstile site key. |
+| `pageAction` | `str \| None` | `None` | Action field from the captcha callback function. |
+| `data` | `str \| None` | `None` | Value of the `cData` parameter. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -188,15 +197,23 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 <hr>
-<doc-anchor-target id="turnstilecloudflaretask">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#turnstilecloudflaretask">#</doc-anchor-trigger>
-        <span>TurnstileCloudFlareTask</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="turnstilecloudflaretask">TurnstileCloudFlareTask</h2>
 <p>Solves Cloudflare challenges that return either a token or a <code translate="no" v-pre>cf_clearance</code> cookie. Extends <code translate="no" v-pre>TurnstileTask</code>.</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>TurnstileTask</code></p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | Page address where the captcha is solved. |
+| `websiteKey` | `str` | **required** | Turnstile site key. |
+| `cloudflareTaskType` | `Literal[&quot;token&quot;, &quot;cf_clearance&quot;]` | `&quot;token&quot;` | Cloudflare challenge type. |
+| `userAgent` | `str` | **required** | Browser User-Agent string (must be from Windows OS). |
+| `apiJsUrl` | `str \| None` | `None` | Captcha script URL (`token` type only). |
+| `pageData` | `str \| None` | `None` | Value of `chlPageData` (`token` type only). |
+| `htmlPageBase64` | `str \| None` | `None` | Base64-encoded HTML page. **Required** for `cf_clearance` type. |
+| `proxy` | `ProxyPayload \| None` | `None` | Proxy settings. **Required** for `cf_clearance`, optional for `token`. |
+| `pageAction` | `str \| None` | `None` | Action field from the captcha callback function. |
+| `data` | `str \| None` | `None` | Value of the `cData` parameter. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -236,7 +253,13 @@
 <td><code translate="no" v-pre>apiJsUrl</code></td>
 <td><code translate="no" v-pre>str \| None</code></td>
 <td><code translate="no" v-pre>None</code></td>
-<td>Captcha script URL. <strong>Required</strong> for <code translate="no" v-pre>token</code> type.</td>
+<td>Captcha script URL (<code translate="no" v-pre>token</code> type only).</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>pageData</code></td>
+<td><code translate="no" v-pre>str \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Value of <code translate="no" v-pre>chlPageData</code> (<code translate="no" v-pre>token</code> type only).</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>htmlPageBase64</code></td>
@@ -248,7 +271,7 @@
 <td><code translate="no" v-pre>proxy</code></td>
 <td><code translate="no" v-pre>ProxyPayload \| None</code></td>
 <td><code translate="no" v-pre>None</code></td>
-<td>Proxy settings. <strong>Required</strong> for <code translate="no" v-pre>cf_clearance</code>, must be omitted for <code translate="no" v-pre>token</code>.</td>
+<td>Proxy settings. <strong>Required</strong> for <code translate="no" v-pre>cf_clearance</code>, optional for <code translate="no" v-pre>token</code>.</td>
 </tr>
 <tr>
 <td><code translate="no" v-pre>pageAction</code></td>
@@ -265,27 +288,25 @@
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="validation-rules">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#validation-rules">#</doc-anchor-trigger>
-        <span>Validation rules</span>
-    </h3>
-</doc-anchor-target>
+</retype-table>
+<h3 id="validation-rules">Validation rules</h3>
 <ul>
-<li><strong><code translate="no" v-pre>token</code> type:</strong> <code translate="no" v-pre>apiJsUrl</code> is required; <code translate="no" v-pre>proxy</code> must be omitted.</li>
+<li><strong><code translate="no" v-pre>token</code> type:</strong> no extra requirement; pass <code translate="no" v-pre>pageAction</code>, <code translate="no" v-pre>data</code> and <code translate="no" v-pre>pageData</code> from the challenge page.</li>
 <li><strong><code translate="no" v-pre>cf_clearance</code> type:</strong> <code translate="no" v-pre>htmlPageBase64</code> and <code translate="no" v-pre>proxy</code> are both required.</li>
 </ul>
 <hr>
-<doc-anchor-target id="turnstilewaitingroomtask">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#turnstilewaitingroomtask">#</doc-anchor-trigger>
-        <span>TurnstileWaitingRoomTask <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="turnstilewaitingroomtask">TurnstileWaitingRoomTask <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Solves Cloudflare Waiting Room challenges. Returns a <code translate="no" v-pre>cf_clearance</code> cookie. Proxy is required.</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>TurnstileTask</code> (with <code translate="no" v-pre>cloudflareTaskType: &quot;wait_room&quot;</code>)</p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | URL of the page containing the waiting room check. |
+| `websiteKey` | `str` | **required** | Cloudflare site key. |
+| `htmlPageBase64` | `str` | **required** | Base64-encoded HTML page containing the waiting room. |
+| `userAgent` | `str` | **required** | Browser User-Agent string (must be from Windows OS). |
+| `proxy` | `ProxyPayload` | **required** | Proxy settings. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -330,6 +351,7 @@
 </tbody>
 </table>
 </div>
+</retype-table>
 
                 
                 <!-- Required only on API pages -->
@@ -396,6 +418,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Turnstile", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Turnstile", level: 2, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/reference/turnstile.md" }</script>
 </body>
 </html>

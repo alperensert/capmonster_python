@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap.xml.gz
+Sitemap: https://alperensert.github.io/capmonster_python/sitemap.xml

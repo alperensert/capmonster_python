@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>TenDI</title>
@@ -15,23 +16,33 @@
     <meta name="description" content="Solves TenDI-based captcha challenges.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/reference/tendi/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/reference/tendi/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/reference/tendi/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/reference/tendi/">
     <meta property="og:title" content="TenDI">
     <meta property="og:description" content="Solves TenDI-based captcha challenges.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/reference/tendi/">
+    <meta name="twitter:title" content="TenDI">
+    <meta name="twitter:description" content="Solves TenDI-based captcha challenges.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/reference/tendi.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -46,7 +57,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -131,18 +142,22 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="tendi" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#tendi">#</doc-anchor-trigger>
-        <span>TenDI</span>
-    </h1>
-</doc-anchor-target>
+<h1 id="tendi">TenDI</h1>
 <p>Solves TenDI-based captcha challenges.</p>
 <p><strong>API type:</strong> <code translate="no" v-pre>CustomTask</code> (with <code translate="no" v-pre>class: &quot;TenDI&quot;</code>)</p>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `websiteURL` | `str` | **required** | Address of the page with the captcha. |
+| `websiteKey` | `str` | **required** | captchaAppId — unique parameter for your site. |
+| `userAgent` | `str \| None` | `None` | Browser User-Agent string. |
+| `metadata` | `TenDIMetadata \| None` | `None` | Optional TenDI-specific metadata. |
+| `proxy` | `ProxyPayload \| None` | `None` | Proxy settings. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -173,14 +188,55 @@
 <td>Browser User-Agent string.</td>
 </tr>
 <tr>
+<td><code translate="no" v-pre>metadata</code></td>
+<td><code translate="no" v-pre>TenDIMetadata \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Optional TenDI-specific metadata.</td>
+</tr>
+<tr>
 <td><code translate="no" v-pre>proxy</code></td>
-<td><code translate="no" v-pre>ProxyPayload</code></td>
-<td><strong>required</strong></td>
+<td><code translate="no" v-pre>ProxyPayload \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
 <td>Proxy settings.</td>
 </tr>
 </tbody>
 </table>
 </div>
+</retype-table>
+<h2 id="tendimetadata">TenDIMetadata <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
+<retype-table copy-text="| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `captchaUrl` | `str \| None` | `None` | Link to the captcha script, if the site loads it from a custom domain. |
+| `aidEncrypted` | `str \| None` | `None` | Single-use encrypted Aid value issued by the site, if it uses one. |">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no" v-pre>captchaUrl</code></td>
+<td><code translate="no" v-pre>str \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Link to the captcha script, if the site loads it from a custom domain.</td>
+</tr>
+<tr>
+<td><code translate="no" v-pre>aidEncrypted</code></td>
+<td><code translate="no" v-pre>str \| None</code></td>
+<td><code translate="no" v-pre>None</code></td>
+<td>Single-use encrypted Aid value issued by the site, if it uses one.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</retype-table>
 
                 
                 <!-- Required only on API pages -->
@@ -247,6 +303,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "TenDI", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "TenDI", level: 2, icon: "file", hasPrism: false, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/reference/tendi.md" }</script>
 </body>
 </html>

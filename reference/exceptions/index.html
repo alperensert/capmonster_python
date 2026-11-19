@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Exceptions</title>
@@ -15,24 +16,34 @@
     <meta name="description" content="All exceptions in capmonster_python inherit from CapmonsterException.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/reference/exceptions/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/reference/exceptions/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/reference/exceptions/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/reference/exceptions/">
     <meta property="og:title" content="Exceptions">
     <meta property="og:description" content="All exceptions in capmonster_python inherit from CapmonsterException.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/reference/exceptions/">
+    <meta name="twitter:title" content="Exceptions">
+    <meta name="twitter:description" content="All exceptions in capmonster_python inherit from CapmonsterException.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/reference/exceptions.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.2.0.826957987702" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.848410627610" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -47,7 +58,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -132,39 +143,31 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="exceptions" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#exceptions">#</doc-anchor-trigger>
-        <span>Exceptions</span>
-    </h1>
-</doc-anchor-target>
+<h1 id="exceptions">Exceptions</h1>
 <p>All exceptions in capmonster_python inherit from <code translate="no" v-pre>CapmonsterException</code>.</p>
 <hr>
-<doc-anchor-target id="capmonsterexception">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#capmonsterexception">#</doc-anchor-trigger>
-        <span>CapmonsterException</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="capmonsterexception">CapmonsterException</h2>
 <div id="capmonsterexception-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">class CapmonsterException(Exception)</code></pre>
 </doc-codeblock></div>
 <p>Generic base exception for all errors. Raised for errors not caught by more specific exception classes, including HTTP request failures and unexpected issues.</p>
 <hr>
-<doc-anchor-target id="capmonsterapiexception">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#capmonsterapiexception">#</doc-anchor-trigger>
-        <span>CapmonsterAPIException</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="capmonsterapiexception">CapmonsterAPIException</h2>
 <div id="capmonsterapiexception-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">class CapmonsterAPIException(CapmonsterException)</code></pre>
 </doc-codeblock></div>
 <p>Raised when the Capmonster Cloud API returns an error response.</p>
+<retype-table copy-text="| Attribute | Type | Description |
+|-----------|------|-------------|
+| `error_id` | `int` | The numeric error ID returned by the API. |
+| `error_code` | `str` | The error code string (e.g. `&quot;ERROR_KEY_DOES_NOT_EXIST&quot;`). |
+| `error_description` | `str` | Human-readable error description from the API. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -193,35 +196,26 @@
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="constructor">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#constructor">#</doc-anchor-trigger>
-        <span>Constructor</span>
-    </h3>
-</doc-anchor-target>
+</retype-table>
+<h3 id="constructor">Constructor</h3>
 <div id="constructor-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">CapmonsterAPIException(error_id, error_code, error_description)</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="string-representation">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#string-representation">#</doc-anchor-trigger>
-        <span>String representation</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="string-representation">String representation</h3>
 <div id="string-representation-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-none"><code v-pre class="language-none">[ERROR_CODE] Error description</code></pre>
 </doc-codeblock></div>
 <hr>
-<doc-anchor-target id="capmonstervalidationexception">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#capmonstervalidationexception">#</doc-anchor-trigger>
-        <span>CapmonsterValidationException</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="capmonstervalidationexception">CapmonsterValidationException</h2>
 <div id="capmonstervalidationexception-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">class CapmonsterValidationException(CapmonsterException)</code></pre>
 </doc-codeblock></div>
 <p>Raised when a task configuration is invalid at the SDK level (before any API call is made).</p>
+<retype-table copy-text="| Attribute | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `message` | `str` | **required** | Description of the validation error. |
+| `field` | `str \| None` | `None` | The field that caused the error, if applicable. |
+| `task` | `str \| None` | `None` | The task type that caused the error, if applicable. |">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -254,21 +248,12 @@
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="constructor-1">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#constructor-1">#</doc-anchor-trigger>
-        <span>Constructor</span>
-    </h3>
-</doc-anchor-target>
+</retype-table>
+<h3 id="constructor-1">Constructor</h3>
 <div id="constructor-1-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">CapmonsterValidationException(message: str, *, field: str = None, task: str = None)</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="string-representation-1">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#string-representation-1">#</doc-anchor-trigger>
-        <span>String representation</span>
-    </h3>
-</doc-anchor-target>
+<h3 id="string-representation-1">String representation</h3>
 <div id="string-representation-1-code-1" class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-none"><code v-pre class="language-none">[CapmonsterValidationError] message (field: fieldName) [task: TaskType]</code></pre>
 </doc-codeblock></div>
@@ -291,10 +276,10 @@
                     </div>
             
                     <div class="w-1/2">
-                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../reference/funcaptcha/">
+                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../reference/fengkongcloud/">
                             <span>
                                 <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
-                                <span class="block mt-1">Fun​Captcha</span>
+                                <span class="block mt-1">Fengkong​Cloud </span>
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                         </a>
@@ -338,6 +323,6 @@
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Exceptions", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Exceptions", level: 2, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/reference/exceptions.md" }</script>
 </body>
 </html>

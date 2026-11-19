@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.2.0.826957987702">
+    <meta name="turbo-root" content="/capmonster_python">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.848410627610">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 4.2.0">
+    <meta name="generator" content="Retype 4.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Examples</title>
@@ -15,24 +16,34 @@
     <meta name="description" content="Below are example usages for various task types, shown in both async and sync format using CapmonsterClient.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="/examples/">
+    <link rel="canonical" href="https://alperensert.github.io/capmonster_python/examples/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://alperensert.github.io/capmonster_python/sitemap.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/examples/">
+    <meta property="og:url" content="https://alperensert.github.io/capmonster_python/examples/">
     <meta property="og:title" content="Examples">
     <meta property="og:description" content="Below are example usages for various task types, shown in both async and sync format using CapmonsterClient.">
     <meta property="og:site_name" content="capmonster_python">
     <meta property="og:locale" content="en_US">
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alperensert.github.io/capmonster_python/examples/">
+    <meta name="twitter:title" content="Examples">
+    <meta name="twitter:description" content="Below are example usages for various task types, shown in both async and sync format using CapmonsterClient.">
+
+    <!-- Alternate Markdown -->
+    <link rel="alternate" type="text/markdown" href="https://alperensert.github.io/capmonster_python/examples.md">
+
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.2.0.826957987702" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.6.0.848410627610" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/retype.js?v=4.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.2.0.826957987702" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=4.2.0.826957987702" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.848410627610" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=4.6.0.848410627610" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -47,7 +58,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-between h-full py-2 md:w-75">
                 <div class="flex items-center px-2 md:px-6">
-                    <a id="retype-branding-logo" href="../" class="flex items-center leading-snug text-xl">
+                    <a id="retype-branding-logo" href="https://alperensert.github.io/capmonster_python/" class="flex items-center leading-snug text-xl">
                         <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">capmonster_python</span>
                     </a><span id="retype-branding-label" class="inline-flex mt-1 px-2 py-1 ml-4 text-xs font-medium leading-none items-center rounded-md bg-branding-label-bg text-branding-label-text ring-1 ring-branding-label-border ring-inset md:inline-block">v5</span>
                 </div>
@@ -132,24 +143,16 @@
 <div class="flex">
     <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
         <main class="relative pb-12 lg:pt-2">
-            <div class="retype-markdown" id="retype-content">
+            <div class="relative retype-markdown" id="retype-content">
                 <!-- Rendered if sidebar right is enabled -->
                 <div id="retype-sidebar-right-toggle"></div>
+                <doc-page-actions></doc-page-actions>
+
                 <!-- Page content  -->
-<doc-anchor-target id="examples" class="break-words">
-    <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#examples">#</doc-anchor-trigger>
-        <span>Examples</span>
-    </h1>
-</doc-anchor-target>
+<h1 id="examples">Examples</h1>
 <p>Below are example usages for various task types, shown in both async and sync format using <code translate="no" v-pre>CapmonsterClient</code>.</p>
 <hr>
-<doc-anchor-target id="context-manager">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#context-manager">#</doc-anchor-trigger>
-        <span>Context Manager</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="context-manager">Context Manager</h2>
 <p>Using a context manager ensures HTTP connections are properly closed when you&#x27;re done.</p>
 <doc-tabs>
 <doc-tab v-cloak id="async">
@@ -188,15 +191,10 @@ with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="solve-convenience-method">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#solve-convenience-method">#</doc-anchor-trigger>
-        <span>solve() Convenience Method</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="solve-convenience-method">solve() Convenience Method</h2>
 <p>The <code translate="no" v-pre>solve()</code> method combines <code translate="no" v-pre>create_task</code> + <code translate="no" v-pre>join_task_result</code> into a single call.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-1">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -213,7 +211,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-1">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, RecaptchaV2Task
@@ -228,15 +226,10 @@ print(result.get(&quot;gRecaptchaResponse&quot;))</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="configurable-polling">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#configurable-polling">#</doc-anchor-trigger>
-        <span>Configurable Polling</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="configurable-polling">Configurable Polling</h2>
 <p>Customize the polling behavior when waiting for task results with <code translate="no" v-pre>max_retries</code> and <code translate="no" v-pre>retry_delay</code>.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-2">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -257,7 +250,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-2">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, RecaptchaV2Task
@@ -276,14 +269,9 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="recaptcha-v2">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recaptcha-v2">#</doc-anchor-trigger>
-        <span>reCAPTCHA v2</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="recaptcha-v2">reCAPTCHA v2</h2>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-3">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -303,7 +291,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-3">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, RecaptchaV2Task
@@ -320,16 +308,11 @@ print(response.get(&quot;gRecaptchaResponse&quot;))</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="recaptcha-v2-enterprise">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recaptcha-v2-enterprise">#</doc-anchor-trigger>
-        <span>reCAPTCHA v2 Enterprise</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="recaptcha-v2-enterprise">reCAPTCHA v2 Enterprise</h2>
 <p>Used for solving Google reCAPTCHA V2 Enterprise challenges.
 Optional support for <code translate="no" v-pre>enterprisePayload</code>, custom <code translate="no" v-pre>apiDomain</code>, and <code translate="no" v-pre>cookies</code>.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-4">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -350,7 +333,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-4">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, RecaptchaV2EnterpriseTask
@@ -368,16 +351,11 @@ print(result.get(&quot;gRecaptchaResponse&quot;))</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="recaptcha-v3">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recaptcha-v3">#</doc-anchor-trigger>
-        <span>reCAPTCHA v3</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="recaptcha-v3">reCAPTCHA v3</h2>
 <p>Used for solving score-based reCAPTCHA v3 challenges without requiring a proxy.
 You can optionally provide <code translate="no" v-pre>minScore</code> and <code translate="no" v-pre>pageAction</code> to match expected interaction patterns.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-5">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -398,7 +376,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-5">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, RecaptchaV3Task
@@ -416,17 +394,12 @@ print(result.get(&quot;gRecaptchaResponse&quot;))</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="recaptcha-v3-enterprise">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recaptcha-v3-enterprise">#</doc-anchor-trigger>
-        <span>reCAPTCHA v3 Enterprise <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="recaptcha-v3-enterprise">reCAPTCHA v3 Enterprise <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Used for solving Google reCAPTCHA v3 Enterprise challenges.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-6">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -447,7 +420,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-6">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, RecaptchaV3EnterpriseTask
@@ -465,14 +438,9 @@ print(result.get(&quot;gRecaptchaResponse&quot;))</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="imagetotext">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#imagetotext">#</doc-anchor-trigger>
-        <span>ImageToText</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="imagetotext">ImageToText</h2>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-7">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -491,7 +459,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-7">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, ImageToTextTask
@@ -508,14 +476,9 @@ print(response.get(&quot;text&quot;))</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="geetest-v3">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#geetest-v3">#</doc-anchor-trigger>
-        <span>GeeTest v3</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="geetest-v3">GeeTest v3</h2>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-8">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -535,7 +498,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-8">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, GeeTestV3Task
@@ -552,16 +515,11 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="geetest-v4">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#geetest-v4">#</doc-anchor-trigger>
-        <span>GeeTest v4</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="geetest-v4">GeeTest v4</h2>
 <p>Used for solving advanced GeeTest v4 captchas which require both <code translate="no" v-pre>gt</code> and <code translate="no" v-pre>initParameters</code>.
 The challenge is generated dynamically per user and must be fresh.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-9">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -581,7 +539,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-9">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, GeeTestV4Task
@@ -598,15 +556,10 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="turnstiletask-token-based">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#turnstiletask-token-based">#</doc-anchor-trigger>
-        <span>TurnstileTask (Token-based)</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="turnstiletask-token-based">TurnstileTask (Token-based)</h2>
 <p>For solving Cloudflare Turnstile captchas using token mode. No proxy required.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-10">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -625,7 +578,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-10">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, TurnstileTask
@@ -641,15 +594,10 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="turnstilecloudflaretask-cf_clearance">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#turnstilecloudflaretask-cf_clearance">#</doc-anchor-trigger>
-        <span>TurnstileCloudFlareTask (cf_clearance)</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="turnstilecloudflaretask-cf_clearance">TurnstileCloudFlareTask (cf_clearance)</h2>
 <p>Used for bypassing complex Cloudflare protection involving <code translate="no" v-pre>cf_clearance</code> cookie and HTML snapshot.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-11">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -675,7 +623,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-11">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, TurnstileCloudFlareTask, ProxyPayload
@@ -699,17 +647,12 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="cloudflare-waiting-room">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cloudflare-waiting-room">#</doc-anchor-trigger>
-        <span>Cloudflare Waiting Room <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="cloudflare-waiting-room">Cloudflare Waiting Room <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Used for bypassing Cloudflare Waiting Room challenges. Proxy is required.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-12">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -734,7 +677,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-12">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, TurnstileWaitingRoomTask, ProxyPayload
@@ -757,14 +700,9 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="datadome">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#datadome">#</doc-anchor-trigger>
-        <span>DataDome</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="datadome">DataDome</h2>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-13">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -786,7 +724,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-13">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, DataDomeTask, DataDomeMetadata
@@ -805,14 +743,9 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="complex-image-recaptcha">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#complex-image-recaptcha">#</doc-anchor-trigger>
-        <span>Complex Image reCAPTCHA</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="complex-image-recaptcha">Complex Image reCAPTCHA</h2>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-14">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -831,7 +764,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-14">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, ComplexImageRecaptchaTask, ComplexImageRecaptchaMetadata
@@ -848,14 +781,9 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="imperva">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#imperva">#</doc-anchor-trigger>
-        <span>Imperva</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="imperva">Imperva</h2>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-15">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -867,7 +795,7 @@ async def main():
         websiteURL=&quot;https://example.com&quot;,
         metadata=ImpervaTaskMetadata(
             incapsulaScriptUrl=&quot;https://example.com/js.inc&quot;,
-            incapsulaCookie=&quot;visid_incap_12345=...&quot;,
+            incapsulaCookies=&quot;visid_incap_12345=...&quot;,
         )
     )
     task_id = await client.create_task_async(task)
@@ -877,7 +805,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-15">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, ImpervaTask, ImpervaTaskMetadata
@@ -887,7 +815,7 @@ task_id = client.create_task(ImpervaTask(
     websiteURL=&quot;https://example.com&quot;,
     metadata=ImpervaTaskMetadata(
         incapsulaScriptUrl=&quot;https://example.com/js.inc&quot;,
-        incapsulaCookie=&quot;visid_incap_12345=...&quot;,
+        incapsulaCookies=&quot;visid_incap_12345=...&quot;,
     )
 ))
 result = client.get_task_result(task_id)
@@ -896,17 +824,12 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="amazon-waf">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#amazon-waf">#</doc-anchor-trigger>
-        <span>Amazon WAF <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="amazon-waf">Amazon WAF <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Used for solving Amazon AWS WAF captcha and challenge pages.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-16">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -929,7 +852,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-16">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, AmazonTask
@@ -949,17 +872,12 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="funcaptcha">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#funcaptcha">#</doc-anchor-trigger>
-        <span>FunCaptcha <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="funcaptcha">FunCaptcha <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Used for solving FunCaptcha (Arkose Labs) challenges.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-17">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -978,7 +896,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-17">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, FunCaptchaTask
@@ -994,14 +912,9 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="basilisk">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#basilisk">#</doc-anchor-trigger>
-        <span>Basilisk</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="basilisk">Basilisk</h2>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-18">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -1020,7 +933,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-18">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, BasiliskTask
@@ -1036,16 +949,11 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="binance">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#binance">#</doc-anchor-trigger>
-        <span>Binance</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="binance">Binance</h2>
 <p>Used specifically for login flows involving Binance CAPTCHA protection.
 You must supply a valid <code translate="no" v-pre>validateId</code> (such as <code translate="no" v-pre>securityId</code>, <code translate="no" v-pre>validateId</code>, or similar) retrieved from the page.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-19">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -1065,7 +973,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-19">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, BinanceTask
@@ -1082,15 +990,27 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="temu">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#temu">#</doc-anchor-trigger>
-        <span>Temu</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="temu">Temu</h2>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Deprecated</h5>
+<p><code translate="no" v-pre>TemuTask</code> emits a <code translate="no" v-pre>DeprecationWarning</code> and will be removed in 6.0: Temu is no longer in the CapMonster Cloud docs.</p>
+        </div>
+    </div>
+</div>
 <p>Used to bypass CAPTCHA challenges on Temu using extracted cookies.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-20">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -1109,7 +1029,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-20">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, TemuTask
@@ -1125,15 +1045,10 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="tendi">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#tendi">#</doc-anchor-trigger>
-        <span>TenDI</span>
-    </h2>
-</doc-anchor-target>
+<h2 id="tendi">TenDI</h2>
 <p>Used to solve TenDI-based captcha challenges with a known <code translate="no" v-pre>websiteKey</code> (captchaAppId).</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-21">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -1159,7 +1074,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-21">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, TenDITask, ProxyPayload
@@ -1183,17 +1098,12 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="mtcaptcha">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#mtcaptcha">#</doc-anchor-trigger>
-        <span>MTCaptcha <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="mtcaptcha">MTCaptcha <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Used for solving MTCaptcha challenges.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-22">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -1212,7 +1122,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-22">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, MTCaptchaTask
@@ -1228,17 +1138,12 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="yidun-necaptcha">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#yidun-necaptcha">#</doc-anchor-trigger>
-        <span>Yidun (NECaptcha) <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="yidun-necaptcha">Yidun (NECaptcha) <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Used for solving Yidun (NECaptcha) challenges.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-23">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -1257,7 +1162,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-23">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, YidunTask
@@ -1273,17 +1178,12 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="altcha">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#altcha">#</doc-anchor-trigger>
-        <span>Altcha <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="altcha">Altcha <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Used for solving Altcha proof-of-work challenges.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-24">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -1307,7 +1207,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-24">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, AltchaTask, AltchaMetadata
@@ -1328,17 +1228,27 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="castle">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#castle">#</doc-anchor-trigger>
-        <span>Castle <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="castle">Castle</h2>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Deprecated</h5>
+<p><code translate="no" v-pre>CastleTask</code> emits a <code translate="no" v-pre>DeprecationWarning</code> and will be removed in 6.0: Castle is no longer in the CapMonster Cloud docs.</p>
+        </div>
+    </div>
+</div>
 <p>Used for solving Castle challenges.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-25">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -1361,7 +1271,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-25">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, CastleTask, CastleMetadata
@@ -1381,17 +1291,12 @@ print(result)</code></pre>
 </doc-tab>
 </doc-tabs>
 <hr>
-<doc-anchor-target id="tspd">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#tspd">#</doc-anchor-trigger>
-        <span>TSPD <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
-            <span>NEW</span>
-        </span></span>
-    </h2>
-</doc-anchor-target>
+<h2 id="tspd">TSPD <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
 <p>Used for solving TSPD challenges. Proxy is required.</p>
 <doc-tabs>
-<doc-tab v-cloak id="async">
+<doc-tab v-cloak id="async-26">
 <template #title>Async</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
@@ -1418,7 +1323,7 @@ async def main():
 asyncio.run(main())</code></pre>
 </doc-codeblock></div>
 </doc-tab>
-<doc-tab v-cloak id="sync">
+<doc-tab v-cloak id="sync-26">
 <template #title>Sync</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, TSPDTask, TSPDMetadata, ProxyPayload
@@ -1438,6 +1343,302 @@ task_id = client.create_task(TSPDTask(
 ))
 result = client.get_task_result(task_id)
 print(result)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<hr>
+<h2 id="hunt">Hunt <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
+<p>Solves Hunt captcha through <code translate="no" v-pre>widgetUrl</code> (or <code translate="no" v-pre>data</code> with the site&#x27;s <code translate="no" v-pre>meta.token</code>). Proxy is required.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-primary"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-primary" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>The old <code translate="no" v-pre>HuntTask(websiteKey=...)</code> form is deprecated; it still works but emits a <code translate="no" v-pre>DeprecationWarning</code>.</p>
+        </div>
+    </div>
+</div>
+<doc-tabs>
+<doc-tab v-cloak id="async-27">
+<template #title>Async</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
+from capmonster_python import CapmonsterClient, HuntTask, HuntMetadata, ProxyPayload
+
+async def main():
+    async with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+        task = HuntTask(
+            websiteURL=&quot;https://example.com/page-with-hunt&quot;,
+            metadata=HuntMetadata(
+                apiGetLib=&quot;https://example.com/hd-api/external/apps/&lt;app-hash&gt;/api.js&quot;,
+                widgetUrl=&quot;https://captcha.example.com/widget?hash=&lt;widget-hash&gt;&quot;
+            ),
+            proxy=ProxyPayload(proxyType=&quot;http&quot;, proxyAddress=&quot;1.2.3.4&quot;, proxyPort=8080,
+                               proxyLogin=&quot;&lt;login&gt;&quot;, proxyPassword=&quot;&lt;password&gt;&quot;)
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="sync-27">
+<template #title>Sync</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, HuntTask, HuntMetadata, ProxyPayload
+
+with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+    task = HuntTask(
+        websiteURL=&quot;https://example.com/page-with-hunt&quot;,
+        metadata=HuntMetadata(
+            apiGetLib=&quot;https://example.com/hd-api/external/apps/&lt;app-hash&gt;/api.js&quot;,
+            widgetUrl=&quot;https://captcha.example.com/widget?hash=&lt;widget-hash&gt;&quot;
+        ),
+        proxy=ProxyPayload(proxyType=&quot;http&quot;, proxyAddress=&quot;1.2.3.4&quot;, proxyPort=8080,
+                           proxyLogin=&quot;&lt;login&gt;&quot;, proxyPassword=&quot;&lt;password&gt;&quot;)
+    )
+    result = client.solve(task)
+    print(result)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<hr>
+<h2 id="alibaba">Alibaba <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
+<p>Solves Alibaba captcha. Use <code translate="no" v-pre>punishUrl</code> instead of <code translate="no" v-pre>sceneId</code>/<code translate="no" v-pre>prefix</code> for sites that return a <code translate="no" v-pre>/punish</code> URL.</p>
+<doc-tabs>
+<doc-tab v-cloak id="async-28">
+<template #title>Async</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
+from capmonster_python import CapmonsterClient, AlibabaTask, AlibabaMetadata
+
+async def main():
+    async with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+        task = AlibabaTask(
+            websiteURL=&quot;https://www.example.com&quot;,
+            metadata=AlibabaMetadata(sceneId=&quot;&lt;scene_id&gt;&quot;, prefix=&quot;&lt;prefix&gt;&quot;)
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="sync-28">
+<template #title>Sync</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, AlibabaTask, AlibabaMetadata
+
+with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+    task = AlibabaTask(
+        websiteURL=&quot;https://www.example.com&quot;,
+        metadata=AlibabaMetadata(sceneId=&quot;&lt;scene_id&gt;&quot;, prefix=&quot;&lt;prefix&gt;&quot;)
+    )
+    result = client.solve(task)
+    print(result)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<hr>
+<h2 id="friendly-captcha">Friendly Captcha <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
+<p>Solves Friendly Captcha V1 and V2.</p>
+<doc-tabs>
+<doc-tab v-cloak id="async-29">
+<template #title>Async</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
+from capmonster_python import CapmonsterClient, FriendlyTask, FriendlyMetadata
+
+async def main():
+    async with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+        task = FriendlyTask(
+            websiteURL=&quot;https://example.com&quot;,
+            websiteKey=&quot;&lt;site_key&gt;&quot;,
+            metadata=FriendlyMetadata(apiGetLib=&quot;https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@X.Y.Z/site.min.js&quot;)
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="sync-29">
+<template #title>Sync</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, FriendlyTask, FriendlyMetadata
+
+with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+    task = FriendlyTask(
+        websiteURL=&quot;https://example.com&quot;,
+        websiteKey=&quot;&lt;site_key&gt;&quot;,
+        metadata=FriendlyMetadata(apiGetLib=&quot;https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@X.Y.Z/site.min.js&quot;)
+    )
+    result = client.solve(task)
+    print(result)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<hr>
+<h2 id="fengkongcloud">FengkongCloud <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
+<p>Solves FengkongCloud captcha. No proxy.</p>
+<doc-tabs>
+<doc-tab v-cloak id="async-30">
+<template #title>Async</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
+from capmonster_python import CapmonsterClient, FengkongCloudTask, FengkongCloudMetadata
+
+async def main():
+    async with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+        task = FengkongCloudTask(
+            websiteURL=&quot;https://example.com&quot;,
+            websiteKey=&quot;&lt;site_key&gt;&quot;,
+            metadata=FengkongCloudMetadata(apiJsUrl=&quot;https://castatic.fengkongcloud.com/pr/vX.X.X/smcp.min.js&quot;)
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="sync-30">
+<template #title>Sync</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, FengkongCloudTask, FengkongCloudMetadata
+
+with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+    task = FengkongCloudTask(
+        websiteURL=&quot;https://example.com&quot;,
+        websiteKey=&quot;&lt;site_key&gt;&quot;,
+        metadata=FengkongCloudMetadata(apiJsUrl=&quot;https://castatic.fengkongcloud.com/pr/vX.X.X/smcp.min.js&quot;)
+    )
+    result = client.solve(task)
+    print(result)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<hr>
+<h2 id="arcaptcha">ARCaptcha <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
+<p>Solves ARCaptcha. No proxy.</p>
+<doc-tabs>
+<doc-tab v-cloak id="async-31">
+<template #title>Async</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
+from capmonster_python import CapmonsterClient, ARCaptchaTask
+
+async def main():
+    async with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+        task = ARCaptchaTask(websiteURL=&quot;https://example.com&quot;, websiteKey=&quot;&lt;site_key&gt;&quot;)
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="sync-31">
+<template #title>Sync</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, ARCaptchaTask
+
+with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+    task = ARCaptchaTask(websiteURL=&quot;https://example.com&quot;, websiteKey=&quot;&lt;site_key&gt;&quot;)
+    result = client.solve(task)
+    print(result)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<hr>
+<h2 id="heytap">HeyTap <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
+<p>Solves HeyTap captcha. No proxy.</p>
+<doc-tabs>
+<doc-tab v-cloak id="async-32">
+<template #title>Async</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
+from capmonster_python import CapmonsterClient, HeyTapTask
+
+async def main():
+    async with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+        task = HeyTapTask(websiteURL=&quot;https://example.com&quot;, websiteKey=&quot;&lt;site_key&gt;&quot;)
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="sync-32">
+<template #title>Sync</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, HeyTapTask
+
+with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+    task = HeyTapTask(websiteURL=&quot;https://example.com&quot;, websiteKey=&quot;&lt;site_key&gt;&quot;)
+    result = client.solve(task)
+    print(result)</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+</doc-tabs>
+<hr>
+<h2 id="proton-captcha">Proton Captcha <span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-success-text bg-badge-success border border-badge-success-border h-6 px-2 text-xs rounded-md">
+    <span>NEW</span>
+</span></h2>
+<p>Solves Proton Captcha. Proxy is required.</p>
+<doc-tabs>
+<doc-tab v-cloak id="async-33">
+<template #title>Async</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">import asyncio
+from capmonster_python import CapmonsterClient, ProtonTask, ProtonMetadata, ProxyPayload
+
+async def main():
+    async with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+        task = ProtonTask(
+            websiteURL=&quot;https://example.com/&quot;,
+            metadata=ProtonMetadata(HumanVerificationToken=&quot;&lt;token&gt;&quot;, pageAction=&quot;login&quot;),
+            proxy=ProxyPayload(proxyType=&quot;http&quot;, proxyAddress=&quot;1.2.3.4&quot;, proxyPort=8080,
+                               proxyLogin=&quot;&lt;login&gt;&quot;, proxyPassword=&quot;&lt;password&gt;&quot;)
+        )
+        result = await client.solve_async(task)
+        print(result)
+
+asyncio.run(main())</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab v-cloak id="sync-33">
+<template #title>Sync</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-python"><code v-pre class="language-python">from capmonster_python import CapmonsterClient, ProtonTask, ProtonMetadata, ProxyPayload
+
+with CapmonsterClient(api_key=&quot;&lt;API_KEY&gt;&quot;) as client:
+    task = ProtonTask(
+        websiteURL=&quot;https://example.com/&quot;,
+        metadata=ProtonMetadata(HumanVerificationToken=&quot;&lt;token&gt;&quot;, pageAction=&quot;login&quot;),
+        proxy=ProxyPayload(proxyType=&quot;http&quot;, proxyAddress=&quot;1.2.3.4&quot;, proxyPort=8080,
+                           proxyLogin=&quot;&lt;login&gt;&quot;, proxyPassword=&quot;&lt;password&gt;&quot;)
+    )
+    result = client.solve(task)
+    print(result)</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 </doc-tabs>
@@ -1507,6 +1708,6 @@ print(result)</code></pre>
 
     <div id="retype-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Examples", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+        <script data-cfasync="false">window.__DOCS__ = { "title": "Examples", level: 1, icon: "file", hasPrism: true, hasInstagram: false, hasMermaid: false, hasMath: false, tocDepth: 23, "md": "/examples.md" }</script>
 </body>
 </html>
