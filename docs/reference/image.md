@@ -62,5 +62,5 @@ Solves complex image recognition tasks (rotate, match, etc.).
 `bills_audio` sends `PayloadType: "Audio"` automatically; pass the audio as base64 in `imagesBase64`.
 
 !!!warning
-`task="bls"` is deprecated: it is sent as `bls_3x3` with a `DeprecationWarning`, and will be removed in 6.0.
+`task="bls"` is deprecated: it is still sent as `bls`, with a `DeprecationWarning`, and will be removed in 6.0. Use `bls_3x3` with `taskArgument`.
 !!!

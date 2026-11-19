@@ -19,7 +19,7 @@ class ComplexImageRecognitionTask(TaskPayload):
         task: A string indicating one of the predefined types of recognition
             task: "oocl_rotate_new", "oocl_rotate_double_new", "betpunch_3x3_rotate",
             "baidu", "bls_3x3", "shein", "bills_audio", "dli", "MathSum" or
-            "portugal_text_find_icon". "bls" is deprecated and sent as "bls_3x3".
+            "portugal_text_find_icon". "bls" is deprecated: it is still sent as "bls", with a warning.
         taskArgument: Extra task input sent as metadata "TaskArgument"; required for
             "bls_3x3" (the number to find) and "portugal_text_find_icon" (the instruction text).
     """
@@ -49,7 +49,7 @@ class ComplexImageRecognitionTask(TaskPayload):
         if "metadata" not in base:
             base["metadata"] = {}
 
-        base["metadata"]["Task"] = "bls_3x3" if task == "bls" else task
+        base["metadata"]["Task"] = task
         if task_argument is not None:
             base["metadata"]["TaskArgument"] = task_argument
         if task == "bills_audio":

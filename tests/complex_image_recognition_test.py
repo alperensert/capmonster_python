@@ -35,8 +35,8 @@ def test_new_task_names():
         assert task.to_request()["metadata"]["Task"] == name
 
 
-def test_legacy_bls_warns_and_is_renamed():
+def test_legacy_bls_warns_and_keeps_request():
     import pytest
     with pytest.warns(DeprecationWarning, match="bls_3x3"):
         task = ComplexImageRecognitionTask(imagesBase64=["img"], task="bls")
-    assert task.to_request()["metadata"]["Task"] == "bls_3x3"
+    assert task.to_request()["metadata"] == {"Task": "bls"}

@@ -31,7 +31,7 @@ structures. All classes include:
 - **6 new task types** — Alibaba, Friendly Captcha, FengkongCloud, ARCaptcha, HeyTap, Proton
 - **Task cost** — `solve_detailed()` and the other `*_detailed` methods return a `TaskResult` with the task's `cost`
 - **New fields** — `minScore` for reCAPTCHA v2 Enterprise, TenDI `metadata`, DataDome `datadomeVersion`, Turnstile `pageData`, image recognition `taskArgument` and new tasks
-- **Fixes** — `HuntTask` uses the current `CustomTask`/`HUNT` request; Imperva sends `incapsulaCookies`; image recognition sends `bls_3x3`
+- **Fixes** — `HuntTask` uses the current `CustomTask`/`HUNT` request; Imperva sends `incapsulaCookies`; image recognition adds `bls_3x3` with `taskArgument`
 - **Deprecated** (warning now, removed in 6.0) — `RecaptchaClickTask`, `TemuTask`, `CastleTask`, `HuntTask(websiteKey=...)`, `ImpervaTaskMetadata(incapsulaCookie=...)`, `ComplexImageRecognitionTask(task="bls")`
 
 ## What's New in 5.0

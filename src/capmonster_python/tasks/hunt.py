@@ -50,6 +50,13 @@ class HuntTask(TaskPayload, UserAgentPayload):
     websiteKey: Optional[str] = Field(default=None, description='Deprecated: legacy Hunt site key.')
     proxy: Optional[ProxyPayload] = Field(default=None, description='Proxy settings.')
 
+    @model_validator(mode="before")
+    @classmethod
+    def set_legacy_type(cls, data: Any) -> Any:
+        if isinstance(data, dict) and data.get("metadata") is None and data.get("websiteKey") is not None:
+            data = {**data, "type": "HuntTask"}
+        return data
+
     @model_validator(mode="after")
     def check_mode(self) -> "HuntTask":
         if self.metadata is None:
@@ -65,7 +72,6 @@ class HuntTask(TaskPayload, UserAgentPayload):
     def to_request(self) -> dict[str, Any]:
         if self.metadata is None:
             base = self.model_dump(exclude_none=True, exclude={"class_", "metadata"})
-            base["type"] = "HuntTask"
         else:
             base = self.model_dump(exclude_none=True, by_alias=True, exclude={"websiteKey"})
         proxy_dict = base.pop("proxy", {})

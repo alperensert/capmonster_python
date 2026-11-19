@@ -12,6 +12,7 @@ def test_to_request_with_data():
         proxy=PROXY
     )
     result = task.to_request()
+    assert task.type == "CustomTask"
     assert result["type"] == "CustomTask"
     assert result["class"] == "HUNT"
     assert result["websiteURL"] == "https://example.com"
@@ -53,4 +54,5 @@ def test_metadata_or_website_key_required():
 def test_legacy_website_key_warns_and_keeps_request():
     with pytest.warns(DeprecationWarning, match="HuntTask"):
         task = HuntTask(websiteURL="https://example.com", websiteKey="key123")
+    assert task.type == "HuntTask"
     assert task.to_request() == {"type": "HuntTask", "websiteURL": "https://example.com", "websiteKey": "key123"}
