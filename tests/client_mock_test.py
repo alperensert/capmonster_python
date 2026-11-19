@@ -6,7 +6,7 @@ from capmonster_python import (
     CapmonsterClient, RecaptchaV2Task, RecaptchaV2EnterpriseTask,
     RecaptchaV3Task, RecaptchaV3EnterpriseTask,
     CapmonsterAPIException, CapmonsterException, ProxyPayload,
-    FunCaptchaTask, RecaptchaClickTask, HuntTask
+    FunCaptchaTask, RecaptchaClickTask, HuntTask, TaskResult
 )
 
 BASE_URL = "https://api.capmonster.cloud"
@@ -617,3 +617,62 @@ def test_deprecated_tasks_warn():
     with pytest.warns(DeprecationWarning, match="CastleTask"):
         CastleTask(websiteURL="https://example.com", websiteKey="pk",
                    metadata=CastleMetadata(wUrl="https://w", swUrl="https://sw"))
+
+
+READY_WITH_COST = {"errorId": 0, "status": "ready", "cost": 0.0003, "solution": {"text": "answer"}}
+
+
+@respx.mock
+def test_get_task_result_detailed_returns_cost():
+    respx.post(f"{BASE_URL}/getTaskResult").mock(return_value=Response(200, json=READY_WITH_COST))
+    client = CapmonsterClient("test_key")
+    result = client.get_task_result_detailed(123)
+    assert result == TaskResult(status="ready", solution={"text": "answer"}, cost=0.0003)
+    assert client.get_task_result(123) == {"text": "answer"}
+
+
+@respx.mock
+def test_get_task_result_detailed_processing():
+    respx.post(f"{BASE_URL}/getTaskResult").mock(
+        return_value=Response(200, json={"errorId": 0, "status": "processing"})
+    )
+    result = CapmonsterClient("test_key").get_task_result_detailed(123)
+    assert result.status == "processing"
+    assert result.solution == {}
+    assert result.cost is None
+
+
+@respx.mock
+def test_solve_detailed_polls_then_returns_cost():
+    respx.post(f"{BASE_URL}/createTask").mock(return_value=Response(200, json={"errorId": 0, "taskId": 1}))
+    respx.post(f"{BASE_URL}/getTaskResult").side_effect = [
+        Response(200, json={"errorId": 0, "status": "processing"}),
+        Response(200, json=READY_WITH_COST),
+    ]
+    client = CapmonsterClient("test_key", retry_delay=0)
+    result = client.solve_detailed(RecaptchaV2Task(websiteURL="https://example.com", websiteKey="key123"))
+    assert result.cost == 0.0003
+    assert result.solution == {"text": "answer"}
+
+
+@respx.mock
+def test_solve_keeps_returning_only_the_solution():
+    respx.post(f"{BASE_URL}/createTask").mock(return_value=Response(200, json={"errorId": 0, "taskId": 1}))
+    respx.post(f"{BASE_URL}/getTaskResult").mock(return_value=Response(200, json=READY_WITH_COST))
+    client = CapmonsterClient("test_key", retry_delay=0)
+    assert client.solve(RecaptchaV2Task(websiteURL="https://example.com", websiteKey="key123")) == {"text": "answer"}
+
+
+@respx.mock
+@pytest.mark.asyncio
+async def test_solve_detailed_async_returns_cost():
+    respx.post(f"{BASE_URL}/createTask").mock(return_value=Response(200, json={"errorId": 0, "taskId": 1}))
+    respx.post(f"{BASE_URL}/getTaskResult").side_effect = [
+        Response(200, json={"errorId": 0, "status": "processing"}),
+        Response(200, json=READY_WITH_COST),
+        Response(200, json=READY_WITH_COST),
+    ]
+    client = CapmonsterClient("test_key", retry_delay=0)
+    result = await client.solve_detailed_async(RecaptchaV2Task(websiteURL="https://example.com", websiteKey="k"))
+    assert result.cost == 0.0003
+    assert await client.get_task_result_async(1) == {"text": "answer"}

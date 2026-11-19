@@ -1,9 +1,11 @@
 from .client import CapmonsterClient
+from .methods import TaskResult
 from .exceptions import *
 from .tasks import *
 
 __all__ = [
     "CapmonsterClient",
+    "TaskResult",
     "VanillaTaskPayload",
     "ProxyPayload",
     "UserAgentPayload",
