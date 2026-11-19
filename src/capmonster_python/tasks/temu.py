@@ -3,10 +3,13 @@ from typing import Any
 from pydantic import Field
 
 from .task import TaskPayload, UserAgentPayload
+from .._deprecation import warn_deprecated
 
 
 class TemuTask(TaskPayload, UserAgentPayload):
     """
+    Deprecated: will be removed in 6.0.
+
     Represents a Temu task for CAPTCHA challenge handling.
 
     Attributes:
@@ -20,6 +23,10 @@ class TemuTask(TaskPayload, UserAgentPayload):
     class_: str = Field(default="Temu", alias="class", frozen=True)
     websiteURL: str = Field(..., description="The full URL of the page where the CAPTCHA is loaded.")
     cookie: str = Field(..., description="Cookies obtained from the page where the CAPTCHA is loaded.")
+
+    def model_post_init(self, __context: Any) -> None:
+        warn_deprecated("TemuTask is deprecated and will be removed in 6.0: "
+                        "Temu is no longer in the CapMonster Cloud docs.", stacklevel=4)
 
     def to_request(self) -> dict[str, Any]:
         base = self.model_dump(exclude_none=True, by_alias=True)

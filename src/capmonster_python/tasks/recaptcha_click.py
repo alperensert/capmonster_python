@@ -3,10 +3,13 @@ from typing import Optional, Any
 from pydantic import Field
 
 from .task import TaskPayload, ProxyPayload, UserAgentPayload
+from .._deprecation import warn_deprecated
 
 
 class RecaptchaClickTask(TaskPayload, UserAgentPayload):
     """
+    Deprecated: will be removed in 6.0.
+
     Represents a task for solving click-based reCAPTCHA challenges.
 
     Attributes:
@@ -22,6 +25,11 @@ class RecaptchaClickTask(TaskPayload, UserAgentPayload):
     isInvisible: Optional[bool] = Field(default=None,
                                         description='Set to true if you want to solve invisible reCAPTCHA.')
     proxy: Optional[ProxyPayload] = Field(default=None, description='Proxy settings.')
+
+    def model_post_init(self, __context: Any) -> None:
+        warn_deprecated("RecaptchaClickTask is deprecated and will be removed in 6.0: "
+                        "CapMonster Cloud documents no 'RecaptchaClickTask' type. "
+                        "Use ComplexImageRecaptchaTask for reCAPTCHA (click).", stacklevel=4)
 
     def to_request(self) -> dict[str, Any]:
         base = self.model_dump(exclude_none=True)

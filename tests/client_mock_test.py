@@ -606,3 +606,14 @@ def test_recaptcha_v3_is_enterprise_false():
     )
     result = task.to_request()
     assert result["isEnterprise"] is False
+
+
+def test_deprecated_tasks_warn():
+    from capmonster_python import TemuTask, CastleTask, CastleMetadata
+    with pytest.warns(DeprecationWarning, match="ComplexImageRecaptchaTask"):
+        RecaptchaClickTask(websiteURL="https://example.com", websiteKey="key123")
+    with pytest.warns(DeprecationWarning, match="TemuTask"):
+        TemuTask(websiteURL="https://example.com", cookie="c")
+    with pytest.warns(DeprecationWarning, match="CastleTask"):
+        CastleTask(websiteURL="https://example.com", websiteKey="pk",
+                   metadata=CastleMetadata(wUrl="https://w", swUrl="https://sw"))
