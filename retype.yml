@@ -1,5 +1,6 @@
 input: docs
 output: .retype
+url: https://alperensert.github.io/capmonster_python/
 
 branding:
   title: capmonster_python
